@@ -1,4 +1,4 @@
-package fev.news.config;
+package fev.management.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

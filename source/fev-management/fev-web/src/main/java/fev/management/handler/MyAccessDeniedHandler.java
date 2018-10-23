@@ -1,4 +1,4 @@
-package fev.news.handler;
+package fev.management.handler;
 
 import java.io.IOException;
 import java.util.Collection;

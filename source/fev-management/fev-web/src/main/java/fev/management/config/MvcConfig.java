@@ -1,7 +1,7 @@
 /**
  * Copyright 2018, MKS GROUP.
  */
-package fev.news.config;
+package fev.management.config;
 
 import java.util.Locale;
 
