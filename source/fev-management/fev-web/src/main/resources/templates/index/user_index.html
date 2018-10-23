@@ -1,0 +1,91 @@
+<div class="app-content container center-layout mt-2" th:fragment="content">
+    <div class="content-wrapper">
+        <div class="content-body">
+            <!-- block examples section start -->
+            <section id="block-examples">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4><span th:text="#{text.option}">Options</span></h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-4 col-sm-12 animated fadeInLeft">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>[[${#httpServletRequest.remoteUser}]] <span th:text="#{text.dailyreport}">>Daily Report</span></h5>
+                                        <p><span th:text="#{text.edit}">Edit & View </span> <span th:text="#{text.dailyreport}">User</span>:[[${#httpServletRequest.remoteUser}]]</p>
+                                        <a th:href="@{/user/dailyreport}"><button
+                                                class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element"><span th:text="#{text.dailyreport}">User</span>: [[${#httpServletRequest.remoteUser}]]</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 animated slideInDown">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5><span th:text="#{text.dailyreport}">Team</span>: <span th:text="#{text.team}">Daily Report</span></h5>
+                                        <p><span th:text="#{text.edit}">Edit & View </span> <span th:text="#{text.dailyreport}">Team</span>: <span th:text="#{text.team}">Daily Report</span></p>
+                                        <a th:href="@{/user/dailyreport_team}"><button
+                                                class="btn btn-lg btn-block font-medium-1 btn-outline-warning mb-1 block-sidebar"><span th:text="#{text.dailyreport}">Team</span>: <span th:text="#{text.team}">Daily Report</span></button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 animated fadeInRight">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>Task Management</h5>
+                                        <p>Edit & View Task Management - Comming soon</p>
+                                        <a th:href="@{/user/task_management}"><button
+                                                class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element">Task Management</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 animated fadeInLeft">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>Bug Management</h5>
+                                        <p>Edit & View Bug Management - Comming soon</p>
+                                        <a th:href="@{/user/bug_management}"><button
+                                                class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element">Bug Management</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 animated zoomIn`">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>Member Report</h5>
+                                        <p>View Member Report</p>
+                                        <a th:href="@{/user/dailyreport_member}"><button
+                                                class="btn btn-lg btn-block font-medium-1 btn-outline-warning mb-1 block-sidebar">View Member Report</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- // block examples section end -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover"
+    data-menu="horizontal-menu" data-col="2-columns">
+    
+    <!-- Header -->
+    <div th:replace="fragments/header :: header">Header</div>
+    <!--Top navigation  -->
+    <div th:replace="fragments/top_nav :: top_nav">Top Navigation</div>
+    <div class="app-content container center-layout mt-2">
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Gallery</a></li>
+                                <li class="breadcrumb-item active">Gallery Media Grid</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <h3 class="content-header-title mb-0">Gallery Media Grid</h3>
+                </div>
+                <div class="content-header-right col-md-6 col-12">
+                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                        <button class="btn btn-info round dropdown-toggle dropdown-menu-right px-2" id="btnGroupDrop1"
+                            type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ft-settings icon-left"></i> Settings
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item"
+                                href="component-buttons-extended.html">Buttons</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">              
+                <!-- Image grid -->
+                <section id="image-gallery" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Image gallery</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <p>Image gallery grid which display all memorable moment about our family.</p>
+                            </div>
+                        </div>
+                        <div class="card-body  my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                            <div class="row" id="custom"></div>
+                        </div>
+                        <!--/ Image grid -->
+                        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                            <!-- Background of PhotoSwipe. 
+             It's a separate element as animating opacity is faster than rgba(). -->
+                            <div class="pswp__bg"></div>
+                            <!-- Slides wrapper with overflow:hidden. -->
+                            <div class="pswp__scroll-wrap">
+                                <!-- Container that holds slides. 
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+                                <div class="pswp__container">
+                                    <div class="pswp__item"></div>
+                                    <div class="pswp__item"></div>
+                                    <div class="pswp__item"></div>
+                                </div>
+                                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                                <div class="pswp__ui pswp__ui--hidden">
+                                    <div class="pswp__top-bar">
+                                        <!--  Controls are self-explanatory. Order can be changed. -->
+                                        <div class="pswp__counter"></div>
+                                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                        <button class="pswp__button pswp__button--share" title="Share"></button>
+                                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                                        <!-- element will get class pswp__preloader-active when preloader is running -->
+                                        <div class="pswp__preloader">
+                                            <div class="pswp__preloader__icn">
+                                                <div class="pswp__preloader__cut">
+                                                    <div class="pswp__preloader__donut"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                        <div class="pswp__share-tooltip"></div>
+                                    </div>
+                                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                                    </button>
+                                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                                    </button>
+                                    <div class="pswp__caption">
+                                        <div class="pswp__caption__center"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ PhotoSwipe -->
+                </section>
+                <!--/ Image grid -->
+                <!-- Video grid -->
+                <section id="video-gallery" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Video gallery</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <p>This section contain responsive embedded video gallery with grid 4-2-1 columns
+                                    This demo contain vimeo and youtube embedded videos.</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-header">Vimeo</h5>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/s7j9AGEE37w" width="640"
+                                            height="360" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/dD9xoIZ4t2s"
+                                            width="640" height="360" allowfullscreen></iframe>
+                                    </div>
+                                </div>                               
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-header">You Tube</h5>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/_v6W-FGhw3M" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/yVI7OeGLESw" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/28lUEiP9xbE" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/gKWOMUpMrZY" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </section>
+                <!-- Video grid -->
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer">Footer</div>
+        <!--Script file  -->
+    <div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+$( document ).ready(function() {
+	console.log('render');
+	var list = ['https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37874029_1080967392060030_8945366002149883904_n.jpg?_nc_cat=101&oh=8491f065ab64a1480cd37cb094c18113&oe=5C14F451',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37853966_1080790482077721_413118589076242432_o.jpg?_nc_cat=105&oh=ef962cad4717d9825fb3ad954fbac8e6&oe=5C15736B',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37838178_1080793645410738_4266232616170029056_o.jpg?_nc_cat=103&oh=c8ab6beb4ff430d9a7f54acc0657fa5e&oe=5C244B8F',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37838832_1080791238744312_4705761998531461120_o.jpg?_nc_cat=110&oh=e11e47504a568fb13ce70c6767402552&oe=5C53263C',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37819860_1080796912077078_7902039319768989696_o.jpg?_nc_cat=103&oh=0c266a8fe734e4ccadc8bb38009db021&oe=5C172E7A',
+		'https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37929651_1080797282077041_5191620621884194816_o.jpg?_nc_cat=108&oh=be2e4feee68503f433319f94b62dba93&oe=5C26F206',
+		'https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37861618_1080874742069295_39814179330195456_o.jpg?_nc_cat=111&oh=1f68a8c77ab4ae2ff5adf3bb2d00bca7&oe=5C210FF2',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37868678_1080797452077024_6590727053442547712_o.jpg?_nc_cat=106&oh=da989fff0d107cf5f616ddc6e6a96902&oe=5C5CEED5',
+		'https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37847613_1080797692077000_3023849786055852032_o.jpg?_nc_cat=100&oh=63fd802f335b4134313913d830861da2&oe=5C5271AF',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37846521_1080791465410956_1809686119437041664_o.jpg?_nc_cat=110&oh=4df220d1e82ef5816fc6cd6a4861dc88&oe=5C250B7F',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37854401_1080788705411232_649532847681437696_o.jpg?_nc_cat=110&oh=3ce810c01e3cef160f7d951c8844924c&oe=5C191420',
+		'https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37837072_1080789095411193_533106218546233344_o.jpg?_nc_cat=111&oh=49db1b6c668568aaa99877a41bdcf986&oe=5C1AD70F',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37853238_1080807165409386_351129313208172544_o.jpg?_nc_cat=109&oh=90f01781ff329512a5e496fecfaf829b&oe=5C1AD935',
+		'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37866490_1080798422076927_2147154185353691136_o.jpg?_nc_cat=107&oh=f7a27ec8a3c5a44cbb1a6d3b5cc59757&oe=5C5C1DC1',
+		'https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37844362_1080799675410135_4872199566163705856_o.jpg?_nc_cat=100&oh=4da876153cd2d83bd556ac2125bd7553&oe=5C224FCE',
+		'https://c1.staticflickr.com/2/1827/43220492152_619b1ff4c8_h.jpg'
+	];
+	function textRender(link) {
+		var textHTML = '';
+		textHTML += '<figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">';
+		textHTML += '<a href="' + link + '" itemprop="contentUrl" data-size="1080x720">'
+		textHTML += '<img class="img-thumbnail img-fluid" src="' + link + '"';
+		textHTML += '  itemprop="thumbnail" alt="Image description" />';
+		textHTML += '</a>';
+		textHTML += '</a>';
+		textHTML += '</figure>';
+		return textHTML;
+	}
+
+	for(var i = 0; i < list.length; i++){
+		$('#custom').append(textRender(list[i]));
+		console.log('Done ' + i);
+	}
+});
+</script>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover"
+    data-menu="horizontal-menu" data-col="2-columns">
+    <!-- Header -->
+    <div th:replace="fragments/header :: header">Header</div>
+    <!--Top navigation  -->
+    <div th:replace="fragments/top_nav :: top_nav">Top Navigation</div>
+    <div class="app-content container center-layout mt-2">
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Gallery</a></li>
+                                <li class="breadcrumb-item active">Gallery Media Grid</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <h3 class="content-header-title mb-0">Gallery Media Grid</h3>
+                </div>
+                <div class="content-header-right col-md-6 col-12">
+                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                        <button class="btn btn-info round dropdown-toggle dropdown-menu-right px-2" id="btnGroupDrop1"
+                            type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ft-settings icon-left"></i> Settings
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item"
+                                href="component-buttons-extended.html">Buttons</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- Description -->
+                <section id="description" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Description</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <p>Image gallery grid with photo-swipe integration. Display images in 4-2-1 columns
+                                    and photo-swipe provides gallery features.</p>
+                                <p>
+                                    Please read the photo-swipe gallery <a
+                                        href="http://photoswipe.com/documentation/getting-started.html" target="_blank">documentation</a>
+                                    for usage information.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--/ Description -->
+                <!-- Image grid -->
+                <section id="image-gallery" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Image gallery</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <p>Image gallery grid with photo-swipe integration. Display images gallery in 4-2-1
+                                    columns and photo-swipe provides gallery features.</p>
+                            </div>
+                        </div>
+                        <div class="card-body  my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                            <div class="row">
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37874029_1080967392060030_8945366002149883904_n.jpg?_nc_cat=101&oh=8491f065ab64a1480cd37cb094c18113&oe=5C14F451" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c50.0.200.200/p200x200/37874029_1080967392060030_8945366002149883904_n.jpg?_nc_cat=101&oh=7a6d0eea1a53907e94d8ed12b947e41f&oe=5C55B9BE" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37853966_1080790482077721_413118589076242432_o.jpg?_nc_cat=105&oh=ef962cad4717d9825fb3ad954fbac8e6&oe=5C15736B" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-0/q82/c78.0.200.200/p200x200/37820084_1080790478744388_3833409296960323584_n.jpg?_nc_cat=108&oh=f0f4c923c36afe61667da03843a5a254&oe=5C589E45" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37838178_1080793645410738_4266232616170029056_o.jpg?_nc_cat=103&oh=c8ab6beb4ff430d9a7f54acc0657fa5e&oe=5C244B8F" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/q83/c150.0.200.200/p200x200/37927954_1080793648744071_7840123195783905280_n.jpg?_nc_cat=105&oh=1ab62eb26a25c732dd323bfd46ce88df&oe=5C53AC41" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37838832_1080791238744312_4705761998531461120_o.jpg?_nc_cat=110&oh=e11e47504a568fb13ce70c6767402552&oe=5C53263C" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c116.0.200.200/p200x200/37881317_1080791242077645_4254398559635374080_n.jpg?_nc_cat=110&oh=c76d2b5cbd3778cbc8ef4a40cc5f8c26&oe=5C5588D2" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="row">
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37819860_1080796912077078_7902039319768989696_o.jpg?_nc_cat=103&oh=0c266a8fe734e4ccadc8bb38009db021&oe=5C172E7A" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-0/c63.0.200.200/p200x200/37904296_1080796915410411_5538760717928235008_n.jpg?_nc_cat=111&oh=7cc5e793a88bbf5008b2895dfdc1e3be&oe=5C563DF6" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37929651_1080797282077041_5191620621884194816_o.jpg?_nc_cat=108&oh=be2e4feee68503f433319f94b62dba93&oe=5C26F206" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c78.0.200.200/p200x200/37817190_1080797278743708_4889703615184240640_n.jpg?_nc_cat=105&oh=406f91289299837e9da72282121b8ed6&oe=5C5FD772" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37861618_1080874742069295_39814179330195456_o.jpg?_nc_cat=111&oh=1f68a8c77ab4ae2ff5adf3bb2d00bca7&oe=5C210FF2" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-0/q84/c60.0.200.200/p200x200/37838921_1080874745402628_8216615197113057280_n.jpg?_nc_cat=108&oh=4423f2b3717c4b5c40ab0590ebfcc4f5&oe=5C61A912" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37868678_1080797452077024_6590727053442547712_o.jpg?_nc_cat=106&oh=da989fff0d107cf5f616ddc6e6a96902&oe=5C5CEED5" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c78.0.200.200/p200x200/37826988_1080797455410357_5507198991839789056_n.jpg?_nc_cat=105&oh=8477a4bc0bddd15ed1962406b59f9f70&oe=5C6315C5" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="row">
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37847613_1080797692077000_3023849786055852032_o.jpg?_nc_cat=100&oh=63fd802f335b4134313913d830861da2&oe=5C5271AF" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-0/c78.0.200.200/p200x200/37926796_1080797695410333_153157945364840448_n.jpg?_nc_cat=100&oh=9a3e7bfa957c6af6a9f4ee9af3608b15&oe=5C52A73D" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37846521_1080791465410956_1809686119437041664_o.jpg?_nc_cat=110&oh=4df220d1e82ef5816fc6cd6a4861dc88&oe=5C250B7F" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-0/c62.0.200.200/p200x200/37850615_1080791468744289_6206690985007644672_n.jpg?_nc_cat=102&oh=8a572893383f9336c4d6183152525441&oe=5C256D73" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37854401_1080788705411232_649532847681437696_o.jpg?_nc_cat=110&oh=3ce810c01e3cef160f7d951c8844924c&oe=5C191420" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c78.0.200.200/p200x200/37823156_1080788702077899_5933614026570334208_n.jpg?_nc_cat=110&oh=c0602bea919a227b72442ca98354f21c&oe=5C5F26EF" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37837072_1080789095411193_533106218546233344_o.jpg?_nc_cat=111&oh=49db1b6c668568aaa99877a41bdcf986&oe=5C1AD70F" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c63.0.200.200/p200x200/37810555_1080789098744526_3544846546174476288_n.jpg?_nc_cat=110&oh=b29dbfcbd53f37cb73ae54d9a99d3f83&oe=5C1C7DCF" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="row">
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37853238_1080807165409386_351129313208172544_o.jpg?_nc_cat=109&oh=90f01781ff329512a5e496fecfaf829b&oe=5C1AD935" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-0/c51.0.200.200/p200x200/37814003_1080807162076053_7228946403215540224_n.jpg?_nc_cat=102&oh=ae5070faf325661d743353d1c054ffd7&oe=5C1EE304" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37822389_1080794732077296_6360039665575133184_o.jpg?_nc_cat=107&oh=cc70b436bee66374109062b02e4ba86a&oe=5C62986D" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c0.0.200.200/p200x200/37877129_1080794735410629_2889666009772326912_n.jpg?_nc_cat=103&oh=f63117735adea654335c4c6b7ee6da50&oe=5C5A7C2C" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37866490_1080798422076927_2147154185353691136_o.jpg?_nc_cat=107&oh=f7a27ec8a3c5a44cbb1a6d3b5cc59757&oe=5C5C1DC1" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/q88/c21.0.200.200/p200x200/37831209_1080798418743594_2479163347837124608_n.jpg?_nc_cat=103&oh=9949fc37d0d8b97a82d3245da0e6868e&oe=5C14E106" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                                <figure class="col-lg-3 col-md-6 col-12" itemprop="associatedMedia" itemscope
+                                    itemtype="http://schema.org/ImageObject">
+                                    <a href="https://scontent.fsgn6-2.fna.fbcdn.net/v/t1.0-9/37844362_1080799675410135_4872199566163705856_o.jpg?_nc_cat=100&oh=4da876153cd2d83bd556ac2125bd7553&oe=5C224FCE" itemprop="contentUrl"
+                                        data-size="480x360"> <img class="img-thumbnail img-fluid"
+                                        src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-0/c50.0.200.200/p200x200/37806733_1080799678743468_1514734686402772992_n.jpg?_nc_cat=109&oh=d1878192f074ddebae63e51510ef265c&oe=5C1D879A" itemprop="thumbnail"
+                                        alt="Image description" />
+                                    </a>
+                                </figure>
+                            </div>
+                        </div>
+                        <!--/ Image grid -->
+                        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                            <!-- Background of PhotoSwipe. 
+             It's a separate element as animating opacity is faster than rgba(). -->
+                            <div class="pswp__bg"></div>
+                            <!-- Slides wrapper with overflow:hidden. -->
+                            <div class="pswp__scroll-wrap">
+                                <!-- Container that holds slides. 
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+                                <div class="pswp__container">
+                                    <div class="pswp__item"></div>
+                                    <div class="pswp__item"></div>
+                                    <div class="pswp__item"></div>
+                                </div>
+                                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                                <div class="pswp__ui pswp__ui--hidden">
+                                    <div class="pswp__top-bar">
+                                        <!--  Controls are self-explanatory. Order can be changed. -->
+                                        <div class="pswp__counter"></div>
+                                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                                        <button class="pswp__button pswp__button--share" title="Share"></button>
+                                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                                        <!-- element will get class pswp__preloader-active when preloader is running -->
+                                        <div class="pswp__preloader">
+                                            <div class="pswp__preloader__icn">
+                                                <div class="pswp__preloader__cut">
+                                                    <div class="pswp__preloader__donut"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                        <div class="pswp__share-tooltip"></div>
+                                    </div>
+                                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                                    </button>
+                                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                                    </button>
+                                    <div class="pswp__caption">
+                                        <div class="pswp__caption__center"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ PhotoSwipe -->
+                </section>
+                <!--/ Image grid -->
+                <!-- Video grid -->
+                <section id="video-gallery" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Video gallery</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <p>This section contain responsive embedded video gallery with grid 4-2-1 columns
+                                    This demo contain vimeo and youtube embedded videos.</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-header">Vimeo</h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/97980578?title=0&byline=0" width="640"
+                                            height="360"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/173140629?color=ff9933&title=0&byline=0"
+                                            width="640" height="360"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/174099316?color=ff9933&title=0&byline=0"
+                                            width="640" height="360"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/173139879?color=ff9933&title=0&byline=0"
+                                            width="640" height="360"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/118589137?title=0&byline=0" width="640"
+                                            height="360"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/173541384?color=ff9933&title=0&byline=0"
+                                            width="640" height="360"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/161753790?color=ff9933&title=0&byline=0"
+                                            width="640" height="360"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://player.vimeo.com/video/174960004?color=ff9933&title=0&byline=0"
+                                            width="640" height="360"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-header">You Tube</h5>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/SsE5U7ta9Lw?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/zqDxfHvZ3DU?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/hunYLg8I1Os?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/yXootGU_8Ns?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/_-zawfC3s9M?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/RcrLLooXgSY?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/_V4if9Weopk?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                                        <iframe class="img-thumbnail"
+                                            src="https://www.youtube.com/embed/icMTTP7-q9A?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Video grid -->
+            </div>
+        </div>
+    </div>
+    <!--     <div th:replace="index/user_index :: content">Content</div> -->
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!--Footer  -->
+    <div th:replace="fragments/footer :: footer">Footer</div>
+<!--     <div th:replace=s"fragments/script :: script">Script</div> -->
+<!-- BEGIN VENDOR JS-->
+  <script src="../../../themes/robust-admin/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+  <!-- BEGIN VENDOR JS-->
+  <!-- BEGIN PAGE VENDOR JS-->
+  <script type="text/javascript" src="../../../themes/robust-admin/app-assets/vendors/js/ui/jquery.sticky.js"></script>
+  <script src="../../../themes/robust-admin/app-assets/vendors/js/gallery/masonry/masonry.pkgd.min.js"
+  type="text/javascript"></script>
+  <script src="../../../themes/robust-admin/app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js"
+  type="text/javascript"></script>
+  <script src="../../../themes/robust-admin/app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js"
+  type="text/javascript"></script>
+  <!-- END PAGE VENDOR JS-->
+  <!-- BEGIN ROBUST JS-->
+  <script src="../../../themes/robust-admin/app-assets/js/core/app-menu.js" type="text/javascript"></script>
+  <script src="../../../themes/robust-admin/app-assets/js/core/app.js" type="text/javascript"></script>
+  <script src="../../../themes/robust-admin/app-assets/js/scripts/customizer.js" type="text/javascript"></script>
+  <!-- END ROBUST JS-->
+  <!-- BEGIN PAGE LEVEL JS-->
+  <script src="../../../themes/robust-admin/app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.js"
+  type="text/javascript"></script>
+  <!-- END PAGE LEVEL JS-->
+</body>
+</html>
