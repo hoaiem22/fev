@@ -1,4 +1,4 @@
 @ECHO OFF
 
-ECHO Adding: Create data for the database fptueventclub...
+ECHO Adding: Create data for the database fptueventclub . . .
 mysql -u fptueventclub -pFPTUEventClub@123 fptueventclub < FPTUEventClub_Script_StaticData.sql
