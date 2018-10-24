@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fev.management.entity.FevEvent;
 import fev.management.repository.EventRepository;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Controller
 public class EventController implements BaseController<FevEvent> {
@@ -25,13 +27,17 @@ public class EventController implements BaseController<FevEvent> {
     private final static Logger LOG = LoggerFactory.getLogger(EventController.class);
 
     private final String path = "/events";
-    
+
     @Autowired
     EventRepository eventRepository;
 
     // GET
     // Display all event
     @GetMapping("/events")
+    @ApiOperation(value = "Get All Event")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Success", response = String.class),
+            @ApiResponse(code = 422, message = "Event not found"),
+            @ApiResponse(code = 417, message = "Exception failed")})
     @ResponseBody
     public List<FevEvent> getAll() {
 
