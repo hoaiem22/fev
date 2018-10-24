@@ -19,6 +19,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
@@ -43,12 +45,15 @@ public class FevInventory implements Serializable {
     private Integer quantity;
     @Column(name = "note", length = 250)
     private String note;
+    @JsonBackReference
     @JoinColumn(name = "holder", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMember holder;
+    @JsonBackReference
     @JoinColumn(name = "status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevInventoryStatus status;
+    @JsonBackReference
     @JoinColumn(name = "item", referencedColumnName = "id")
     @ManyToOne
     private FevInventoryItem item;
@@ -130,7 +135,7 @@ public class FevInventory implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevInventory[ id=" + id + " ]";
+        return "fev.management.entity.FevInventory[ id=" + id + " ]";
     }
     
 }

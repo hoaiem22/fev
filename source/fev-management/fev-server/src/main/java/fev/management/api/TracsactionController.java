@@ -14,15 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fev.management.entity.FevInventoryStatus;
-import fev.management.entity.FevLogin;
-import fev.management.entity.FevLoginRole;
-import fev.management.entity.FevMember;
 import fev.management.entity.FevTransaction;
-import fev.management.repository.InventoryStatusRepository;
-import fev.management.repository.LoginRepository;
-import fev.management.repository.LoginRoleRepository;
-import fev.management.repository.MemberRepository;
 import fev.management.repository.TransactionRepository;
 
 @Controller

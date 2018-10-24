@@ -21,19 +21,21 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
  */
 @Entity
-@Table(name = "fev_login_role", catalog = "fptueventclub", schema = "")
+@Table(name = "fev_account_role", catalog = "fptueventclub", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FevLoginRole.findAll", query = "SELECT f FROM FevLoginRole f")
-    , @NamedQuery(name = "FevLoginRole.findById", query = "SELECT f FROM FevLoginRole f WHERE f.id = :id")
-    , @NamedQuery(name = "FevLoginRole.findByRole", query = "SELECT f FROM FevLoginRole f WHERE f.role = :role")
-    , @NamedQuery(name = "FevLoginRole.findByNote", query = "SELECT f FROM FevLoginRole f WHERE f.note = :note")})
-public class FevLoginRole implements Serializable {
+    @NamedQuery(name = "FevAccountRole.findAll", query = "SELECT f FROM FevAccountRole f")
+    , @NamedQuery(name = "FevAccountRole.findById", query = "SELECT f FROM FevAccountRole f WHERE f.id = :id")
+    , @NamedQuery(name = "FevAccountRole.findByRole", query = "SELECT f FROM FevAccountRole f WHERE f.role = :role")
+    , @NamedQuery(name = "FevAccountRole.findByNote", query = "SELECT f FROM FevAccountRole f WHERE f.note = :note")})
+public class FevAccountRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,17 +48,18 @@ public class FevLoginRole implements Serializable {
     private String role;
     @Column(name = "note", length = 255)
     private String note;
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
-    private Collection<FevLogin> fevLoginCollection;
+    private Collection<FevAccount> fevAccountCollection;
 
-    public FevLoginRole() {
+    public FevAccountRole() {
     }
 
-    public FevLoginRole(Integer id) {
+    public FevAccountRole(Integer id) {
         this.id = id;
     }
 
-    public FevLoginRole(Integer id, String role) {
+    public FevAccountRole(Integer id, String role) {
         this.id = id;
         this.role = role;
     }
@@ -86,12 +89,12 @@ public class FevLoginRole implements Serializable {
     }
 
     @XmlTransient
-    public Collection<FevLogin> getFevLoginCollection() {
-        return fevLoginCollection;
+    public Collection<FevAccount> getFevAccountCollection() {
+        return fevAccountCollection;
     }
 
-    public void setFevLoginCollection(Collection<FevLogin> fevLoginCollection) {
-        this.fevLoginCollection = fevLoginCollection;
+    public void setFevAccountCollection(Collection<FevAccount> fevAccountCollection) {
+        this.fevAccountCollection = fevAccountCollection;
     }
 
     @Override
@@ -104,10 +107,10 @@ public class FevLoginRole implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FevLoginRole)) {
+        if (!(object instanceof FevAccountRole)) {
             return false;
         }
-        FevLoginRole other = (FevLoginRole) object;
+        FevAccountRole other = (FevAccountRole) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -116,7 +119,7 @@ public class FevLoginRole implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevLoginRole[ id=" + id + " ]";
+        return "fev.management.entity.FevAccountRole[ id=" + id + " ]";
     }
     
 }

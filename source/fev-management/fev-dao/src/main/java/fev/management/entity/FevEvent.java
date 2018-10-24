@@ -26,6 +26,8 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
@@ -67,10 +69,13 @@ public class FevEvent implements Serializable {
     private String note;
     @OneToMany(mappedBy = "event")
     private Collection<FevEventMember> fevEventMemberCollection;
+    @JsonBackReference
     @OneToMany(mappedBy = "event")
     private Collection<FevTransaction> fevTransactionCollection;
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
     private Collection<FevEventAlbum> fevEventAlbumCollection;
+    @JsonBackReference
     @JoinColumn(name = "leader", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMember leader;
@@ -195,7 +200,7 @@ public class FevEvent implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevEvent[ id=" + id + " ]";
+        return "fev.management.entity.FevEvent[ id=" + id + " ]";
     }
     
 }

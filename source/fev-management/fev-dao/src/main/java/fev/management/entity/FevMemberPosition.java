@@ -21,6 +21,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
@@ -46,6 +48,7 @@ public class FevMemberPosition implements Serializable {
     private String position;
     @Column(name = "note", length = 255)
     private String note;
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "position")
     private Collection<FevMember> fevMemberCollection;
 
@@ -116,7 +119,7 @@ public class FevMemberPosition implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevMemberPosition[ id=" + id + " ]";
+        return "fev.management.entity.FevMemberPosition[ id=" + id + " ]";
     }
     
 }

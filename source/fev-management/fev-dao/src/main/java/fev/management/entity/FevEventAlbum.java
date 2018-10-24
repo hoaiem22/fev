@@ -19,6 +19,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
@@ -40,6 +42,7 @@ public class FevEventAlbum implements Serializable {
     private Integer id;
     @Column(name = "img", length = 250)
     private String img;
+    @JsonBackReference
     @JoinColumn(name = "event", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevEvent event;
@@ -97,7 +100,7 @@ public class FevEventAlbum implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevEventAlbum[ id=" + id + " ]";
+        return "fev.management.entity.FevEventAlbum[ id=" + id + " ]";
     }
     
 }

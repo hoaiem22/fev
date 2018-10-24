@@ -19,6 +19,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
@@ -30,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "FevTransaction.findAll", query = "SELECT f FROM FevTransaction f")
     , @NamedQuery(name = "FevTransaction.findById", query = "SELECT f FROM FevTransaction f WHERE f.id = :id")
     , @NamedQuery(name = "FevTransaction.findByContent", query = "SELECT f FROM FevTransaction f WHERE f.content = :content")
+    , @NamedQuery(name = "FevTransaction.findByMoney", query = "SELECT f FROM FevTransaction f WHERE f.money = :money")
     , @NamedQuery(name = "FevTransaction.findByNote", query = "SELECT f FROM FevTransaction f WHERE f.note = :note")})
 public class FevTransaction implements Serializable {
 
@@ -41,14 +44,19 @@ public class FevTransaction implements Serializable {
     private Integer id;
     @Column(name = "content", length = 50)
     private String content;
+    @Column(name = "money")
+    private Integer money;
     @Column(name = "note", length = 50)
     private String note;
+    @JsonBackReference
     @JoinColumn(name = "event", referencedColumnName = "id")
     @ManyToOne
     private FevEvent event;
+    @JsonBackReference
     @JoinColumn(name = "burden", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMember burden;
+    @JsonBackReference
     @JoinColumn(name = "type", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevTransactionType type;
@@ -74,6 +82,14 @@ public class FevTransaction implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
     }
 
     public String getNote() {
@@ -130,7 +146,7 @@ public class FevTransaction implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevTransaction[ id=" + id + " ]";
+        return "fev.management.entity.FevTransaction[ id=" + id + " ]";
     }
     
 }

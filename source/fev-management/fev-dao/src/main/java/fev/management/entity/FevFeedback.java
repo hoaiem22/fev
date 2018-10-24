@@ -19,6 +19,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
@@ -46,6 +48,7 @@ public class FevFeedback implements Serializable {
     private String content;
     @Column(name = "note", length = 250)
     private String note;
+    @JsonBackReference
     @JoinColumn(name = "status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevFeedbackStatus status;
@@ -119,7 +122,7 @@ public class FevFeedback implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevFeedback[ id=" + id + " ]";
+        return "fev.management.entity.FevFeedback[ id=" + id + " ]";
     }
     
 }

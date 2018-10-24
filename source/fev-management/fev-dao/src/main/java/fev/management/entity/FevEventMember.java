@@ -17,14 +17,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  *
  * @author Admin
  */
 @Entity
-@Table(name = "fev_event_member", catalog = "fptueventclub", schema = "")
+@Table(name = "fev_event_member", catalog = "fptueventclub", schema = "", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"event", "member"})})
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "FevEventMember.findAll", query = "SELECT f FROM FevEventMember f")
@@ -40,9 +44,11 @@ public class FevEventMember implements Serializable {
     private Integer id;
     @Column(name = "note", length = 255)
     private String note;
+    @JsonBackReference
     @JoinColumn(name = "member", referencedColumnName = "id")
     @ManyToOne
     private FevMember member1;
+    @JsonBackReference
     @JoinColumn(name = "event", referencedColumnName = "id")
     @ManyToOne
     private FevEvent event;
@@ -108,7 +114,7 @@ public class FevEventMember implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevEventMember[ id=" + id + " ]";
+        return "fev.management.entity.FevEventMember[ id=" + id + " ]";
     }
     
 }

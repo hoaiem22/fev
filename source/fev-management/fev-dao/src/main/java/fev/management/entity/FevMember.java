@@ -27,6 +27,8 @@ import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
@@ -41,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "FevMember.findByFullname", query = "SELECT f FROM FevMember f WHERE f.fullname = :fullname")
     , @NamedQuery(name = "FevMember.findByStudentID", query = "SELECT f FROM FevMember f WHERE f.studentID = :studentID")
     , @NamedQuery(name = "FevMember.findByBirthdate", query = "SELECT f FROM FevMember f WHERE f.birthdate = :birthdate")
+    , @NamedQuery(name = "FevMember.findBySex", query = "SELECT f FROM FevMember f WHERE f.sex = :sex")
     , @NamedQuery(name = "FevMember.findByAddress", query = "SELECT f FROM FevMember f WHERE f.address = :address")
     , @NamedQuery(name = "FevMember.findByPhone", query = "SELECT f FROM FevMember f WHERE f.phone = :phone")
     , @NamedQuery(name = "FevMember.findByPoint", query = "SELECT f FROM FevMember f WHERE f.point = :point")
@@ -61,6 +64,8 @@ public class FevMember implements Serializable {
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
+    @Column(name = "sex", length = 10)
+    private String sex;
     @Column(name = "address", length = 50)
     private String address;
     @Column(name = "phone", length = 50)
@@ -72,16 +77,21 @@ public class FevMember implements Serializable {
     private String note;
     @OneToMany(mappedBy = "member1")
     private Collection<FevEventMember> fevEventMemberCollection;
+    @JsonBackReference
     @JoinColumn(name = "position", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberPosition position;
+    @JsonBackReference
     @JoinColumn(name = "status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberStatus status;
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "burden")
     private Collection<FevTransaction> fevTransactionCollection;
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "leader")
     private Collection<FevEvent> fevEventCollection;
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "holder")
     private Collection<FevInventory> fevInventoryCollection;
 
@@ -128,6 +138,14 @@ public class FevMember implements Serializable {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getAddress() {
@@ -236,7 +254,7 @@ public class FevMember implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevMember[ id=" + id + " ]";
+        return "fev.management.entity.FevMember[ id=" + id + " ]";
     }
     
 }

@@ -19,20 +19,22 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  *
  * @author Admin
  */
 @Entity
-@Table(name = "fev_login", catalog = "fptueventclub", schema = "")
+@Table(name = "fev_account", catalog = "fptueventclub", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FevLogin.findAll", query = "SELECT f FROM FevLogin f")
-    , @NamedQuery(name = "FevLogin.findById", query = "SELECT f FROM FevLogin f WHERE f.id = :id")
-    , @NamedQuery(name = "FevLogin.findByUsername", query = "SELECT f FROM FevLogin f WHERE f.username = :username")
-    , @NamedQuery(name = "FevLogin.findByPassword", query = "SELECT f FROM FevLogin f WHERE f.password = :password")
-    , @NamedQuery(name = "FevLogin.findByNote", query = "SELECT f FROM FevLogin f WHERE f.note = :note")})
-public class FevLogin implements Serializable {
+    @NamedQuery(name = "FevAccount.findAll", query = "SELECT f FROM FevAccount f")
+    , @NamedQuery(name = "FevAccount.findById", query = "SELECT f FROM FevAccount f WHERE f.id = :id")
+    , @NamedQuery(name = "FevAccount.findByUsername", query = "SELECT f FROM FevAccount f WHERE f.username = :username")
+    , @NamedQuery(name = "FevAccount.findByPassword", query = "SELECT f FROM FevAccount f WHERE f.password = :password")
+    , @NamedQuery(name = "FevAccount.findByNote", query = "SELECT f FROM FevAccount f WHERE f.note = :note")})
+public class FevAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,17 +51,18 @@ public class FevLogin implements Serializable {
     @Column(name = "note", length = 255)
     private String note;
     @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
+    @JsonBackReference
     @ManyToOne(optional = false)
-    private FevLoginRole role;
+    private FevAccountRole role;
 
-    public FevLogin() {
+    public FevAccount() {
     }
 
-    public FevLogin(Integer id) {
+    public FevAccount(Integer id) {
         this.id = id;
     }
 
-    public FevLogin(Integer id, String username, String password) {
+    public FevAccount(Integer id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -97,11 +100,11 @@ public class FevLogin implements Serializable {
         this.note = note;
     }
 
-    public FevLoginRole getRole() {
+    public FevAccountRole getRole() {
         return role;
     }
 
-    public void setRole(FevLoginRole role) {
+    public void setRole(FevAccountRole role) {
         this.role = role;
     }
 
@@ -115,10 +118,10 @@ public class FevLogin implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FevLogin)) {
+        if (!(object instanceof FevAccount)) {
             return false;
         }
-        FevLogin other = (FevLogin) object;
+        FevAccount other = (FevAccount) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -127,7 +130,7 @@ public class FevLogin implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.entity.FevLogin[ id=" + id + " ]";
+        return "fev.management.entity.FevAccount[ id=" + id + " ]";
     }
     
 }
