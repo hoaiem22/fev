@@ -14,41 +14,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fev.management.entity.FevInventoryStatus;
-import fev.management.entity.FevLogin;
-import fev.management.entity.FevLoginRole;
-import fev.management.repository.InventoryStatusRepository;
-import fev.management.repository.LoginRepository;
-import fev.management.repository.LoginRoleRepository;
+import fev.management.entity.FevAccount;
+import fev.management.repository.AccountRepository;
 
 @Controller
-public class LoginRoleController implements BaseController<FevLoginRole> {
+public class AccountController implements BaseController<FevAccount> {
 
     /** For logging. */
     private final static Logger LOG = LoggerFactory.getLogger(EventController.class);
 
-    private final String path = "/logins/roles";
+    private final String path = "/logins";
 
     @Autowired
-    LoginRoleRepository loginRoleRepository;
+    AccountRepository loginRepository;
 
     // GET
     // Display all album
     @GetMapping(path)
     @ResponseBody
     @Override
-    public List<FevLoginRole> getAll() {
+    public List<FevAccount> getAll() {
         // TODO Auto-generated method stub
-        return (List<FevLoginRole>) loginRoleRepository.findAll();
+        return (List<FevAccount>) loginRepository.findAll();
     }
 
     // Get Album By ID
     @GetMapping(path + "/{id}")
     @ResponseBody
     @Override
-    public Optional<FevLoginRole> getByID(@PathVariable("id") int id) {
+    public Optional<FevAccount> getByID(@PathVariable("id") int id) {
         // TODO Auto-generated method stub
-        return loginRoleRepository.findById(id);
+        return loginRepository.findById(id);
     }
 
     @GetMapping(path + "/count")
@@ -56,7 +52,7 @@ public class LoginRoleController implements BaseController<FevLoginRole> {
     @Override
     public long getCount() {
         // TODO Auto-generated method stub
-        return loginRoleRepository.count();
+        return loginRepository.count();
     }
 
     // Get Event By ID
@@ -64,24 +60,24 @@ public class LoginRoleController implements BaseController<FevLoginRole> {
     @ResponseBody
     @Override
     public void deleteByID(@PathVariable("id") int id) {
-        loginRoleRepository.deleteById(id);
+        loginRepository.deleteById(id);
 
     }
 
-    @PostMapping(path + "/{accRole}")
+    @PostMapping(path + "/{account}")
     @ResponseBody
     @Override
-    public void create(@PathVariable("accRole") FevLoginRole object) {
+    public void create(@PathVariable("account") FevAccount object) {
         // TODO Auto-generated method stub
-        loginRoleRepository.save(object);
+        loginRepository.save(object);
     }
 
     // Create new Event
-    @PutMapping(path + "/{accRole}")
+    @PutMapping(path + "/{account}")
     @ResponseBody
     @Override
-    public void update(@PathVariable("accRole") FevLoginRole object) {
+    public void update(@PathVariable("account") FevAccount object) {
         // TODO Auto-generated method stub
-        loginRoleRepository.save(object);
+        loginRepository.save(object);
     }
 }

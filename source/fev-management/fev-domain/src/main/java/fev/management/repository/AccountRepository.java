@@ -3,10 +3,9 @@ package fev.management.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import fev.management.entity.FevEvent;
-import fev.management.entity.FevLogin;
+import fev.management.entity.FevAccount;
 
 @Repository
-public interface LoginRepository extends CrudRepository<FevLogin, Integer> {
+public interface AccountRepository extends CrudRepository<FevAccount, Integer> {
 
 }
