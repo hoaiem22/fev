@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+<style>
+    .grid-hover figure {
+    position: relative;
+    overflow: hidden;
+    margin: 10px 1%;
+    min-width: 320px;
+    max-width: 100%;
+    max-height: 100%;
+    background: #3085a3;
+    text-align: center;
+    cursor: pointer;
+}
+</style>
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns   menu-expanded" data-open="hover"
+    data-menu="horizontal-menu" data-col="2-columns">
+
+    <!-- Header -->
+    <div th:replace="fragments/header :: header">Header</div>
+    <div th:replace="fragments/footer :: footer">Footer</div>
+
+
+    <div class="app-content container center-layout mt-2">
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Gallery</a></li>
+                                <li class="breadcrumb-item active">Gallery Media Grid</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <h3 class="content-header-title mb-0">Gallery Media Grid</h3>
+                </div>
+                <div class="content-header-right col-md-6 col-12">
+                    <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+                        <button class="btn btn-info round dropdown-toggle dropdown-menu-right px-2" id="btnGroupDrop1"
+                            type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ft-settings icon-left"></i> Settings
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="card-bootstrap.html">Cards</a><a class="dropdown-item" href="component-buttons-extended.html">Buttons</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                <section id="hover-effects" class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Hover Effects</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                <li><a data-action="close"><i class="ft-x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body pb-0">
+                            <div class="card-text">
+                                <p>Image gallery grid with 30 subtle hover effect. Try to hover below
+                                    demo images to show each hover effect.</p>
+                            </div>
+                        </div>
+                        <div class="card-body my-gallery" itemscope="" itemtype="http://schema.org/ImageGallery">
+                            <div class="grid-hover row justify-content-center">
+                                <div class="col-xs-12">
+                                    <figure class="effect-oscar">
+                                        <img id="imgSrc" src="https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37854401_1080788705411232_649532847681437696_o.jpg?_nc_cat=110&oh=3ce810c01e3cef160f7d951c8844924c&oe=5C191420"
+                                            alt="img10">
+                                        <!-- <img src="@{#{theme.root} + 'app-assets/images/gallery/10.jpg'}" alt="img10"> -->
+                                        <figcaption>
+                                            <h2>FPTU
+                                                <span>Event</span>
+                                                Club
+                                            </h2>
+                                            <p id="description">Oscar is a decent man. He used to clean porches with
+                                                pleasure.</p>
+                                            <!--                                 <span th:href="@{//fb.com/pg/FPTEventClub/photos/?tab=albums}" target="_blank">View more</span> -->
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <fieldset class="form-group">
+                                <input type="text" class="form-control" id="basicInput">
+                            </fieldset>
+                            <input type="button" class="btn btn-primary round btn-min-width mr-1 mb-1" id="btnSubmit"
+                                onclick="myFunction()" value="Submit" />
+                        </div>
+                        <div style="height: 100px"></div>
+                    </div>
+                    <!--/ Image grid -->
+                </section>
+            </div>
+        </div>
+
+        <!--Script file  -->
+        <div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+    var rightAnswer;
+    var listQuiz = [
+        quiz = {
+            img: 'https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.0-9/42366143_1133680013455434_1403489973964898304_o.jpg?_nc_cat=109&_nc_ht=scontent.fsgn2-4.fna&oh=d3e1fcc014a58da1d10f57fa80ae455f&oe=5C798B94',
+            description: "Best place forever . . ",
+            answer: "F-Camp 2018",
+
+        },
+        quiz = {
+            img: 'https://scontent.fsgn6-1.fna.fbcdn.net/v/t1.0-9/37874029_1080967392060030_8945366002149883904_n.jpg?_nc_cat=101&oh=8491f065ab64a1480cd37cb094c18113&oe=5C14F451',
+            description: "Best place forever . . ",
+            answer: "Teambuilding Summer 2018",
+
+        },
+        quiz = {
+            img: 'https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/31450217_1007943539362416_2073395389129555968_o.jpg?_nc_cat=103&_nc_ht=scontent.fsgn2-2.fna&oh=82658f733cc69b7daca5d319f1bb106a&oe=5C3C7053',
+            description: "Best place forever . . ",
+            answer: "Teambuilding Spring 2018",
+
+        },
+        quiz = {
+            img: 'https://scontent.fsgn2-3.fna.fbcdn.net/v/t31.0-8/26060175_937508636405907_1857023790024878200_o.jpg?_nc_cat=110&_nc_ht=scontent.fsgn2-3.fna&oh=7f3e5b62e6c990ea6b6d5832a2debbbf&oe=5C845E06',
+            description: "Best place forever . . ",
+            answer: "FPTU First Step Season III",
+
+        },
+        quiz = {
+            img: 'https://scontent.fsgn2-1.fna.fbcdn.net/v/t31.0-8/20785989_870629136427191_1690851392420072241_o.jpg?_nc_cat=105&_nc_ht=scontent.fsgn2-1.fna&oh=ea899cfdb1d576a0e60d17ed231d37a4&oe=5C7EBD2D',
+            description: "Best place forever . . ",
+            answer: "Bicycle Race",
+
+        }
+    ]
+    listQuiz.reverse();
+    $(document).ready(function () {
+        createQuiz();
+    });
+    function myFunction() {
+        console.log("Submit");
+        var answer = $('#basicInput').val();
+        console.log("Your answer: " + answer);
+        if (answer == rightAnswer) {
+            console.log("Right answer !");
+            alert("Khôn đấy :)");
+            createQuiz();
+        }
+    };
+
+    function createQuiz() {
+        var quiz = listQuiz.pop();
+        $('#imgSrc').attr('src', quiz["img"]);
+        $('#description').text(quiz["description"]);
+        $('#basicInput').val('');
+        rightAnswer = quiz["answer"];
+    }
+
+</script>
+
+</html>
