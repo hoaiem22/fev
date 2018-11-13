@@ -82,4 +82,12 @@ public class EventAlbumController implements BaseController<FevEventAlbum> {
         eventAlbumRepository.save(object);
     }
 
+ // GET
+    // Display all album
+    @GetMapping(path +"/album/{id}" )
+    @ResponseBody
+    public List<FevEventAlbum> getByID(@PathVariable("id") String id) {
+        // TODO Auto-generated method stub
+        return (List<FevEventAlbum>) eventAlbumRepository.getAlbumByID(id);
+    }
 }

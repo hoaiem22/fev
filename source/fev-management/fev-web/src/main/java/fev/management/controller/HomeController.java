@@ -28,5 +28,8 @@ public class HomeController {
     @GetMapping("/gallery")
     public String gallery() {
         return "gallery";
+    }@GetMapping("/quiz")
+    public String quiz() {
+        return "quiz";
     }
 }
