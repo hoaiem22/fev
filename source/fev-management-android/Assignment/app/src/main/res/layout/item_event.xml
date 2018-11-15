@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/event_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/event_startday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_arial"
+                app:layout_constraintTop_toBottomOf="@+id/event_name"
+                />
+
+            <TextView
+                android:id="@+id/event_endday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_arial"
+                app:layout_constraintTop_toBottomOf="@+id/event_startday"
+                />
+
+            <TextView
+                android:id="@+id/event_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_arial"
+                app:layout_constraintTop_toBottomOf="@+id/event_endday"
+                />
+
+            <TextView
+                android:id="@+id/event_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_arial"
+                app:layout_constraintTop_toBottomOf="@+id/event_time"
+                />
+
+            <TextView
+                android:id="@+id/event_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_arial"
+                app:layout_constraintTop_toBottomOf="@+id/event_place"
+                />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+</LinearLayout>
