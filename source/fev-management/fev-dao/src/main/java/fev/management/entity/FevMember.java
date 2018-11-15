@@ -70,11 +70,11 @@ public class FevMember implements Serializable {
     private String address;
     @Column(name = "phone", length = 50)
     private String phone;
-    @Basic(optional = false)
-    @Column(name = "point", nullable = false)
+    @Column(name = "point")
     private Integer point;
     @Column(name = "note", length = 255)
     private String note;
+    @JsonBackReference
     @OneToMany(mappedBy = "member1")
     private Collection<FevEventMember> fevEventMemberCollection;
     @JsonBackReference
@@ -102,10 +102,9 @@ public class FevMember implements Serializable {
         this.id = id;
     }
 
-    public FevMember(Integer id, String studentID, Integer point) {
+    public FevMember(Integer id, String studentID) {
         this.id = id;
         this.studentID = studentID;
-        this.point = point;
     }
 
     public Integer getId() {

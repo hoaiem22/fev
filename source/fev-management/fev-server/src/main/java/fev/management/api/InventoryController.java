@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fev.management.entity.FevInventory;
-import fev.management.repository.InventoryaRepository;
+import fev.management.repository.InventoryRepository;
 
 
 @Controller
@@ -27,7 +27,7 @@ public class InventoryController implements BaseController<FevInventory> {
     private final String path = "/inventory";
 
     @Autowired
-    InventoryaRepository inventoryRepository;
+    InventoryRepository inventoryRepository;
 
     // GET
     // Display all album

@@ -110,7 +110,7 @@ create table fev_feedback_status (
 
 create table fev_feedback (
 	id int auto_increment not null,
-    `from` varchar(50), -- From person who send feedback, they should leave their contact (email, phone or fullname) if they need the answer
+    sender varchar(50), -- From person who send feedback, they should leave their contact (email, phone or fullname) if they need the answer
     content varchar(5000),
     `status` int not null, -- Read, Draft, Reviewing, . . .
     note varchar(250),

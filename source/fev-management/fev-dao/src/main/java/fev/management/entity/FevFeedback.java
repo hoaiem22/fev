@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @NamedQueries({
     @NamedQuery(name = "FevFeedback.findAll", query = "SELECT f FROM FevFeedback f")
     , @NamedQuery(name = "FevFeedback.findById", query = "SELECT f FROM FevFeedback f WHERE f.id = :id")
-    , @NamedQuery(name = "FevFeedback.findByFrom", query = "SELECT f FROM FevFeedback f WHERE f.from = :from")
+    , @NamedQuery(name = "FevFeedback.findBySender", query = "SELECT f FROM FevFeedback f WHERE f.sender = :sender")
     , @NamedQuery(name = "FevFeedback.findByContent", query = "SELECT f FROM FevFeedback f WHERE f.content = :content")
     , @NamedQuery(name = "FevFeedback.findByNote", query = "SELECT f FROM FevFeedback f WHERE f.note = :note")})
 public class FevFeedback implements Serializable {
@@ -42,8 +42,8 @@ public class FevFeedback implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "from", length = 50)
-    private String from;
+    @Column(name = "sender", length = 50)
+    private String sender;
     @Column(name = "content", length = 5000)
     private String content;
     @Column(name = "note", length = 250)
@@ -68,12 +68,12 @@ public class FevFeedback implements Serializable {
         this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public String getSender() {
+        return sender;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getContent() {
