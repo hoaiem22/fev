@@ -45,6 +45,11 @@ public class FEVEvent implements Serializable {
         this.time = time;
     }
 
+    public FEVEvent(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public FEVEvent(int id) {
         this.id = id;
     }

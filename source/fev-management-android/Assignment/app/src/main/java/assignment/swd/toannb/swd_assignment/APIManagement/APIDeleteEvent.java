@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class APIEvent extends AsyncTask<Object, String, String> {
+public class APIDeleteEvent extends AsyncTask<Object, String, String> {
 
     Context context;
     Activity activity;
@@ -22,7 +22,7 @@ public class APIEvent extends AsyncTask<Object, String, String> {
 
     String data;
 
-    public APIEvent(Context context){
+    public APIDeleteEvent(Context context){
         this.context = context;
     }
 
@@ -34,6 +34,7 @@ public class APIEvent extends AsyncTask<Object, String, String> {
             url = (String) objects[0];
             URL myUrl = new URL(url);
             HttpURLConnection httpUrlConnection = (HttpURLConnection) myUrl.openConnection();
+            httpUrlConnection.setRequestMethod("DELETE");
             httpUrlConnection.connect();
 
             is = httpUrlConnection.getInputStream();

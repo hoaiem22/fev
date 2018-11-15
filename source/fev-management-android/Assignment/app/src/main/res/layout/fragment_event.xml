@@ -3,18 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#68217a"
-        android:text="Create Event"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="15sp"
-        android:onClick="createEvent"
-
-        />
+    <!--<Button-->
+        <!--android:id="@+id/btn_create_event_fragment"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="#68217a"-->
+        <!--android:text="Create Event"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="#fff"-->
+        <!--android:textSize="15sp" />-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

@@ -27,6 +27,13 @@ public class FEVTransaction implements Serializable {
     }
 
 
+    public FEVTransaction(int id, int money, String content, String note) {
+        this.id = id;
+        this.money = money;
+        this.content = content;
+        this.note = note;
+    }
+
     public int getId() {
         return id;
     }

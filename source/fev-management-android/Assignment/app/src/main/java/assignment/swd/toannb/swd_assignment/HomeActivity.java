@@ -1,6 +1,7 @@
 package assignment.swd.toannb.swd_assignment;
 
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 
 import android.support.v4.view.ViewPager;
@@ -51,10 +52,14 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_item_inventory:
                 // TODO Something when menu item selected
+                Intent intent = new Intent(HomeActivity.this, InventoryActivity.class);
+                startActivity(intent);
                 return true;
 
             case R.id.menu_item_transaction:
                 // TODO Something when menu item selected
+                Intent intent1 = new Intent(HomeActivity.this, TransactionActivity.class);
+                startActivity(intent1);
                 return true;
 
             default:

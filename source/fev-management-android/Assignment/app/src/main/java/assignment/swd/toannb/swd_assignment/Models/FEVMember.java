@@ -6,8 +6,7 @@ import java.util.Date;
 
 public class FEVMember implements Serializable {
     private int id, point;
-    private String fullname, studentId,sex, address, phone, note;
-    private Date birthDay;
+    private String fullname, studentId,sex, address, phone, note, birthDay;
     private Collection<FEVEventMember> fevEventMemberCollection;
     private FEVMemberPosition position;
     private FEVMemberStatus status;
@@ -19,7 +18,7 @@ public class FEVMember implements Serializable {
     }
 
     public FEVMember(int id, int point, String fullname, String studentId, String sex, String address,
-                     String phone, String note, Date birthDay, Collection<FEVEventMember> fevEventMemberCollection,
+                     String phone, String note, String birthDay, Collection<FEVEventMember> fevEventMemberCollection,
                      FEVMemberPosition position, FEVMemberStatus status, Collection<FEVTransaction> fevTransactionCollection,
                      Collection<FEVEvent> fevEventCollection, Collection<FEVInventory> fevInventoryCollection) {
         this.id = id;
@@ -39,7 +38,7 @@ public class FEVMember implements Serializable {
         this.fevInventoryCollection = fevInventoryCollection;
     }
 
-    public FEVMember(int id, int point, String fullname, String studentId, String sex, String address, String phone, String note, Date birthDay) {
+    public FEVMember(int id, int point, String fullname, String studentId, String sex, String address, String phone, String note, String birthDay) {
         this.id = id;
         this.point = point;
         this.fullname = fullname;
@@ -57,6 +56,16 @@ public class FEVMember implements Serializable {
     }
 
 
+    public FEVMember(int point, String fullname, String studentId, String sex, String address, String phone, String note, String birthDay) {
+        this.point = point;
+        this.fullname = fullname;
+        this.studentId = studentId;
+        this.sex = sex;
+        this.address = address;
+        this.phone = phone;
+        this.note = note;
+        this.birthDay = birthDay;
+    }
 
     public FEVMember(int id) {
         this.id = id;
@@ -132,11 +141,11 @@ public class FEVMember implements Serializable {
         this.note = note;
     }
 
-    public Date getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 

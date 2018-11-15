@@ -20,6 +20,14 @@ public class FEVInventoryItem implements Serializable {
         this.fevInventoryCollection = fevInventoryCollection;
     }
 
+    public FEVInventoryItem(int id, String name, String address, String price, String note) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.price = price;
+        this.note = note;
+    }
+
     public FEVInventoryItem(int id) {
         this.id = id;
     }

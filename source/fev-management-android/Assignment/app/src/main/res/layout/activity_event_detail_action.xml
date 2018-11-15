@@ -1,103 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EventDetailActionActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/app_bar_event_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#68217a"
+        android:minHeight="?attr/actionBarSize"
+
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="20dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/event_id"
+                android:id="@+id/event_id_detail"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:visibility="gone"
                 />
             <TextView
-                android:id="@+id/event_name"
+                android:id="@+id/event_name_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:layout_marginTop="10dp"
                 android:textSize="26sp"
+                android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 />
 
             <TextView
-                android:id="@+id/event_startday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#000000"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                android:visibility="gone"
-                android:fontFamily="@font/font_arial"
-
-                />
-
-            <TextView
-                android:id="@+id/event_endday"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#000000"
-                android:layout_marginTop="10dp"
-                android:visibility="gone"
-                android:textSize="15sp"
-                android:fontFamily="@font/font_arial"
-
-                />
-
-            <TextView
-                android:id="@+id/event_time"
+                android:id="@+id/event_startday_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#000000"
                 android:textSize="15sp"
-                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/font_arial"
 
                 />
 
             <TextView
-                android:id="@+id/event_place"
+                android:id="@+id/event_endday_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#000000"
                 android:layout_marginTop="10dp"
                 android:textSize="15sp"
-
                 android:fontFamily="@font/font_arial"
 
                 />
 
             <TextView
-                android:id="@+id/event_note"
+                android:id="@+id/event_time_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
                 android:fontFamily="@font/font_arial"
 
                 />
+
+            <TextView
+                android:id="@+id/event_place_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_arial"
+
+                />
+
+            <TextView
+                android:id="@+id/event_note_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_arial"
+
+                />
+
+
+
         </LinearLayout>
 
+
     </android.support.v7.widget.CardView>
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--<Button-->
+        <!--android:id="@+id/btnEventUpdate"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="#68217a"-->
+        <!--android:text="Update Event"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="#fff"-->
+        <!--android:textSize="15sp"-->
+        <!--android:onClick="updateEvent"-->
+        <!--app:layout_constraintRight_toLeftOf="@+id/btnEventDelete"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"/>-->
 
 
+    <!--<Button-->
+        <!--android:id="@+id/btnEventDelete"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:background="#68217a"-->
+        <!--android:text="Delete Event"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="#fff"-->
+        <!--android:textSize="15sp"-->
+        <!--android:onClick="deleteEvent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"/>-->
 
+</android.support.constraint.ConstraintLayout>
 
 </LinearLayout>

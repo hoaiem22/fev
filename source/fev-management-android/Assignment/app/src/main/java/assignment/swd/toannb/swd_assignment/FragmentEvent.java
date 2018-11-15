@@ -1,6 +1,7 @@
 package assignment.swd.toannb.swd_assignment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import org.json.JSONArray;
@@ -33,10 +35,12 @@ import assignment.swd.toannb.swd_assignment.RecyclerViewAdapter.EventAdapter;
 
 public class FragmentEvent extends Fragment {
     List<FEVEvent> listEvent;
-    private static final String EVENT_GET_ALL_API = "http://192.168.1.166:8080/api/events";  //Moda host
+    private static final String EVENT_GET_ALL_API = "http://192.168.1.132:8080/api/events";  //Moda host
+
     private View mRootView;
     private RecyclerView recyclerView;
     private Context context;
+    private Button btnCreateEvent;
 
     @Nullable
     @Override
@@ -52,7 +56,19 @@ public class FragmentEvent extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+
+//        btnCreateEvent = mRootView.findViewById(R.id.btn_create_event_fragment);
+//        btnCreateEvent.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, CreateEventActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+
         return mRootView;
+
     }
 
 
@@ -84,17 +100,17 @@ public class FragmentEvent extends Fragment {
 
 
                     // get data from "fevEventMemberCollection"
-                    listEventMember = new ArrayList<FEVEventMember>();
-                    JSONArray eventMemberArray = new JSONArray(jsonObject.getString("fevEventMemberCollection"));
-                    for (int j = 0; j < eventMemberArray.length(); j++) {
-                        FEVEventMember eventMember = new FEVEventMember();
-                        JSONObject jsonObjectCollectionMember = jsonArray.optJSONObject(i);
-                        int idCollection = Integer.parseInt(jsonObjectCollectionMember.getString("id"));
-                        String noteCollection = jsonObjectCollectionMember.getString("note");
-                        eventMember.setId(idCollection);
-                        eventMember.setNote(noteCollection);
-                        listEventMember.add(eventMember);
-                    }
+//                    listEventMember = new ArrayList<FEVEventMember>();
+//                    JSONArray eventMemberArray = new JSONArray(jsonObject.getString("fevEventMemberCollection"));
+//                    for (int j = 0; j < eventMemberArray.length(); j++) {
+//                        FEVEventMember eventMember = new FEVEventMember();
+//                        JSONObject jsonObjectCollectionMember = jsonArray.optJSONObject(i);
+//                        int idCollection = Integer.parseInt(jsonObjectCollectionMember.getString("id"));
+//                        String noteCollection = jsonObjectCollectionMember.getString("note");
+//                        eventMember.setId(idCollection);
+//                        eventMember.setNote(noteCollection);
+//                        listEventMember.add(eventMember);
+//                    }
 
                     FEVEvent event = new FEVEvent(id, name, place, note, startDate, endDate, time);
                     listEvent.add(event);
@@ -111,5 +127,7 @@ public class FragmentEvent extends Fragment {
         }
         return listEvent;
     }
+
+
 
 }

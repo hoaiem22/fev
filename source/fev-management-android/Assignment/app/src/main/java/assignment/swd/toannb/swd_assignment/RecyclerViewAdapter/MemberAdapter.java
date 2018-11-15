@@ -1,6 +1,7 @@
 package assignment.swd.toannb.swd_assignment.RecyclerViewAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import assignment.swd.toannb.swd_assignment.MemberDetailActionActivity;
 import assignment.swd.toannb.swd_assignment.Models.FEVMember;
 import assignment.swd.toannb.swd_assignment.R;
 
@@ -23,7 +25,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         private TextView member_name, member_student_id, member_dob, member_sex, member_address, member_phone,member_point, member_note;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             member_name = (TextView) itemView.findViewById(R.id.member_name);
             member_student_id = (TextView) itemView.findViewById(R.id.member_student_id);
@@ -33,6 +35,27 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
             member_phone = (TextView) itemView.findViewById(R.id.member_phone);
             member_point = (TextView) itemView.findViewById(R.id.member_point);
             member_note = (TextView) itemView.findViewById(R.id.member_note);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = itemView.getContext();
+                    FEVMember member = new FEVMember();
+
+                    member.setFullname(member_name.getText().toString());
+                    member.setStudentId(member_student_id.getText().toString());
+                    member.setBirthDay(member_dob.getText().toString());
+                    member.setSex(member_sex.getText().toString());
+                    member.setAddress(member_address.getText().toString());
+                    member.setPhone(member_phone.getText().toString());
+                    member.setPoint(Integer.parseInt(member_point.getText().toString()));
+                    member.setNote(member_note.getText().toString());
+
+                    Intent intent = new Intent(context, MemberDetailActionActivity.class);
+                    intent.putExtra("member_obj", member);
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
@@ -72,7 +95,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         member_phone.setText("Phone: " + member.getPhone());
 
         TextView member_point = viewHolder.member_point;
-        member_point.setText("Point: " + member.getPoint());
+        member_point.setText(Integer.toString(member.getPoint()));
 
         TextView member_note = viewHolder.member_note;
         member_note.setText("Note: " + member.getNote());

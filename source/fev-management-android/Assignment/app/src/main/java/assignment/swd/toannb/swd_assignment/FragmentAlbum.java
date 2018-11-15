@@ -23,13 +23,15 @@ import java.util.concurrent.ExecutionException;
 
 
 import assignment.swd.toannb.swd_assignment.APIManagement.APIConnector;
+import assignment.swd.toannb.swd_assignment.Models.FEVEvent;
 import assignment.swd.toannb.swd_assignment.Models.FEVEventAlbum;
 
 import assignment.swd.toannb.swd_assignment.RecyclerViewAdapter.AlbumAdapter;
 
 public class FragmentAlbum extends Fragment {
-    List<FEVEventAlbum> listAlbum;
-    private static final String ALBUM_GET_ALL_API = "http://192.168.1.166:8080/api/events/albums";  //Moda host
+    List<FEVEvent> listEvent;
+    private static final String ALBUM_GET_ALL_API = "http://192.168.1.25:8080/api/events/albums/album";
+    private static final String ALBUM_GET_EVENT = "http://192.168.1.132:8080/api/events"; //Moda host
     private View mRootView;
     private RecyclerView recyclerView;
     private Context context;
@@ -39,9 +41,9 @@ public class FragmentAlbum extends Fragment {
         context = getActivity();
         mRootView = inflater.inflate(R.layout.fragment_album, container, false);
         recyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerViewAlbum);
-        listAlbum =  albumAPIFetcher();
+        listEvent =  eventAPIFetcher();
 
-        AlbumAdapter albumAdapter = new AlbumAdapter(listAlbum);
+        AlbumAdapter albumAdapter = new AlbumAdapter(listEvent);
 
         recyclerView.setAdapter(albumAdapter);
 
@@ -51,25 +53,59 @@ public class FragmentAlbum extends Fragment {
     }
 
 
-    public List<FEVEventAlbum> albumAPIFetcher() {
-        StringBuilder stringBuilder = new StringBuilder(ALBUM_GET_ALL_API);
+//    public List<FEVEventAlbum> albumAPIFetcher() {
+//        StringBuilder stringBuilder = new StringBuilder(ALBUM_GET_EVENT);
+//        String url = stringBuilder.toString();
+//        Object dataTransfer[] = new Object[1];
+//        dataTransfer[0] = url;
+//        ArrayList<FEVEventAlbum> listAlbum = new ArrayList<FEVEventAlbum>();
+//        APIConnector getAllAlbumAPI = new APIConnector(this.context);
+//        try {
+//            String s = getAllAlbumAPI.execute(dataTransfer).get();
+//            if (!s.equals("Could not connect to server")) {
+//                JSONArray jsonArray = new JSONArray(s);
+//                for (int i = 0; i < jsonArray.length(); i++) {
+//
+//                    JSONObject jsonObject = jsonArray.optJSONObject(i);
+//                    int id = Integer.parseInt(jsonObject.getString("id"));
+//                    final String img = jsonObject.getString("name");
+//
+//                    FEVEventAlbum album = new FEVEventAlbum(id, img);
+//                    listAlbum.add(album);
+//
+//                }
+//
+//            }
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return listAlbum;
+//    }
+
+
+    public List<FEVEvent> eventAPIFetcher() {
+        StringBuilder stringBuilder = new StringBuilder(ALBUM_GET_EVENT);
         String url = stringBuilder.toString();
         Object dataTransfer[] = new Object[1];
         dataTransfer[0] = url;
-        ArrayList<FEVEventAlbum> listAlbum = new ArrayList<FEVEventAlbum>();
-        APIConnector getAllAlbumAPI = new APIConnector(this.context);
+        ArrayList<FEVEvent> listEvent = new ArrayList<FEVEvent>();
+        APIConnector getEventAPI = new APIConnector(this.context);
         try {
-            String s = getAllAlbumAPI.execute(dataTransfer).get();
+            String s = getEventAPI.execute(dataTransfer).get();
             if (!s.equals("Could not connect to server")) {
                 JSONArray jsonArray = new JSONArray(s);
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                     JSONObject jsonObject = jsonArray.optJSONObject(i);
                     int id = Integer.parseInt(jsonObject.getString("id"));
-                    final String img = jsonObject.getString("img");
+                    final String name = jsonObject.getString("name");
 
-                    FEVEventAlbum album = new FEVEventAlbum(id, img);
-                    listAlbum.add(album);
+                    FEVEvent event = new FEVEvent(id, name );
+                    listEvent.add(event);
 
                 }
 
@@ -81,7 +117,8 @@ public class FragmentAlbum extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return listAlbum;
+        return listEvent;
     }
+
 
 }
