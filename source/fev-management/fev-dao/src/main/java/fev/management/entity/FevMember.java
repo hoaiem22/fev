@@ -72,7 +72,7 @@ public class FevMember implements Serializable {
     private String phone;
     @Basic(optional = false)
     @Column(name = "point", nullable = false)
-    private int point;
+    private Integer point;
     @Column(name = "note", length = 255)
     private String note;
     @OneToMany(mappedBy = "member1")
@@ -102,7 +102,7 @@ public class FevMember implements Serializable {
         this.id = id;
     }
 
-    public FevMember(Integer id, String studentID, int point) {
+    public FevMember(Integer id, String studentID, Integer point) {
         this.id = id;
         this.studentID = studentID;
         this.point = point;
@@ -164,11 +164,11 @@ public class FevMember implements Serializable {
         this.phone = phone;
     }
 
-    public int getPoint() {
+    public Integer getPoint() {
         return point;
     }
 
-    public void setPoint(int point) {
+    public void setPoint(Integer point) {
         this.point = point;
     }
 

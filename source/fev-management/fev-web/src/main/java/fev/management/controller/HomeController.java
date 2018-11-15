@@ -6,21 +6,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    @GetMapping({"/","/soon"})
+    @GetMapping({"/", "/soon"})
     public String home() {
         return "soon";
     }
-    
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-    
+
     @GetMapping("/index")
     public String index() {
-        return "maintance";
+        return "index";
     }
-    
+
     @GetMapping("/maintance")
     public String maintance() {
         return "maintance";
@@ -28,8 +28,10 @@ public class HomeController {
     @GetMapping("/gallery")
     public String gallery() {
         return "gallery";
-    }@GetMapping("/quiz")
+    }
+    @GetMapping("/quiz")
     public String quiz() {
         return "quiz";
     }
+    
 }

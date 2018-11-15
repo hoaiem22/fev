@@ -1,0 +1,142 @@
+<!--Robust Admin - Ver: 1.0 by EmVH - Startdate: 10/06/2018 -->
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+<title>FPTU Event Club</title>
+</head>
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
+    data-menu="horizontal-menu" data-col="2-columns">
+    <!-- Header -->
+    <div th:replace="fragments/header :: header">Header</div>
+    <!-- ///////////////////CONTENT///////////////////////////////////////////////-->
+    <div th:replace="management/event_member/body :: content">Header</div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!--Footer  -->
+    <div th:replace="fragments/footer :: footer">Footer</div>
+    <!--Script file  -->
+    <div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+    var deletedIds = [];
+    var dataEventMember = [];
+    var hotEventMember = null;
+    $(function () {
+        var containerUnit = document.getElementById('event_member');
+        hotEventMember = new Handsontable(containerUnit, {
+            data: dataEventMember,
+            colHeaders: ['ID', 'Event', 'Member', 'Note'],
+            colWidths: [100, 300, 300, 300],
+            rowHeaders: true,
+            minSpareRows: 1,
+            stretchH: 'all',
+            minCols: 4,
+            minRows: 10,
+            manualColumnResize: true,
+            manualRowResize: true,
+            contextMenu: ['row_below', 'remove_row'],
+            columns: [{
+                data: 'id',
+                readOnly: true,
+
+            }, {
+                data: 'event',
+
+            }, {
+                data: 'member1',
+
+            }, {
+                data: 'note',
+
+            }],
+            beforeRemoveRow: function (index, amount) {
+                // Support to submit deleted id into server
+                var lastIndex = index + amount;
+                console.log("index + amount", index + amount)
+                var i;
+                for (i = index; i < lastIndex; i++) {
+                    var deleteEventMember = dataEventMember[i];
+                    var deletedId = deleteEventMember.id;
+                    console.log("deleteEventMember" + deleteEventMember + "deleteId = "
+                        + deletedId);
+                    if (deletedId) {
+                        deletedIds.push(deletedId);
+                    }
+                }
+                console.log("list deletedIds=" + deletedIds);
+            },
+            beforeChange: function (changes, source) {
+
+                // changes = [[row, prop, oldVal, newVal], ...]
+                for (var i = 0; i < changes.length; i++) {
+                    var row = changes[i][0];
+                    var col = hotEventMember.propToCol(changes[i][1]);
+                    var newVal = changes[i][3];
+                    console.log("row: " + row + "; col: " + col + "; newVal: "
+                        + newVal);
+                }
+            },
+
+        });
+        loadEventMember();
+    });
+
+    function loadEventMember() {
+        deletedIds = [];
+        // load demo data.
+        $.ajax({
+            url: _ctx + 'management/event/member/loadHand',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (res) {
+                console.log("res=" + res);
+                dataEventMember = res;
+                hotEventMember.loadData(dataEventMember);
+            },
+            error: function (e) {
+                console.log("Error: " + e);
+            }
+        });
+    }
+</script>
+<script>
+    $('#frmHot').submit(function (e) {
+        e.preventDefault();
+        $('#errorHandsontable').hide();
+        $('#errorEmpty').hide();
+        // Get header name
+        var colHeaderData = hotEventMember.getColHeader();
+        // Get data from Handsontable
+        var tableData = hotEventMember.getData();
+
+        var frmData = new FormData(this);
+        var frmData = {};
+
+        frmData["header"] = colHeaderData;
+        frmData["data"] = tableData;
+        frmData["deletedIds"] = deletedIds;
+        $('#errorHandsontable').hide();
+        $('#errorEmpty').hide();
+        $.ajax({
+            url: _ctx + "management/event/member/saveEventMember",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(frmData),
+            dataType: 'json',
+            success: function (result) {
+                $('#result').fadeToggle('slow');
+                $('#result').fadeOut(5000);
+                // reload data
+                loadEventMember();
+            },
+            error: function () {
+                console.log("Error!");
+                alert("ERROR: Can't save event member !");
+            }
+        });
+    });
+</script>
+
+</html>
