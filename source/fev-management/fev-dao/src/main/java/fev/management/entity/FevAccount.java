@@ -50,8 +50,8 @@ public class FevAccount implements Serializable {
     private String password;
     @Column(name = "note", length = 255)
     private String note;
-    @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
     @JsonBackReference
+    @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevAccountRole role;
 

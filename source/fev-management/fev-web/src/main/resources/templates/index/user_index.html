@@ -5,78 +5,124 @@
             <section id="block-examples">
                 <div class="row">
                     <div class="col-12 mt-1 mb-3">
-                        <h4><span th:text="#{text.option}">Options</span></h4>
+                        <h4>
+                            <span th:text="#{text.account.information}">Account Option</span>
+                        </h4>
                         <hr>
                     </div>
                 </div>
                 <div class="row">
-
-                    <div class="col-md-4 col-sm-12 animated fadeInLeft">
+                    <div class="col-md-4 col-sm-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <h5>[[${#httpServletRequest.remoteUser}]] <span th:text="#{text.dailyreport}">>Daily Report</span></h5>
-                                        <p><span th:text="#{text.edit}">Edit & View </span> <span th:text="#{text.dailyreport}">User</span>:[[${#httpServletRequest.remoteUser}]]</p>
-                                        <a th:href="@{/user/dailyreport}"><button
-                                                class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element"><span th:text="#{text.dailyreport}">User</span>: [[${#httpServletRequest.remoteUser}]]</button></a>
+                                        <h5>
+                                            <span th:text="#{text.account}">Account</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span> <span th:text="#{text.account}">Account</span>
+                                        </p>
+                                        <a th:href="@{/management/account}"><button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element">
+                                                <span th:text="#{text.account}">Account</span>
+                                            </button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text="#{text.account.role}">Account Role</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span> <span th:text="#{text.account.role}">Account
+                                                Role</span>
+                                        </p>
+                                        <a th:href="@{/account/role}"><button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element">
+                                                <span th:text="#{text.account.role}">Account Role</span>
+                                            </button></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-sm-12 animated slideInDown">
+                </div>
+            </section>
+            <section id="message-options">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4>
+                            <span th:text=#{text.event.information}>Event Option</span>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <h5><span th:text="#{text.dailyreport}">Team</span>: <span th:text="#{text.team}">Daily Report</span></h5>
-                                        <p><span th:text="#{text.edit}">Edit & View </span> <span th:text="#{text.dailyreport}">Team</span>: <span th:text="#{text.team}">Daily Report</span></p>
-                                        <a th:href="@{/user/dailyreport_team}"><button
-                                                class="btn btn-lg btn-block font-medium-1 btn-outline-warning mb-1 block-sidebar"><span th:text="#{text.dailyreport}">Team</span>: <span th:text="#{text.team}">Daily Report</span></button></a>
+                                        <h5>
+                                            <span th:text=#{text.event}>Event</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text="#{text.event.information}">Edit & View </span>
+                                        </p>
+                                        <a th:href="@{/management/event}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text="#{text.event.information}">Event</span>
+                                            </button></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12 animated fadeInRight">
+                    <div class="col-md-4 col-sm-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <h5>Task Management</h5>
-                                        <p>Edit & View Task Management - Comming soon</p>
-                                        <a th:href="@{/user/task_management}"><button
-                                                class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element">Task Management</button></a>
+                                        <h5>
+                                            <span th:text=#{text.event.member}>Event Member</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text="#{text.event.member}">Event Member</span>
+                                        </p>
+                                        <a th:href="@{/management/event/member}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text="#{text.event.member}">Event Member</span>
+                                            </button></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12 animated fadeInLeft">
+                    <div class="col-md-4 col-sm-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <h5>Bug Management</h5>
-                                        <p>Edit & View Bug Management - Comming soon</p>
-                                        <a th:href="@{/user/bug_management}"><button
-                                                class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-element">Bug Management</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12 animated zoomIn`">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <h5>Member Report</h5>
-                                        <p>View Member Report</p>
-                                        <a th:href="@{/user/dailyreport_member}"><button
-                                                class="btn btn-lg btn-block font-medium-1 btn-outline-warning mb-1 block-sidebar">View Member Report</button></a>
+                                        <h5>
+                                            <span th:text=#{text.event.album}>Event Album</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text="#{text.event.album}">Event Album</span>
+                                        </p>
+                                        <a th:href="@{/management/event/album}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text="#{text.event.album}">Event Album</span>
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +130,349 @@
                     </div>
                 </div>
             </section>
-
+            <section id="block-examples">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4>
+                            <span th:text="#{text.feedback.information}">Feedback</span>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.feedback}>Feedback</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text="#{text.feedback}">Feedback</span>
+                                        </p>
+                                        <a th:href="@{/management/feedback}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text="#{text.feedback}">Feedback</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.feedback.status}>Feedback Status</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.feedback.status}>Feedback Status</span>
+                                        </p>
+                                        <a th:href="@{/management/feedback/status}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.feedback.status}>Feedback Status</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="message-options">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4>
+                            <span th:text=#{text.inventory.information}>Inventory</span>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.inventory}>Inventory</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.inventory}>Inventory</span>
+                                        </p>
+                                        <a th:href="@{/management/inventory}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.inventory}>Inventory</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.inventory.item}>Inventory Item</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.inventory.item}>Inventory Item</span>
+                                        </p>
+                                        <a th:href="@{/management/inventory/item}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.inventory.item}>Inventory Item</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.inventory.status}>Inventory Status</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.inventory.status}>Inventory Status</span>
+                                        </p>
+                                        <a th:href="@{/management/inventory/status}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.inventory.status}>Inventory Status</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="block-examples">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4>
+                            <span th:text="#{text.member.information}">Member List</span>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.member}>Member List</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.member}>Member List</span>
+                                        </p>
+                                        <a th:href="@{/management/member}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.member}>Member List</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.member.position}>Member's Position</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.member.position}>Member's Position</span>
+                                        </p>
+                                        <a th:href="@{/management/member/position}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.member.position}>Member's Position</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.member.status}>Member's Status</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.member.status}>Member's Status</span>
+                                        </p>
+                                        <a th:href="@{/management/member/status}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.member.status}>Member's Status</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="message-options">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4>
+                            <span th:text=#{text.transaction.information}>Transaction Option</span>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.transaction}>Transaction</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.transaction}>Transaction</span>
+                                        </p>
+                                        <a th:href="@{/management/transaction}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.transaction}>Transaction</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.transaction.type}>Transaction Type</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.transaction.type}>Transaction Type</span>
+                                        </p>
+                                        <a th:href="@{/management/transaction/type}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.transaction.type}>Transaction Type</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="message-options">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4>
+                            <span th:text=#{text.other}>Other Option</span>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.gallery}>Gallery</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text=#{text.gallery}>Gallery</span>
+                                            <span th:text="#{text.maintenance}">Maintenance</span>
+                                        </p>
+                                        <a th:href="@{/gallery}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-warning mb-1 block-spinner-only">
+                                                <span th:text=#{text.gallery}>Gallery</span>
+                                            </button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.quiz}>Quiz</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text=#{text.quiz}>Quiz</span>
+                                            <span th:text="#{text.maintenance}">Maintenance</span>
+                                        </p>
+                                        <a th:href="@{/quiz}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-warning mb-1 block-spinner-only">
+                                                <span th:text=#{text.quiz}>Quiz</span>
+                                            </button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.soon}>Event Coming Soon</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text=#{text.soon}>Event Coming Soon</span>
+                                            <span th:text="#{text.maintenance}">Maintenance</span>
+                                        </p>
+                                        <a th:href="@{/soon}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-warning mb-1 block-spinner-only">
+                                                <span th:text=#{text.soon}>Event Coming Soon</span>
+                                            </button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <!-- // block examples section end -->
         </div>
     </div>

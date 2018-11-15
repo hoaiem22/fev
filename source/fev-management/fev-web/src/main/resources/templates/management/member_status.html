@@ -1,0 +1,139 @@
+<!--Robust Admin - Ver: 1.0 by EmVH - Startdate: 10/06/2018 -->
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+<title>FPTU Event Club</title>
+</head>
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
+ data-menu="horizontal-menu" data-col="2-columns">
+	<!-- Header -->
+	<div th:replace="fragments/header :: header">Header</div>
+	<!-- ///////////////////CONTENT///////////////////////////////////////////////-->
+	<div th:replace="management/member_status/body :: content">Header</div>
+	<!-- ////////////////////////////////////////////////////////////////////////////-->
+	<!--Footer  -->
+	<div th:replace="fragments/footer :: footer">Footer</div>
+	<!--Script file  -->
+	<div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+	var deletedIds = [];
+	var dataMemberStatus = [];
+	var hotMemberStatus = null;
+	$(function () {
+		var containerUnit = document.getElementById('member_status');
+		hotMemberStatus = new Handsontable(containerUnit, {
+			data: dataMemberStatus,
+			colHeaders: ['ID', 'Status', 'Note'],
+			colWidths: [100, 300, 300],
+			rowHeaders: true,
+			minSpareRows: 1,
+			stretchH: 'all',
+			minCols: 3,
+			minRows: 10,
+			manualColumnResize: true,
+			manualRowResize: true,
+			contextMenu: ['row_below', 'remove_row'],
+			columns: [{
+				data: 'id',
+				readOnly: true,
+
+			}, {
+				data: 'status',
+
+			}, {
+				data: 'note',
+
+			}],
+			beforeRemoveRow: function (index, amount) {
+				// Support to submit deleted id into server
+				var lastIndex = index + amount;
+				console.log("index + amount", index + amount)
+				var i;
+				for (i = index; i < lastIndex; i++) {
+					var deleteStatus = dataMemberStatus[i];
+					var deletedId = deleteStatus.id;
+					console.log("deleteStatus" + deleteStatus + "deleteId = "
+						+ deletedId);
+					if (deletedId) {
+						deletedIds.push(deletedId);
+					}
+				}
+				console.log("list deletedIds=" + deletedIds);
+			},
+			beforeChange: function (changes, source) {
+
+				// changes = [[row, prop, oldVal, newVal], ...]
+				for (var i = 0; i < changes.length; i++) {
+					var row = changes[i][0];
+					var col = hotMemberStatus.propToCol(changes[i][1]);
+					var newVal = changes[i][3];
+					console.log("row: " + row + "; col: " + col + "; newVal: "
+						+ newVal);
+				}
+			},
+
+		});
+		loadMemberPosition();
+	});
+
+	function loadMemberPosition() {
+		deletedIds = [];
+		// load demo data.
+		$.ajax({
+			url: _ctx + 'management/member/status/loadHand',
+			type: 'GET',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function (res) {
+				console.log("res=" + res);
+				dataMemberStatus = res;
+				hotMemberStatus.loadData(dataMemberStatus);
+			},
+			error: function (e) {
+				console.log("Error: " + e);
+			}
+		});
+	}
+</script>
+<script>
+	$('#frmHot').submit(function (e) {
+		e.preventDefault();
+		$('#errorHandsontable').hide();
+		$('#errorEmpty').hide();
+		// Get header name
+		var colHeaderData = hotMemberStatus.getColHeader();
+		// Get data from Handsontable
+		var tableData = hotMemberStatus.getData();
+
+		var frmData = new FormData(this);
+		var frmData = {};
+		
+		frmData["header"] = colHeaderData;
+		frmData["data"] = tableData;
+		frmData["deletedIds"] = deletedIds;
+		$('#errorHandsontable').hide();
+		$('#errorEmpty').hide();
+		$.ajax({
+			url: _ctx + "management/member/status/saveMemberStatus",
+			type: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(frmData),
+			dataType: 'json',
+			success: function (result) {
+				$('#result').fadeToggle('slow');
+				$('#result').fadeOut(5000);
+				// reload data
+				loadMemberPosition();
+			},
+			error: function () {
+				console.log("Error!");
+				alert("ERROR: Can't save member position !");
+			}
+		});
+	});
+</script>
+
+</html>

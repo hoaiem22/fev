@@ -1,0 +1,27 @@
+<!--Robust Admin - Ver: 1.0 by AnhTTN - Startdate: 10/06/2018 -->
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head :: head"></head>
+    <title>Daily Report</title>
+</head>
+<style>
+/* .comingsoonFlatCustom {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.6) 100%), url(../../themes/fev/img/FEV2.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+} */
+</style>
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 1-column   menu-expanded blank-page blank-page comingsoonFlatCustom"
+      data-open="hover" data-menu="horizontal-menu" data-col="1-column">
+    <div th:replace="fragments/header :: header">Header</div>
+
+    <!-- Handson table-->
+    <div th:replace="error/error_form :: error"></div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!--Footer  -->
+    <!--Script file  -->
+    <div th:replace="fragments/script :: script">Script</div>
+
+</body>
+</html>

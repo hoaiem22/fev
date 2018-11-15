@@ -61,12 +61,13 @@ public class FevEvent implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date end;
     @Column(name = "time")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date time;
     @Column(name = "place", length = 250)
     private String place;
     @Column(name = "note", length = 255)
     private String note;
+    @JsonBackReference
     @OneToMany(mappedBy = "event")
     private Collection<FevEventMember> fevEventMemberCollection;
     @JsonBackReference

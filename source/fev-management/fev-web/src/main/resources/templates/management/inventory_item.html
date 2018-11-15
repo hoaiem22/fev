@@ -1,0 +1,145 @@
+<!--Robust Admin - Ver: 1.0 by EmVH - Startdate: 10/06/2018 -->
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+<title>FPTU Event Club</title>
+</head>
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
+    data-menu="horizontal-menu" data-col="2-columns">
+    <!-- Header -->
+    <div th:replace="fragments/header :: header">Header</div>
+    <!-- ///////////////////CONTENT///////////////////////////////////////////////-->
+    <div th:replace="management/inventory_item/body :: content">Header</div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <!--Footer  -->
+    <div th:replace="fragments/footer :: footer">Footer</div>
+    <!--Script file  -->
+    <div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+    var deletedIds = [];
+    var dataInventoryItem = [];
+    var hotInventoryItem = null;
+    $(function () {
+        var containerUnit = document.getElementById('inventory_item');
+        hotInventoryItem = new Handsontable(containerUnit, {
+            data: dataInventoryItem,
+            colHeaders: ['ID', 'Name', 'Address', 'Price', 'Note'],
+            colWidths: [100, 300, 300, 300, 300],
+            rowHeaders: true,
+            minSpareRows: 1,
+            stretchH: 'all',
+            minCols: 5,
+            minRows: 10,
+            manualColumnResize: true,
+            manualRowResize: true,
+            contextMenu: ['row_below', 'remove_row'],
+            columns: [{
+                data: 'id',
+                readOnly: true,
+
+            }, {
+                data: 'name',
+
+            }, {
+                data: 'address',
+
+            }, {
+                data: 'price',
+
+            }, {
+                data: 'note',
+
+            }],
+            beforeRemoveRow: function (index, amount) {
+                // Support to submit deleted id into server
+                var lastIndex = index + amount;
+                console.log("index + amount", index + amount)
+                var i;
+                for (i = index; i < lastIndex; i++) {
+                    var deleteItem = dataInventoryItem[i];
+                    var deletedId = deleteItem.id;
+                    console.log("deleteItem" + deleteItem + "deleteId = "
+                        + deletedId);
+                    if (deletedId) {
+                        deletedIds.push(deletedId);
+                    }
+                }
+                console.log("list deletedIds=" + deletedIds);
+            },
+            beforeChange: function (changes, source) {
+
+                // changes = [[row, prop, oldVal, newVal], ...]
+                for (var i = 0; i < changes.length; i++) {
+                    var row = changes[i][0];
+                    var col = hotInventoryItem.propToCol(changes[i][1]);
+                    var newVal = changes[i][3];
+                    console.log("row: " + row + "; col: " + col + "; newVal: "
+                        + newVal);
+                }
+            },
+
+        });
+        loadInventoryItem();
+    });
+
+    function loadInventoryItem() {
+        deletedIds = [];
+        // load demo data.
+        $.ajax({
+            url: _ctx + 'management/inventory/item/loadHand',
+            type: 'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (res) {
+                console.log("res=" + res);
+                dataInventoryItem = res;
+                hotInventoryItem.loadData(dataInventoryItem);
+            },
+            error: function (e) {
+                console.log("Error: " + e);
+            }
+        });
+    }
+</script>
+<script>
+    $('#frmHot').submit(function (e) {
+        e.preventDefault();
+        $('#errorHandsontable').hide();
+        $('#errorEmpty').hide();
+        // Get header name
+        var colHeaderData = hotInventoryItem.getColHeader();
+        // Get data from Handsontable
+        var tableData = hotInventoryItem.getData();
+
+        var frmData = new FormData(this);
+        var frmData = {};
+
+        frmData["header"] = colHeaderData;
+        frmData["data"] = tableData;
+        frmData["deletedIds"] = deletedIds;
+        $('#errorHandsontable').hide();
+        $('#errorEmpty').hide();
+        $.ajax({
+            url: _ctx + "management/inventory/item/save",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(frmData),
+            dataType: 'json',
+            success: function (result) {
+                $('#result').fadeToggle('slow');
+                $('#result').fadeOut(5000);
+                // reload data
+                loadInventoryItem();
+            },
+            error: function () {
+                console.log("Error!");
+                alert("ERROR: Can't save event item !");
+            }
+        });
+    });
+</script>
+
+</html>

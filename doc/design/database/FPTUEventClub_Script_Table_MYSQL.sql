@@ -60,7 +60,7 @@ create table fev_member (
     phone varchar(50),
     `position` int not null,
     `status` int not null,
-    `point` int not null,
+    `point` int,
     constraint noduplicate unique (studentID),
 	note varchar(255),
     primary key (id),
@@ -74,7 +74,7 @@ create table fev_event (
     name varchar(50),
     `start` date,
     `end` date,
-    `time` datetime,
+    `time` date,
     place varchar(250),    
     leader int not null,
     note varchar(255),
@@ -110,7 +110,7 @@ create table fev_feedback_status (
 
 create table fev_feedback (
 	id int auto_increment not null,
-    `from` varchar(50), -- From person who send feedback, they should leave their contact (email, phone or fullname) if they need the answer
+    sender varchar(50), -- From person who send feedback, they should leave their contact (email, phone or fullname) if they need the answer
     content varchar(5000),
     `status` int not null, -- Read, Draft, Reviewing, . . .
     note varchar(250),

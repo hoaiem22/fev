@@ -56,7 +56,7 @@ public class EventAlbumController implements BaseController<FevEventAlbum> {
         return eventAlbumRepository.count();
     }
 
-    // Get Event By ID
+    //Delete Event By ID
     @DeleteMapping(path + "/{id}")
     @ResponseBody
     @Override
@@ -82,9 +82,9 @@ public class EventAlbumController implements BaseController<FevEventAlbum> {
         eventAlbumRepository.save(object);
     }
 
- // GET
-    // Display all album
-    @GetMapping(path +"/album/{id}" )
+    // GET
+    // Get event's album By event id
+    @GetMapping(path + "/album/{id}")
     @ResponseBody
     public List<FevEventAlbum> getByID(@PathVariable("id") String id) {
         // TODO Auto-generated method stub
