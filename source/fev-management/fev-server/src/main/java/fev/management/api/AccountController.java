@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,10 +72,10 @@ public class AccountController implements BaseController<FevAccount> {
 
     }
 
-    @PostMapping(path + "/{account}")
+    @PostMapping(path)
     @ResponseBody
     @Override
-    public void create(@PathVariable("account") FevAccount object) {
+    public void create(@RequestBody FevAccount object) {
         // TODO Auto-generated method stub
         loginRepository.save(object);
     }

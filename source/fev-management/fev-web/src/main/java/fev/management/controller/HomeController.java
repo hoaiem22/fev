@@ -51,5 +51,10 @@ public class HomeController {
     public String error403() {
         return "error403";
     }
+    
+    @GetMapping("/monsite")
+    public String monsite() {
+        return "Monsite";
+    }
 
 }
