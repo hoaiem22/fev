@@ -56,5 +56,10 @@ public class HomeController {
     public String monsite() {
         return "Monsite";
     }
+    
+    @GetMapping("/vote")
+    public String vote() {
+        return "vote";
+    }
 
 }

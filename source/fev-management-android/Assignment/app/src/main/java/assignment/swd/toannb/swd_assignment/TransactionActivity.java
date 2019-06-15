@@ -26,7 +26,7 @@ public class TransactionActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     List<FEVTransaction> listTransaction;
 
-    public static final String TRANSACTION_GET_ALL_API = "http://192.168.1.132:8080/api/transactions";
+    public static final String TRANSACTION_GET_ALL_API = "http://172.20.10.7:8080/api/transactions";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

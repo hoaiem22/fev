@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fev.management.entity.FevAccount;
 import fev.management.entity.FevFeedbackStatus;
 import fev.management.entity.FevFeedbackStatus;
 import fev.management.repository.EventMemberRepository;
@@ -53,9 +55,9 @@ public class FeedbackStatusController implements BaseController<FevFeedbackStatu
     @GetMapping(path + "/count")
     @ResponseBody
     @Override
-    public long getCount() {
+    public int getCount() {
         // TODO Auto-generated method stub
-        return feedbackStatusRepository.count();
+        return (int) feedbackStatusRepository.count();
     }
 
     // Get Event By ID
@@ -79,7 +81,7 @@ public class FeedbackStatusController implements BaseController<FevFeedbackStatu
     @PutMapping(path + "/{fbstatus}")
     @ResponseBody
     @Override
-    public void update(@PathVariable("fbstatus") FevFeedbackStatus object) {
+    public void update(@RequestBody FevFeedbackStatus object, @PathVariable("id") int id) {
         // TODO Auto-generated method stub
         feedbackStatusRepository.save(object);
     }

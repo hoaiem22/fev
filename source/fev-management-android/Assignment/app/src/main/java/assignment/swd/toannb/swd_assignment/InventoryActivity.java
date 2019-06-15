@@ -26,7 +26,7 @@ public class InventoryActivity extends AppCompatActivity {
     private android.support.v7.widget.Toolbar mToolBar;
     private RecyclerView recyclerView;
     List<FEVInventoryItem> listIventoryItem;
-    public static final String INVENTORY_ITEMS_GET_ALL_API = "http://192.168.1.132:8080/api/inventory/items";
+    public static final String INVENTORY_ITEMS_GET_ALL_API = "http://172.20.10.7:8080/api/inventory/items";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

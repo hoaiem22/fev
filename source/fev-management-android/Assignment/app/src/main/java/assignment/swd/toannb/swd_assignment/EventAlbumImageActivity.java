@@ -91,7 +91,7 @@ public class EventAlbumImageActivity extends AppCompatActivity {
 
 
     public List<FEVEventAlbum> albumImageAPIFetcher(int eventId) {
-        StringBuilder stringBuilder = new StringBuilder("http://192.168.1.132:8080/api/events/albums/album/" + eventId);
+        StringBuilder stringBuilder = new StringBuilder("http://172.20.10.7:8080/api/events/albums/album/" + eventId);
         String url = stringBuilder.toString();
         Object dataTransfer[] = new Object[1];
         dataTransfer[0] = url;

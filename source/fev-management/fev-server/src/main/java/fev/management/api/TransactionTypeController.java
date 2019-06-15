@@ -12,47 +12,49 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fev.management.entity.FevTransaction;
-import fev.management.repository.TransactionRepository;
+import fev.management.entity.FevAccount;
+import fev.management.entity.FevTransactionType;
+import fev.management.repository.TransactionTypeRepository;
 
 @Controller
-public class TracsactionController implements BaseController<FevTransaction> {
+public class TransactionTypeController implements BaseController<FevTransactionType> {
 
     /** For logging. */
     private final static Logger LOG = LoggerFactory.getLogger(EventController.class);
 
-    private final String path = "/transactions";
+    private final String path = "/transactions/types";
 
     @Autowired
-    TransactionRepository transactionRepository;
+    TransactionTypeRepository transactionTypeRepository;
 
     // GET
     // Display all album
     @GetMapping(path)
     @ResponseBody
     @Override
-    public List<FevTransaction> getAll() {
+    public List<FevTransactionType> getAll() {
         // TODO Auto-generated method stub
-        return (List<FevTransaction>) transactionRepository.findAll();
+        return (List<FevTransactionType>) transactionTypeRepository.findAll();
     }
 
     // Get Album By ID
     @GetMapping(path + "/{id}")
     @ResponseBody
     @Override
-    public Optional<FevTransaction> getByID(@PathVariable("id") int id) {
+    public Optional<FevTransactionType> getByID(@PathVariable("id") int id) {
         // TODO Auto-generated method stub
-        return transactionRepository.findById(id);
+        return transactionTypeRepository.findById(id);
     }
 
     @GetMapping(path + "/count")
     @ResponseBody
     @Override
-    public long getCount() {
+    public int getCount() {
         // TODO Auto-generated method stub
-        return transactionRepository.count();
+        return (int) transactionTypeRepository.count();
     }
 
     // Get Event By ID
@@ -60,24 +62,24 @@ public class TracsactionController implements BaseController<FevTransaction> {
     @ResponseBody
     @Override
     public void deleteByID(@PathVariable("id") int id) {
-        transactionRepository.deleteById(id);
+        transactionTypeRepository.deleteById(id);
 
     }
 
-    @PostMapping(path + "/{transaction}")
+    @PostMapping(path + "/{transType}")
     @ResponseBody
     @Override
-    public void create(@PathVariable("transaction") FevTransaction object) {
+    public void create(@PathVariable("transType") FevTransactionType object) {
         // TODO Auto-generated method stub
-        transactionRepository.save(object);
+        transactionTypeRepository.save(object);
     }
 
     // Create new Event
-    @PutMapping(path + "/{transaction}")
+    @PutMapping(path + "/{transType}")
     @ResponseBody
     @Override
-    public void update(@PathVariable("transaction") FevTransaction object) {
+    public void update(@RequestBody FevTransactionType object, @PathVariable("id") int idt) {
         // TODO Auto-generated method stub
-        transactionRepository.save(object);
+        transactionTypeRepository.save(object);
     }
 }

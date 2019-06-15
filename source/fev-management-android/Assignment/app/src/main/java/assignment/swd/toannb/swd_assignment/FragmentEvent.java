@@ -35,7 +35,7 @@ import assignment.swd.toannb.swd_assignment.RecyclerViewAdapter.EventAdapter;
 
 public class FragmentEvent extends Fragment {
     List<FEVEvent> listEvent;
-    private static final String EVENT_GET_ALL_API = "http://192.168.1.132:8080/api/events";  //Moda host
+    private static final String EVENT_GET_ALL_API = "http://172.20.10.7:8080/api/events";  //Moda host
 
     private View mRootView;
     private RecyclerView recyclerView;

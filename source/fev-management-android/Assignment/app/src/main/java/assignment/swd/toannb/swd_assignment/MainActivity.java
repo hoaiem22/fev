@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean checkLoginAPI(String username, String password) {
-        String CHECK_LOGIN_API = "http://192.168.1.132:8080/api/logins/checkLogin/username=" + username + "&password=" + password ;
+        String CHECK_LOGIN_API = "http://172.20.10.7:8080/api/logins/checkLogin/username=" + username + "&password=" + password ;
         StringBuilder stringBuilder = new StringBuilder(CHECK_LOGIN_API);
         String url = stringBuilder.toString();
         Object dataTransfer[] = new Object[1];

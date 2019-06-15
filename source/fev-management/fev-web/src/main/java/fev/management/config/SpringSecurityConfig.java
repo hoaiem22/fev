@@ -47,7 +47,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(1296000);
 
         http.csrf().disable() // Disable all request
-                .authorizeRequests().antMatchers("/soon", "/login").permitAll().antMatchers("/management/**")
+                .authorizeRequests().antMatchers("/soon", "/login", "/vote").permitAll().antMatchers("/management/**")
                 .hasAnyRole("Admin")
                 // .antMatchers("/user/**", "/index")
                 // .hasAnyRole("USER", "ADMIN", "LEADER")
@@ -67,7 +67,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //        auth.inMemoryAuthentication()
 //                // Admin
 //                .withUser("sa").password("123").roles("ADMIN").and().withUser("user").password("123").roles("USER");
-        //
+        
         List<AccountCast> listAccount = getAll();
         for (int i = 0; i < listAccount.size(); i++) {
             auth.inMemoryAuthentication().withUser(listAccount.get(i).getUsername())

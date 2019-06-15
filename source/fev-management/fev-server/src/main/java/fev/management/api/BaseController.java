@@ -24,7 +24,7 @@ public interface BaseController<Object> {
     public abstract Optional<Object> getByID(@PathVariable("id") int id);
 
     //Get total
-    public abstract long getCount();
+    public abstract int getCount();
     
     // DELETE
     // Get Event By ID
@@ -34,6 +34,6 @@ public interface BaseController<Object> {
     public abstract void create(Object object);
     
     //UPDATE
-    public abstract void update(Object object);
+    public abstract void update(Object object, @PathVariable("id") int id);
 
 }

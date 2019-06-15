@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import fev.management.entity.FevAccount;
 import fev.management.entity.FevInventoryItem;
 import fev.management.repository.InventoryItemRepository;
 
@@ -51,9 +53,9 @@ public class InventoryItemController implements BaseController<FevInventoryItem>
     @GetMapping(path + "/count")
     @ResponseBody
     @Override
-    public long getCount() {
+    public int getCount() {
         // TODO Auto-generated method stub
-        return inventoryItemRepository.count();
+        return (int) inventoryItemRepository.count();
     }
 
     // Get Event By ID
@@ -77,7 +79,7 @@ public class InventoryItemController implements BaseController<FevInventoryItem>
     @PutMapping(path + "/{inveitem}")
     @ResponseBody
     @Override
-    public void update(@PathVariable("inveitem") FevInventoryItem object) {
+    public void update(@RequestBody FevInventoryItem object, @PathVariable("id") int id) {
         // TODO Auto-generated method stub
         inventoryItemRepository.save(object);
     }

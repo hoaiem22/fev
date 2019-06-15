@@ -27,7 +27,7 @@ import assignment.swd.toannb.swd_assignment.RecyclerViewAdapter.MemberAdapter;
 
 public class FragmentMember extends Fragment {
     List<FEVMember> listMember;
-    private static final String MEMBER_GET_ALL_API = "http://192.168.1.132:8080/api/members";  //Moda host
+    private static final String MEMBER_GET_ALL_API = "http://172.20.10.7:8080/api/members";  //Moda host
     private View mRootView;
     private RecyclerView recyclerView;
     private Context context;

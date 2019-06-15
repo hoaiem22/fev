@@ -31,7 +31,7 @@ import assignment.swd.toannb.swd_assignment.RecyclerViewAdapter.AlbumAdapter;
 public class FragmentAlbum extends Fragment {
     List<FEVEvent> listEvent;
     private static final String ALBUM_GET_ALL_API = "http://192.168.1.25:8080/api/events/albums/album";
-    private static final String ALBUM_GET_EVENT = "http://192.168.1.132:8080/api/events"; //Moda host
+    private static final String ALBUM_GET_EVENT = "http://172.20.10.7:8080/api/events"; //Moda host
     private View mRootView;
     private RecyclerView recyclerView;
     private Context context;
