@@ -1,0 +1,55 @@
+<!--Robust Admin - Ver: 1.0 by EmVH - Startdate: 10/06/2018 -->
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+<title>FPTU Event Club</title>
+</head>
+
+<body
+	class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded"
+	data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+	<!-- Header -->
+	<div th:replace="vote/header :: header">Header</div>
+	<!-- ///////////////////CONTENT///////////////////////////////////////////////-->
+	<div th:replace="vote/body :: content">Content</div>
+	<!-- ////////////////////////////////////////////////////////////////////////////-->
+	<!--Footer  -->
+	<div th:replace="fragments/footer :: footer">Footer</div>
+	<!--Script file  -->
+	<div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+	$('#formKey').submit(function(e) {
+		e.preventDefault();
+		$('#errorKey').hide();
+		$('#errorEmpty').hide();
+		var search = {};
+		search['key'] = this.helpInputTop.value;
+		console.log("Key: " + search['key']);
+		$.ajax({
+			url : _ctx + "management/vote/key/check",
+			type : "POST",
+			contentType : "application/json",
+			data : this.helpInputTop.value,
+			dataType : 'json',
+			success : function(result) {
+				$('#card_vote').fadeToggle('slow');
+				$('#card_vote').fadeOut(5000);
+				console.log(result);
+			},
+			error : function(xhr, status, error) {
+				console.log("Status code: " + xhr.status + " | Error: " + error + " | xhr.reponseText: " +xhr.reponseText);
+				alert("ERROR: Can't check key !");
+			}
+		});
+	});
+	$('#formVote').submit(function(e) {
+		e.preventDefault();
+		$('#errorKey').hide();
+		$('#errorEmpty').hide();
+		$('#result').fadeToggle('slow');
+		$('#result').fadeOut(5000);
+	});
+</script>

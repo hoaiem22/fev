@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="content"
+		class="app-content container center-layout mt-2">
+		<div class="content-wrapper">
+			<div class="content-body">
+				<div class="row">
+					<div class="col-12">
+						<div class="card" id="card_key">
+							<div class="card-header">
+								<h4 class="card-title"
+									style="font-size: 30px; text-align: center;">
+									<span th:text="#{text.check.key}">Check Key</span>
+								</h4>
+								<a class="heading-elements-toggle"><i
+									class="ft-ellipsis-h font-medium-3"></i></a>
+								<div class="heading-elements">
+									<ul class="list-inline mb-0">
+										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+										<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+										<li><a data-action="close"><i class="ft-x"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="card-content collapse show">
+								<div class="card-header">
+									<h4 class="card-title">Input your key:</h4>
+								</div>
+								<div class="card-body card-dashboard ">
+									<form id="formKey" method="POST" enctype="multipart/form-data">
+										<small class="text-muted">eg.<i>ABCD-EFGH-IJKA</i></small>
+										<div class="row">
+											<div class="col-10">
+												<fieldset class="form-group">
+													<input type="text" class="form-control" id="helpInputTop">
+												</fieldset>
+											</div>
+											<div class="col-2">
+												<button class="btn btn-info" name="btnSave">
+													<i class="ft-save"></i>&nbsp;<span
+														th:text="#{button.check}">Check</span>
+												</button>
+
+											</div>
+										</div>
+										<div id="result" class="alert alert-success mb-2 hidden-xs"
+											role="alert" style="display: none">
+											<strong th:text="#{alert.save.success}">Save OK</strong>
+										</div>
+										<div class="alert alert-danger alert-dismissible"
+											id="errorEmpty" style="display: none;">
+											<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>Chưa có dữ liệu</strong>
+										</div>
+										<div class="alert alert-danger alert-dismissible"
+											id="errorKey" style="display: none;">
+											<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong th:text="#{alert.save.fail}">Dữ liệu bạn
+												nhập không đúng.</strong>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+						
+						<div class="card" id="card-vote">
+							<div class="card-header">
+								<h4 class="card-title"
+									style="font-size: 30px; text-align: center;">
+									<span th:text="#{text.vote}">Vote</span>
+								</h4>
+								<a class="heading-elements-toggle"><i
+									class="ft-ellipsis-h font-medium-3"></i></a>
+								<div class="heading-elements">
+									<ul class="list-inline mb-0">
+										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+										<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+										<li><a data-action="close"><i class="ft-x"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xl-4 col-md-6 col-sm-12">
+									<div class="card" style="">
+										<div class="card-content">
+											<img class="card-img-top img-fluid"
+												th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+												alt="Card image cap">
+											<div class="card-body">
+												<h4 class="card-title">Basic</h4>
+												<p class="card-text">Some quick example text to build on
+													the card title and make up the bulk of the card's content.</p>
+												<fieldset class="form-group">
+													<select class="form-control" id="basicSelect">
+														<option>Select Option</option>
+														<option>Option 1</option>
+														<option>Option 2</option>
+														<option>Option 3</option>
+														<option>Option 4</option>
+														<option>Option 5</option>
+													</select>
+												</fieldset>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-4 col-md-6 col-sm-12">
+									<div class="card" style="">
+										<div class="card-content">
+											<img class="card-img-top img-fluid"
+												th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+												alt="Card image cap">
+											<div class="card-body">
+												<h4 class="card-title">Basic</h4>
+												<p class="card-text">Some quick example text to build on
+													the card title and make up the bulk of the card's content.</p>
+												<fieldset class="form-group">
+													<select class="form-control" id="basicSelect">
+														<option>Select Option</option>
+														<option>Option 1</option>
+														<option>Option 2</option>
+														<option>Option 3</option>
+														<option>Option 4</option>
+														<option>Option 5</option>
+													</select>
+												</fieldset>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-4 col-md-6 col-sm-12">
+									<div class="card" style="">
+										<div class="card-content">
+											<img class="card-img-top img-fluid"
+												th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+												alt="Card image cap">
+											<div class="card-body">
+												<h4 class="card-title">Basic</h4>
+												<p class="card-text">Some quick example text to build on
+													the card title and make up the bulk of the card's content.</p>
+												<fieldset class="form-group">
+													<select class="form-control" id="basicSelect">
+														<option>Select Option</option>
+														<option>Option 1</option>
+														<option>Option 2</option>
+														<option>Option 3</option>
+														<option>Option 4</option>
+														<option>Option 5</option>
+													</select>
+												</fieldset>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

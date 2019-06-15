@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: fev-management
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Admin
+Implementation-Vendor-Id: fev.management
+Build-Jdk: 1.8.0_131
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/fev-management
+Created-By: Maven Integration for Eclipse
+

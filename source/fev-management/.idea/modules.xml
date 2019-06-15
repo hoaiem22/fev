@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fev-dao/fev-dao.iml" filepath="$PROJECT_DIR$/fev-dao/fev-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fev-domain/fev-domain.iml" filepath="$PROJECT_DIR$/fev-domain/fev-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fev-management.iml" filepath="$PROJECT_DIR$/fev-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fev-server/fev-server.iml" filepath="$PROJECT_DIR$/fev-server/fev-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fev-web/fev-web.iml" filepath="$PROJECT_DIR$/fev-web/fev-web.iml" />
+    </modules>
+  </component>
+</project>
