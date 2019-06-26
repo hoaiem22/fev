@@ -21,10 +21,11 @@ import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
- * @author Admin
+ * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
 @Table(name = "fev_event_member", catalog = "fptueventclub", schema = "", uniqueConstraints = {
@@ -44,11 +45,11 @@ public class FevEventMember implements Serializable {
     private Integer id;
     @Column(name = "note", length = 255)
     private String note;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "member", referencedColumnName = "id")
     @ManyToOne
     private FevMember member1;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "event", referencedColumnName = "id")
     @ManyToOne
     private FevEvent event;

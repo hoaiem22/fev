@@ -1,6 +1,7 @@
 <!--Robust Admin - Ver: 1.0 by AnhTTN - Startdate: 10/06/2018 -->
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+<html class="loading" lang="en" data-textdirection="ltr"
+	xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">Head
 </head>
 <Style>
@@ -11,48 +12,70 @@
 	background-size: cover;
 }
 </Style>
+
 <body
-    class="horizontal-layout horizontal-menu horizontal-menu-padding 1-column comingsoonFlatCustom menu-expanded blank-page blank-page"
-    data-open="hover" data-menu="horizontal-menu" data-col="1-column">
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
-    <div class="app-content content">
-        <div class="content-wrapper">
-            <div class="content-header row"></div>
-            <div class="content-body">
-                <!-- coming soon flat design -->
-                <section class="flexbox-container">
-                    <div class="col-12 d-flex align-items-center justify-content-center">
-                        <div class="col-md-6 col-10 p-0">
-                            <div class="card card-transparent box-shadow-0 border-0">
-                                <div class="card-content">
-                                    <div class="text-center">
-                                        <h5 class="card-text pb-2 white" th:text="#{club.name}"></h5>
-                                        <h6 class="card-text pb-2 white">The Way We Went</h6>
-                                        <a th:href="@{/login}"><img th:src="@{#{theme.root} + 'fev/img/logo.png'}"
-                                            class="img-responsive block width-300 mx-auto" width="300" alt="bg-img"></a>
-                                        <div id="clockFlat"
-                                            class="card-text getting-started pt-1 mt-2 white d-inline-block"></div>
-                                        <div class="col-12 pt-1">
-                                            <p class="card-text lead white">Our website is under construction.</p>
-                                        </div>
-                                        <div class="col-12 text-center pt-2">
-                                            <p class="socialIcon card-text">
-                                                <a href="#"><i class="fa fa-facebook-square white"></i></a> <a href="#"><i
-                                                    class="fa fa-twitter-square white"></i></a> <a href="#"><i
-                                                    class="fa fa-google-plus-square white"></i></a> <a href="#"><i
-                                                    class="fa fa-linkedin-square white"></i></a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!--/ coming soon flat design -->
-            </div>
-        </div>
-    </div>
-    <div th:replace="fragments/script :: script">Script</div>
+	class="horizontal-layout horizontal-menu horizontal-menu-padding 1-column comingsoonFlatCustom menu-expanded blank-page blank-page"
+	data-open="hover" data-menu="horizontal-menu" data-col="1-column">
+	<!-- ////////////////////////////////////////////////////////////////////////////-->
+	<div class="app-content content">
+		<div class="content-wrapper">
+			<div class="content-header row"></div>
+			<div class="content-body">
+				<!-- coming soon flat design -->
+				<section class="flexbox-container">
+					<div
+						class="col-12 d-flex align-items-center justify-content-center">
+						<div class="col-md-6 col-10 p-0">
+							<div class="card card-transparent box-shadow-0 border-0">
+								<div class="card-content">
+									<div class="text-center">
+										<h5 class="card-text pb-2 white" th:text="#{club.name}"></h5>
+										<h6 class="card-text pb-2 white">The Way We Went</h6>
+										<a th:href="@{/login}"><img
+											th:src="@{#{theme.root} + 'fev/img/logo.png'}"
+											class="img-responsive block width-300 mx-auto" width="300"
+											alt="bg-img"></a>
+										<div id="clockFlat"
+											class="card-text getting-started pt-1 mt-2 white d-inline-block"></div>
+										<div class="col-12 pt-1">
+											<p class="card-text lead white">Our website is under
+												construction.</p>
+										</div>
+										<div class="col-12 text-center pt-2">
+											<p class="socialIcon card-text">
+												<a href="#"><i class="fa fa-facebook-square white"></i></a>
+												<a href="#"><i class="fa fa-twitter-square white"></i></a> <a
+													href="#"><i class="fa fa-google-plus-square white"></i></a>
+												<a href="#"><i class="fa fa-linkedin-square white"></i></a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!--/ coming soon flat design -->
+			</div>
+		</div>
+	</div>
+	
+		<script type="text/javascript"
+			th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/countdown/jquery-3.4.1.min.js'}"></script>
+<!-- 	<script type="text/javascript" -->
+<!-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
+	<script type="text/javascript"
+			th:src="@{#{theme.root} + 'robust-admin/app-assets/js/scripts/countdown/jquery.countdown.js'}"></script>
+	<div id="getting-started"></div>
+	<div th:replace="fragments/script :: script">Script</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#getting-started").countdown("2016/01/01", function(event) {
+				$(this).text(event.strftime('%D days %H:%M:%S'));
+			});
+			console.log("ready!");
+		});
+	</script>
+
 </body>
 </html>

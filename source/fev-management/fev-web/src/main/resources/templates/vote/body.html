@@ -32,10 +32,12 @@
 							<div class="card-content collapse show">
 								<div class="card-header">
 									<h4 class="card-title">Input your key:</h4>
+									<small class="text-muted">Your priority: <i
+										id="txtPriority">0</i></small>
 								</div>
 								<div class="card-body card-dashboard ">
 									<form id="formKey" method="POST" enctype="multipart/form-data">
-										<small class="text-muted">eg.<i>ABCD-EFGH-IJKA</i></small>
+										<small class="text-muted">eg.<i>ABCD-EFGH-IJKA</i></small><br />
 										<div class="row">
 											<div class="col-10">
 												<fieldset class="form-group">
@@ -43,34 +45,32 @@
 												</fieldset>
 											</div>
 											<div class="col-2">
-												<button class="btn btn-info" name="btnSave">
+												<button class="btn btn-info" name="btnCheck">
 													<i class="ft-save"></i>&nbsp;<span
 														th:text="#{button.check}">Check</span>
 												</button>
-
 											</div>
 										</div>
 										<div id="result" class="alert alert-success mb-2 hidden-xs"
 											role="alert" style="display: none">
-											<strong th:text="#{alert.save.success}">Save OK</strong>
+											<strong th:text="#{alert.check.success}">Save OK</strong>
 										</div>
 										<div class="alert alert-danger alert-dismissible"
 											id="errorEmpty" style="display: none;">
 											<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong>Chưa có dữ liệu</strong>
+											<strong th:text="#{alert.check.empty}">Chưa có dữ
+												liệu</strong>
 										</div>
 										<div class="alert alert-danger alert-dismissible"
 											id="errorKey" style="display: none;">
 											<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong th:text="#{alert.save.fail}">Dữ liệu bạn
+											<strong th:text="#{alert.check.fail}">Dữ liệu bạn
 												nhập không đúng.</strong>
 										</div>
 									</form>
 								</div>
-
 							</div>
 						</div>
-						
 						<div class="card" id="card-vote">
 							<div class="card-header">
 								<h4 class="card-title"
@@ -88,79 +88,74 @@
 									</ul>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-xl-4 col-md-6 col-sm-12">
-									<div class="card" style="">
-										<div class="card-content">
-											<img class="card-img-top img-fluid"
-												th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Basic</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<fieldset class="form-group">
-													<select class="form-control" id="basicSelect">
-														<option>Select Option</option>
-														<option>Option 1</option>
-														<option>Option 2</option>
-														<option>Option 3</option>
-														<option>Option 4</option>
-														<option>Option 5</option>
-													</select>
-												</fieldset>
+							<div class="card-body card-dashboard ">
+								<form id="formVote" method="POST" enctype="multipart/form-data">
+									<small class="text-muted">eg.<i>ABCD-EFGH-IJKA</i></small><br />
+									<div class="row">
+										<div class="col-xl-4 col-md-6 col-sm-12">
+											<div class="card" style="">
+												<div class="card-content">
+													<img class="card-img-top img-fluid"
+														th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+														alt="Card image cap" id="imgPlanning">
+													<div class="card-body">
+														<h4 class="card-title">Vice Planning</h4>
+														<p class="card-text">You don't learn to walk by
+															following rules. You learn by doing, and by falling over.</p>
+														<fieldset class="form-group">
+															<select class="form-control" id="selectPlanning">
+																<option value="-1">Select Option</option>
+															</select>
+														</fieldset>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 col-sm-12">
-									<div class="card" style="">
-										<div class="card-content">
-											<img class="card-img-top img-fluid"
-												th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Basic</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<fieldset class="form-group">
-													<select class="form-control" id="basicSelect">
-														<option>Select Option</option>
-														<option>Option 1</option>
-														<option>Option 2</option>
-														<option>Option 3</option>
-														<option>Option 4</option>
-														<option>Option 5</option>
-													</select>
-												</fieldset>
+										<div class="col-xl-4 col-md-6 col-sm-12">
+											<div class="card" style="">
+												<div class="card-content">
+													<img class="card-img-top img-fluid"
+														th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+														alt="Card image cap" id="imgImplement">
+													<div class="card-body">
+														<h4 class="card-title">Vice Implement</h4>
+														<p class="card-text">Never forget what make me the
+															person I am today.</p>
+														<fieldset class="form-group">
+															<select class="form-control" id="selectImplement">
+																<option value="-1">Select Option</option>
+															</select>
+														</fieldset>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 col-sm-12">
-									<div class="card" style="">
-										<div class="card-content">
-											<img class="card-img-top img-fluid"
-												th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
-												alt="Card image cap">
-											<div class="card-body">
-												<h4 class="card-title">Basic</h4>
-												<p class="card-text">Some quick example text to build on
-													the card title and make up the bulk of the card's content.</p>
-												<fieldset class="form-group">
-													<select class="form-control" id="basicSelect">
-														<option>Select Option</option>
-														<option>Option 1</option>
-														<option>Option 2</option>
-														<option>Option 3</option>
-														<option>Option 4</option>
-														<option>Option 5</option>
-													</select>
-												</fieldset>
+										<div class="col-xl-4 col-md-6 col-sm-12">
+											<div class="card" style="">
+												<div class="card-content">
+													<img class="card-img-top img-fluid"
+														th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+														alt="Card image cap" id="imgMedia">
+													<div class="card-body">
+														<h4 class="card-title">Vice Media</h4>
+														<p class="card-text">The sun will shine on us again
+															and The fire always in my heart.</p>
+														<fieldset class="form-group">
+															<select class="form-control" id="selectMedia">
+																<option value="-1">Select Option</option>
+															</select>
+														</fieldset>
+													</div>
+												</div>
 											</div>
 										</div>
+										<div class="col-2">
+											<button class="btn btn-info" name="btnVote" id="btnVote">
+												<i class="ft-save"></i>&nbsp;<span th:text="#{button.vote}">Check</span>
+											</button>
+										</div>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>

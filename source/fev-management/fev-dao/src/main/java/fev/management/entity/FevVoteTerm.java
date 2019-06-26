@@ -29,14 +29,15 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
  * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
-@Table(name = "fev_member_group", catalog = "fptueventclub", schema = "")
+@Table(name = "fev_vote_term", catalog = "fptueventclub", schema = "")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "FevMemberGroup.findAll", query = "SELECT f FROM FevMemberGroup f")
-    , @NamedQuery(name = "FevMemberGroup.findById", query = "SELECT f FROM FevMemberGroup f WHERE f.id = :id")
-    , @NamedQuery(name = "FevMemberGroup.findByGroup", query = "SELECT f FROM FevMemberGroup f WHERE f.group = :group")
-    , @NamedQuery(name = "FevMemberGroup.findByNote", query = "SELECT f FROM FevMemberGroup f WHERE f.note = :note")})
-public class FevMemberGroup implements Serializable {
+    @NamedQuery(name = "FevVoteTerm.findAll", query = "SELECT f FROM FevVoteTerm f")
+    , @NamedQuery(name = "FevVoteTerm.findById", query = "SELECT f FROM FevVoteTerm f WHERE f.id = :id")
+    , @NamedQuery(name = "FevVoteTerm.findByTerm", query = "SELECT f FROM FevVoteTerm f WHERE f.term = :term")
+    , @NamedQuery(name = "FevVoteTerm.findByYear", query = "SELECT f FROM FevVoteTerm f WHERE f.year = :year")
+    , @NamedQuery(name = "FevVoteTerm.findByNote", query = "SELECT f FROM FevVoteTerm f WHERE f.note = :note")})
+public class FevVoteTerm implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,28 +45,21 @@ public class FevMemberGroup implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "group", nullable = false, length = 255)
-    private String group;
-    @Column(name = "note", length = 255)
+    @Column(name = "term", length = 50)
+    private String term;
+    @Column(name = "year", length = 10)
+    private String year;
+    @Column(name = "note", length = 250)
     private String note;
     @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group1")
-    private Collection<FevMember> fevMemberCollection;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group1")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "term")
     private Collection<FevVoteCandidate> fevVoteCandidateCollection;
 
-    public FevMemberGroup() {
+    public FevVoteTerm() {
     }
 
-    public FevMemberGroup(Integer id) {
+    public FevVoteTerm(Integer id) {
         this.id = id;
-    }
-
-    public FevMemberGroup(Integer id, String group) {
-        this.id = id;
-        this.group = group;
     }
 
     public Integer getId() {
@@ -76,12 +70,20 @@ public class FevMemberGroup implements Serializable {
         this.id = id;
     }
 
-    public String getGroup() {
-        return group;
+    public String getTerm() {
+        return term;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public String getNote() {
@@ -90,15 +92,6 @@ public class FevMemberGroup implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    @XmlTransient
-    public Collection<FevMember> getFevMemberCollection() {
-        return fevMemberCollection;
-    }
-
-    public void setFevMemberCollection(Collection<FevMember> fevMemberCollection) {
-        this.fevMemberCollection = fevMemberCollection;
     }
 
     @XmlTransient
@@ -120,10 +113,10 @@ public class FevMemberGroup implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FevMemberGroup)) {
+        if (!(object instanceof FevVoteTerm)) {
             return false;
         }
-        FevMemberGroup other = (FevMemberGroup) object;
+        FevVoteTerm other = (FevVoteTerm) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -132,7 +125,7 @@ public class FevMemberGroup implements Serializable {
 
     @Override
     public String toString() {
-        return "fev.management.entity.FevMemberGroup[ id=" + id + " ]";
+        return "fev.management.entity.FevVoteTerm[ id=" + id + " ]";
     }
     
 }

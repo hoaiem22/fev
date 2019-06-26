@@ -22,10 +22,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
- * @author Admin
+ * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
 @Table(name = "fev_member_position", catalog = "fptueventclub", schema = "")
@@ -48,9 +49,12 @@ public class FevMemberPosition implements Serializable {
     private String position;
     @Column(name = "note", length = 255)
     private String note;
-    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "position")
+    @JsonBackReference
     private Collection<FevMember> fevMemberCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "position")
+    @JsonBackReference
+    private Collection<FevVoteCandidate> fevVoteCandidateCollection;
 
     public FevMemberPosition() {
     }
@@ -95,6 +99,15 @@ public class FevMemberPosition implements Serializable {
 
     public void setFevMemberCollection(Collection<FevMember> fevMemberCollection) {
         this.fevMemberCollection = fevMemberCollection;
+    }
+
+    @XmlTransient
+    public Collection<FevVoteCandidate> getFevVoteCandidateCollection() {
+        return fevVoteCandidateCollection;
+    }
+
+    public void setFevVoteCandidateCollection(Collection<FevVoteCandidate> fevVoteCandidateCollection) {
+        this.fevVoteCandidateCollection = fevVoteCandidateCollection;
     }
 
     @Override

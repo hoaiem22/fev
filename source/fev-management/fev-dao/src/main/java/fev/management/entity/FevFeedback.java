@@ -20,10 +20,11 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
- * @author Admin
+ * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
 @Table(name = "fev_feedback", catalog = "fptueventclub", schema = "")
@@ -48,7 +49,7 @@ public class FevFeedback implements Serializable {
     private String content;
     @Column(name = "note", length = 250)
     private String note;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevFeedbackStatus status;

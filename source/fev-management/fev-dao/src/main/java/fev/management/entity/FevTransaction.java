@@ -20,10 +20,11 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
- * @author Admin
+ * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
 @Table(name = "fev_transaction", catalog = "fptueventclub", schema = "")
@@ -48,15 +49,15 @@ public class FevTransaction implements Serializable {
     private Integer money;
     @Column(name = "note", length = 50)
     private String note;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "event", referencedColumnName = "id")
     @ManyToOne
     private FevEvent event;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "burden", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMember burden;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "type", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevTransactionType type;

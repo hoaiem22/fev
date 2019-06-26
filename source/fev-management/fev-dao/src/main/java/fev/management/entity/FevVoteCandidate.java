@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -45,18 +46,22 @@ public class FevVoteCandidate implements Serializable {
     private Integer total;
     @Column(name = "note", length = 250)
     private String note;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "member", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMember member1;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "position", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberPosition position;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "group", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberGroup group1;
+    @JsonManagedReference
+    @JoinColumn(name = "term", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false)
+    private FevVoteTerm term;
 
     public FevVoteCandidate() {
     }
@@ -111,6 +116,14 @@ public class FevVoteCandidate implements Serializable {
 
     public void setGroup1(FevMemberGroup group1) {
         this.group1 = group1;
+    }
+
+    public FevVoteTerm getTerm() {
+        return term;
+    }
+
+    public void setTerm(FevVoteTerm term) {
+        this.term = term;
     }
 
     @Override

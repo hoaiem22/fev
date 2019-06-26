@@ -67,7 +67,7 @@ public class MemberController {
         return (List<MemberCast>) listMember;
     }
     
-    @PostMapping("/management/event/saveMember")
+    @PostMapping("/management/member/saveMember")
     @ResponseBody
     public List<FevMember> saveTeam(@Valid @RequestBody MemberModel data, Errors errors,
             HttpServletRequest request) {
@@ -90,6 +90,5 @@ public class MemberController {
         List<FevMember> member = (List<FevMember>) memberRepo.findAll();
 
         return member;
-
     }
 }

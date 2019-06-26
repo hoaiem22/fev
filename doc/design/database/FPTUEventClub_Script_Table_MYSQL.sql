@@ -1,9 +1,10 @@
 use fptueventclub;
 
-drop table if exists fev_account_role;
 drop table if exists fev_account;
+drop table if exists fev_account_role;
 drop table if exists fev_member_position;
 drop table if exists fev_member_status;
+drop table if exists fev_member_group;
 drop table if exists fev_member;
 drop table if exists fev_event;
 drop table if exists fev_event_member;
@@ -15,6 +16,10 @@ drop table if exists fev_transaction;
 drop table if exists fev_inventory_status;
 drop table if exists fev_inventory_item;
 drop table if exists fev_inventory;
+drop table if exists fev_member_group;
+drop table if exists fev_vote_key;
+drop table if exists fev_vote;
+drop table if exists fev_vote_candidate;
 
 
 create table fev_account_role (
@@ -50,22 +55,32 @@ create table fev_member_status (
     primary key (id)
 );
 
+create table fev_member_group (
+	id int auto_increment not null,
+    `group` varchar (255) not null,
+    note varchar(255),
+    primary key (id)
+);
+
 create table fev_member (
 	id int auto_increment not null,
     fullname varchar(50),
     studentID varchar(50) not null,
     birthdate date,
+    img varchar(5000),
     sex varchar(10),
     address varchar(50),
     phone varchar(50),
     `position` int not null,
     `status` int not null,
+    `group` int not null,
     `point` int,
     constraint noduplicate unique (studentID),
 	note varchar(255),
     primary key (id),
-    foreign key (position) references fev_member_position(id),
-    foreign key (status) references fev_member_status(id)
+    foreign key (`position`) references fev_member_position(id),
+    foreign key (`status`) references fev_member_status(id),
+    foreign key (`group`) references fev_member_group(id)
 );
 
 
@@ -167,4 +182,48 @@ create table fev_inventory (
     foreign key (`status`) references fev_inventory_status(id),
     foreign key (item) references fev_inventory_item(id)
 );
+
+create table fev_vote_key(
+	id int auto_increment not null,
+    `key` varchar(250) not null,
+    priority int not null,
+    isActive bit(1) not null,
+    note varchar(250),
+    primary key (id)
+);
+
+create table fev_vote(
+	id int auto_increment not null,
+    candidate int not null,
+    `key` int not null,
+    note varchar(250),
+    primary key (id),
+    foreign key (candidate) references fev_member(id),
+    foreign key (`key`) references fev_vote_key(id)
+);
+
+create table fev_vote_term(
+	id int auto_increment not null,
+    term varchar(50),
+    `year` varchar(10),
+    note varchar(250),
+    primary key (id)
+);
+
+create table fev_vote_candidate(
+	id int auto_increment not null,
+    member int not null,
+    term int not null,
+    `position` int not null,
+    `group` int not null,
+    total int,
+    note varchar(250),
+    primary key (id),
+    foreign key (member) references fev_member(id),
+    foreign key (`position`) references fev_member_position(id),
+    foreign key (`group`) references fev_member_group(id),
+    foreign key (term) references fev_vote_term(id)
+);
+
+
 

@@ -2,18 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="613eadc9-f44d-42ea-a51e-e0f1eefe9239" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/azureSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/EventAlbumImageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/EventAlbumImageActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/FragmentAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/FragmentAlbum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/FragmentEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/FragmentEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/FragmentMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/FragmentMember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/InventoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/InventoryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/TransactionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../fev-management-android/Assignment/app/src/main/java/assignment/swd/toannb/swd_assignment/TransactionActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../doc/design/database/AddDataToDatabase.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/design/database/AddDataToDatabase.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../doc/design/database/FPTUEventClub_Script_StaticData.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/design/database/FPTUEventClub_Script_StaticData.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../doc/design/database/FPTUEventClub_Script_Table_MYSQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/design/database/FPTUEventClub_Script_Table_MYSQL.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-domain/src/main/java/fev/management/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/fev-domain/src/main/java/fev/management/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-user/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fev-user/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/java/fev/management/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/java/fev/management/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/java/fev/management/controller/VoteCandidateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/java/fev/management/controller/VoteCandidateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/message.properties" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/message.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/message_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/message_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/message_vi.properties" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/message_vi.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/templates/fragments/script.html" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/templates/fragments/script.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/templates/management/member.html" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/templates/management/member.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/templates/soon.html" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/templates/soon.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/templates/vote.html" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/templates/vote.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fev-web/src/main/resources/templates/vote/body.html" beforeDir="false" afterPath="$PROJECT_DIR$/fev-web/src/main/resources/templates/vote/body.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/fev-domain/target/" />
     <ignored path="$PROJECT_DIR$/fev-web/target/" />
@@ -30,12 +33,13 @@
     <session id="1199638570">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -53,17 +57,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fev-server/src/main/java/fev/management/api/TracsactionTypeController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -110,11 +104,6 @@
             <path>
               <item name="fev-management" type="b2602c69:ProjectViewProjectNode" />
               <item name="fev-management" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fev-management" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fev-management" type="462c0819:PsiDirectoryNode" />
-              <item name="fev-server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -222,6 +211,7 @@
       <workItem from="1558348030062" duration="698000" />
       <workItem from="1558350874098" duration="545000" />
       <workItem from="1558351467052" duration="436000" />
+      <workItem from="1561363199630" duration="101000" />
     </task>
     <servers />
   </component>
@@ -231,12 +221,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3113000" />
+    <option name="totallyTimeSpent" value="3214000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -254,7 +244,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.50226927" side_tool="true" visible="true" weight="0.3276923" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50226927" side_tool="true" visible="true" weight="0.3276923" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
@@ -289,8 +279,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fev-server/src/main/java/fev/management/api/TracsactionTypeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        <state relative-caret-position="204">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
         </state>
       </provider>
     </entry>

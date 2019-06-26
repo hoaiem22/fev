@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -52,7 +53,7 @@ public class FevVoteKey implements Serializable {
     @Column(name = "priority", nullable = false)
     private int priority;
     @Basic(optional = false)
-    @Column(name = "is_active", nullable = false)
+    @Column(name = "isActive", nullable = false)
     private boolean isActive;
     @Column(name = "note", length = 250)
     private String note;

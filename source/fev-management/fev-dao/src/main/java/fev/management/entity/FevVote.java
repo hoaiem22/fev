@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -42,11 +43,11 @@ public class FevVote implements Serializable {
     private Integer id;
     @Column(name = "note", length = 250)
     private String note;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "candidate", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMember candidate;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "key", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevVoteKey key;

@@ -20,10 +20,11 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
- * @author Admin
+ * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
 @Table(name = "fev_event_album", catalog = "fptueventclub", schema = "")
@@ -42,7 +43,7 @@ public class FevEventAlbum implements Serializable {
     private Integer id;
     @Column(name = "img", length = 250)
     private String img;
-    @JsonBackReference
+    @JsonManagedReference
     @JoinColumn(name = "event", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevEvent event;

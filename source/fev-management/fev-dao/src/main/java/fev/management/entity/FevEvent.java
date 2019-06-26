@@ -27,10 +27,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
- * @author Admin
+ * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
 @Table(name = "fev_event", catalog = "fptueventclub", schema = "")
@@ -76,9 +77,9 @@ public class FevEvent implements Serializable {
     @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "event")
     private Collection<FevEventAlbum> fevEventAlbumCollection;
-    @JsonBackReference
     @JoinColumn(name = "leader", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
+    @JsonManagedReference
     private FevMember leader;
 
     public FevEvent() {

@@ -1,15 +1,13 @@
 <!--Robust Admin - Ver: 1.0 by EmVH - Startdate: 10/06/2018 -->
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr"
-	xmlns:th="http://www.thymeleaf.org">
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/head :: head"></head>
 <title>FPTU Event Club</title>
 </head>
 
-<body
-	class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded"
-	data-open="hover" data-menu="horizontal-menu" data-col="2-columns">
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
+ data-menu="horizontal-menu" data-col="2-columns">
 	<!-- Header -->
 	<div th:replace="vote/header :: header">Header</div>
 	<!-- ///////////////////CONTENT///////////////////////////////////////////////-->
@@ -21,35 +19,128 @@
 	<div th:replace="fragments/script :: script">Script</div>
 </body>
 <script>
-	$('#formKey').submit(function(e) {
-		e.preventDefault();
-		$('#errorKey').hide();
-		$('#errorEmpty').hide();
-		var search = {};
-		search['key'] = this.helpInputTop.value;
-		console.log("Key: " + search['key']);
+	//Store list candidate
+	var frmCandidate = new FormData();
+	var frmCandidate = {};
+	var key = '';
+	$(document).ready(function () {
+		//Load candidate to select option
+		loadCandidate('Planning', 'Chief');
+		loadCandidate('Implement', 'Chief');
+		loadCandidate('Media', 'Chief');
+	});
+	// This is a functions that scrolls to #{blah}link
+	function goToByScroll(id) {
+		// Remove "link" from the ID
+		id = id.replace("link", "");
+		// Scroll
+		$('html,body').animate({
+			scrollTop: $("#" + id).offset().top
+		}, 'slow');
+	}
+	
+	//Onchange select event
+	$('#formVote .form-group select').on('change', function (e) {
+		var optionSelected = $("option:selected", this);
+	    var idSelected = this.value;
+	    var group = this.id.replace('select', '');
+	    var member = getMember(idSelected, frmCandidate[group]);
+		if(member != null){
+			$('#img' + group).attr('src', member.img);
+		}
+	   console.log("Change: " + idSelected);
+	});
+	function getMember(id, formData) {
+		for(var i = 0; i < formData.length; i++) {
+			if(formData[i].id == id) return formData[i];
+		}
+		return null;
+	};
+
+	$('#formKey').submit(
+		function (e) {
+			if (this.helpInputTop.value == '') {
+				$('#errorEmpty').fadeToggle('slow');
+				$('#errorEmpty').fadeOut(5000);
+				return false;
+			}
+			e.preventDefault();
+			$('#errorKey').hide();
+			$('#errorEmpty').hide();
+			var search = {};
+			console.log("This: " + this.helpInputTop.value);
+			console.log("Key: " + search['key']);
+			$.ajax({
+				url: _ctx + "management/vote/key/check",
+				type: "POST",
+				contentType: "application/json",
+				data: this.helpInputTop.value,
+				dataType: 'json',
+				success: function (result) {
+
+					$('#card_vote').fadeToggle('slow');
+					$('#card_vote').fadeOut(5000);
+					console.log(result);
+					//Block textbox - input key
+					$("#helpInputTop").attr("disabled", "disabled");
+					//Update prioity
+					$("#txtPriority").text(result.priority);
+					//Notify sucess
+					$('#result').fadeToggle('slow');
+					$('#result').fadeOut(5000);
+					//Move to card-vote
+					setTimeout(function () {
+						goToByScroll('card-vote');
+					}, 2000);
+
+				},
+				error: function (xhr, status, error) {
+					console.log("Status code: " + xhr.status + " | Error: "
+						+ error + " | xhr.reponseText: "
+						+ xhr.reponseText);
+					$('#errorKey').fadeToggle('slow');
+					$('#errorKey').fadeOut(5000);
+				}
+			});
+		});
+	function loadCandidate(group, position) {
+		console.log("Load candidate")
+		var frmData = new FormData();
+		var frmData = {};
+		var img = '../../themes/fev/img/logo.png';
+		frmData["group"] = group;
+		frmData["position"] = position;
 		$.ajax({
-			url : _ctx + "management/vote/key/check",
-			type : "POST",
-			contentType : "application/json",
-			data : this.helpInputTop.value,
-			dataType : 'json',
-			success : function(result) {
-				$('#card_vote').fadeToggle('slow');
-				$('#card_vote').fadeOut(5000);
-				console.log(result);
+			url: _ctx + "management/vote/candidate",
+			type: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(frmData),
+			dataType: 'json',
+			success: function (result) {
+				for (var i = 0; i < result.length; i++) {
+					//Add option
+					$('#select' + group).append(
+						$("<option></option>").attr("value", result[i].id)
+							.text(result[i].fullname));
+					$('#img' + group).attr('src', img);
+				}
+				frmCandidate[group] = result;
 			},
-			error : function(xhr, status, error) {
-				console.log("Status code: " + xhr.status + " | Error: " + error + " | xhr.reponseText: " +xhr.reponseText);
+			error: function (xhr, status, error) {
+				console.log("Status code: " + xhr.status + " | Error: " + error
+					+ " | xhr.reponseText: " + xhr.reponseText);
 				alert("ERROR: Can't check key !");
 			}
 		});
-	});
-	$('#formVote').submit(function(e) {
+	}
+	$('#formVote').submit(function (e) {
 		e.preventDefault();
-		$('#errorKey').hide();
-		$('#errorEmpty').hide();
-		$('#result').fadeToggle('slow');
-		$('#result').fadeOut(5000);
+		//Get id candidate, key and pass to controller
+		//Notify
+		var planning = $("#selectPlanning option:selected").val();
+		var planning = $("#selectImplement option:selected").val();
+		var planning = $("#selectMedia option:selected").val();
+		var key = $("#helpInputTop").val();
+		console.log("Vote");
 	});
 </script>
