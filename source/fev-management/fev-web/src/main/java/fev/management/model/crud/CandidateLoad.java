@@ -1,4 +1,4 @@
-package fev.management.model.view;
+package fev.management.model.crud;
 
 public class CandidateLoad {
 
