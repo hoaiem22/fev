@@ -19,9 +19,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 /**
  *
  * @author EmVH <hoaiem.heli22@gmail.com>
@@ -33,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
     @NamedQuery(name = "FevVoteCandidate.findAll", query = "SELECT f FROM FevVoteCandidate f")
     , @NamedQuery(name = "FevVoteCandidate.findById", query = "SELECT f FROM FevVoteCandidate f WHERE f.id = :id")
     , @NamedQuery(name = "FevVoteCandidate.findByTotal", query = "SELECT f FROM FevVoteCandidate f WHERE f.total = :total")
+    , @NamedQuery(name = "FevVoteCandidate.findByQuote", query = "SELECT f FROM FevVoteCandidate f WHERE f.quote = :quote")
     , @NamedQuery(name = "FevVoteCandidate.findByNote", query = "SELECT f FROM FevVoteCandidate f WHERE f.note = :note")})
 public class FevVoteCandidate implements Serializable {
 
@@ -44,21 +42,19 @@ public class FevVoteCandidate implements Serializable {
     private Integer id;
     @Column(name = "total")
     private Integer total;
+    @Column(name = "quote", length = 5000)
+    private String quote;
     @Column(name = "note", length = 250)
     private String note;
-    @JsonManagedReference
     @JoinColumn(name = "member", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMember member1;
-    @JsonManagedReference
     @JoinColumn(name = "position", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberPosition position;
-    @JsonManagedReference
     @JoinColumn(name = "group", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberGroup group1;
-    @JsonManagedReference
     @JoinColumn(name = "term", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevVoteTerm term;
@@ -84,6 +80,14 @@ public class FevVoteCandidate implements Serializable {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public String getQuote() {
+        return quote;
+    }
+
+    public void setQuote(String quote) {
+        this.quote = quote;
     }
 
     public String getNote() {

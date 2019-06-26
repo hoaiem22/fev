@@ -27,9 +27,6 @@ import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 /**
  *
  * @author EmVH <hoaiem.heli22@gmail.com>
@@ -44,6 +41,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
     , @NamedQuery(name = "FevMember.findByFullname", query = "SELECT f FROM FevMember f WHERE f.fullname = :fullname")
     , @NamedQuery(name = "FevMember.findByStudentID", query = "SELECT f FROM FevMember f WHERE f.studentID = :studentID")
     , @NamedQuery(name = "FevMember.findByBirthdate", query = "SELECT f FROM FevMember f WHERE f.birthdate = :birthdate")
+    , @NamedQuery(name = "FevMember.findByK", query = "SELECT f FROM FevMember f WHERE f.k = :k")
+    , @NamedQuery(name = "FevMember.findByEmail", query = "SELECT f FROM FevMember f WHERE f.email = :email")
     , @NamedQuery(name = "FevMember.findByImg", query = "SELECT f FROM FevMember f WHERE f.img = :img")
     , @NamedQuery(name = "FevMember.findBySex", query = "SELECT f FROM FevMember f WHERE f.sex = :sex")
     , @NamedQuery(name = "FevMember.findByAddress", query = "SELECT f FROM FevMember f WHERE f.address = :address")
@@ -66,6 +65,10 @@ public class FevMember implements Serializable {
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
+    @Column(name = "k", length = 50)
+    private String k;
+    @Column(name = "email", length = 250)
+    private String email;
     @Column(name = "img", length = 5000)
     private String img;
     @Column(name = "sex", length = 10)
@@ -78,34 +81,15 @@ public class FevMember implements Serializable {
     private Integer point;
     @Column(name = "note", length = 255)
     private String note;
-    @JsonBackReference
-    @OneToMany(mappedBy = "member1")
-    private Collection<FevEventMember> fevEventMemberCollection;
-    @JsonManagedReference
     @JoinColumn(name = "position", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberPosition position;
-    @JsonManagedReference
     @JoinColumn(name = "status", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberStatus status;
-    @JsonManagedReference
     @JoinColumn(name = "group", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
     private FevMemberGroup group1;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "burden")
-    private Collection<FevTransaction> fevTransactionCollection;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidate")
-    private Collection<FevVote> fevVoteCollection;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "leader")
-    private Collection<FevEvent> fevEventCollection;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "holder")
-    private Collection<FevInventory> fevInventoryCollection;
-    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "member1")
     private Collection<FevVoteCandidate> fevVoteCandidateCollection;
 
@@ -151,6 +135,22 @@ public class FevMember implements Serializable {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public String getK() {
+        return k;
+    }
+
+    public void setK(String k) {
+        this.k = k;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getImg() {
@@ -201,15 +201,6 @@ public class FevMember implements Serializable {
         this.note = note;
     }
 
-    @XmlTransient
-    public Collection<FevEventMember> getFevEventMemberCollection() {
-        return fevEventMemberCollection;
-    }
-
-    public void setFevEventMemberCollection(Collection<FevEventMember> fevEventMemberCollection) {
-        this.fevEventMemberCollection = fevEventMemberCollection;
-    }
-
     public FevMemberPosition getPosition() {
         return position;
     }
@@ -232,42 +223,6 @@ public class FevMember implements Serializable {
 
     public void setGroup1(FevMemberGroup group1) {
         this.group1 = group1;
-    }
-
-    @XmlTransient
-    public Collection<FevTransaction> getFevTransactionCollection() {
-        return fevTransactionCollection;
-    }
-
-    public void setFevTransactionCollection(Collection<FevTransaction> fevTransactionCollection) {
-        this.fevTransactionCollection = fevTransactionCollection;
-    }
-
-    @XmlTransient
-    public Collection<FevVote> getFevVoteCollection() {
-        return fevVoteCollection;
-    }
-
-    public void setFevVoteCollection(Collection<FevVote> fevVoteCollection) {
-        this.fevVoteCollection = fevVoteCollection;
-    }
-
-    @XmlTransient
-    public Collection<FevEvent> getFevEventCollection() {
-        return fevEventCollection;
-    }
-
-    public void setFevEventCollection(Collection<FevEvent> fevEventCollection) {
-        this.fevEventCollection = fevEventCollection;
-    }
-
-    @XmlTransient
-    public Collection<FevInventory> getFevInventoryCollection() {
-        return fevInventoryCollection;
-    }
-
-    public void setFevInventoryCollection(Collection<FevInventory> fevInventoryCollection) {
-        this.fevInventoryCollection = fevInventoryCollection;
     }
 
     @XmlTransient
