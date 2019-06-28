@@ -8,7 +8,6 @@ package fev.management.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,8 +23,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  *
@@ -62,8 +59,7 @@ public class FevMemberStatus implements Serializable {
     private Date lastmodified;
     @Column(name = "lastmodifiedby_username", length = 50)
     private String lastmodifiedbyUsername;
-	@JsonBackReference
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private Collection<FevMember> fevMemberCollection;
 
     public FevMemberStatus() {

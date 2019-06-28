@@ -7,7 +7,6 @@ package fev.management.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -63,17 +60,16 @@ public class FevVoteCandidate implements Serializable {
     @Column(name = "lastmodifiedby_username", length = 50)
     private String lastmodifiedbyUsername;
     @JoinColumn(name = "member", referencedColumnName = "id", nullable = false)
-    @JsonManagedReference @ManyToOne(optional = false)
+    @ManyToOne(optional = false)
     private FevMember member1;
     @JoinColumn(name = "position", referencedColumnName = "id", nullable = false)
-    @JsonManagedReference @ManyToOne(optional = false)
+    @ManyToOne(optional = false)
     private FevMemberPosition position;
     @JoinColumn(name = "group", referencedColumnName = "id", nullable = false)
-    @JsonManagedReference @ManyToOne(optional = false)
+    @ManyToOne(optional = false)
     private FevMemberGroup group1;
     @JoinColumn(name = "term", referencedColumnName = "id", nullable = false)
-	@JsonManagedReference
-	@ManyToOne(optional = false)
+    @ManyToOne(optional = false)
     private FevVoteTerm term;
 
     public FevVoteCandidate() {
