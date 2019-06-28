@@ -1,6 +1,6 @@
 package fev.management.model.crud;
 
-public class CandidateLoad {
+public class FevCandidateLoad {
 
 	private int id;
 	private int member;
@@ -37,7 +37,7 @@ public class CandidateLoad {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	public CandidateLoad(int id, int member, String group, String position, int total) {
+	public FevCandidateLoad(int id, int member, String group, String position, int total) {
 		super();
 		this.id = id;
 		this.member = member;

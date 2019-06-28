@@ -1,5 +1,7 @@
 package fev.management.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,4 +15,7 @@ public interface MemberStatusRepository extends CrudRepository<FevMemberStatus, 
 
     @Query(nativeQuery = true, value = "select * from fptueventclub.fev_member_status where status = :status")
     FevMemberStatus findByStatus(@Param("status") String status);
+    
+    @Query(nativeQuery = true, value = "SELECT `status` FROM fptueventclub.fev_member_status")
+    List<String> getAllName();
 }

@@ -18,6 +18,9 @@ INSERT INTO `fptueventclub`.`fev_member_position` (`position`) VALUES ('Finacial
 INSERT INTO `fptueventclub`.`fev_member_position` (`position`) VALUES ('Adviser');
 INSERT INTO `fptueventclub`.`fev_member_position` (`position`) VALUES ('Vice President');
 INSERT INTO `fptueventclub`.`fev_member_position` (`position`) VALUES ('President');
+INSERT INTO `fptueventclub`.`fev_member_position` (`position`) VALUES ('Mentor');
+INSERT INTO `fptueventclub`.`fev_member_position` (`position`) VALUES ('Other');
+
 
 -- Insert Member Status
 INSERT INTO `fptueventclub`.`fev_member_status` (`status`) VALUES ('Working');
@@ -30,6 +33,7 @@ INSERT INTO `fptueventclub`.`fev_member_group` (`group`) VALUES ('Implement');
 INSERT INTO `fptueventclub`.`fev_member_group` (`group`) VALUES ('Media');
 INSERT INTO `fptueventclub`.`fev_member_group` (`group`) VALUES ('Executive');
 INSERT INTO `fptueventclub`.`fev_member_group` (`group`) VALUES ('Director');
+
 
 -- Insert Member
 use fptueventclub;

@@ -26,6 +26,10 @@ create table fev_account_role (
 	id int auto_increment not null,
     role varchar(255) not null,
     note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -35,6 +39,10 @@ create table fev_account (
     password varchar(255) not null,
     role int not null,
     note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id),
     foreign key (role) references fev_account_role(id)
 );
@@ -44,6 +52,10 @@ create table fev_member_position (
 	id int auto_increment not null,
     `position` varchar (255) not null,
     note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -52,6 +64,10 @@ create table fev_member_status (
 	id int auto_increment not null,
     `status` varchar(50) not null,
     note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -59,6 +75,10 @@ create table fev_member_group (
 	id int auto_increment not null,
     `group` varchar (255) not null,
     note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -69,6 +89,7 @@ create table fev_member (
     birthdate date,
     k varchar(50) CHARACTER SET utf8,
     email varchar(250) CHARACTER SET utf8,
+    facebook varchar(250) CHARACTER SET utf8,
     img varchar(5000) CHARACTER SET utf8,
     sex varchar(10) CHARACTER SET utf8,
     address varchar(50) CHARACTER SET utf8,
@@ -79,6 +100,10 @@ create table fev_member (
     `point` int,
     constraint noduplicate unique (studentID),
 	note varchar(255) CHARACTER SET utf8,
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id),
     foreign key (`position`) references fev_member_position(id),
     foreign key (`status`) references fev_member_status(id),
@@ -89,12 +114,16 @@ create table fev_member (
 create table fev_event (
 	id int auto_increment not null,
     name varchar(50),
-    `start` date,
-    `end` date,
-    `time` date,
+    `start` datetime,
+    `end` datetime,
+    `time` datetime,
     place varchar(250),    
     leader int not null,
     note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key(id),
     foreign key (leader) references fev_member(id)
 );
@@ -104,6 +133,10 @@ create table fev_event_member (
     `event` int,
     member int,
     note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key(id),
     foreign key (member) references fev_member(id),
     foreign key ( `event`) references fev_event(id),
@@ -114,6 +147,11 @@ create table fev_event_album (
 	id int auto_increment not null,
     `event` int not null,
     img varchar(250), -- Link to img
+    note varchar(255),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id),
     foreign key (`event`) references fev_event(id)
 );
@@ -122,6 +160,10 @@ create table fev_feedback_status (
 	id int auto_increment not null,
     status varchar(250) not null, -- Read, Draft, Reviewing, . . .
     note varchar(250),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -132,6 +174,10 @@ create table fev_feedback (
     `status` int not null, -- Read, Draft, Reviewing, . . .
     note varchar(250),
     primary key (id),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     foreign key (`status`) references fev_feedback_status(id)
 );
 
@@ -139,6 +185,10 @@ create table fev_transaction_type (
 	id int auto_increment not null,
     `type` varchar (50), -- withdraw, pay
     note varchar(50),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -150,6 +200,10 @@ create table fev_transaction (
     `event` int, -- from event (if need)
     burden int not null, -- MemberID who withdraw or . . .
     note varchar(50),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id),
     foreign key (`event`) references fev_event(id),
     foreign key (`burden`) references fev_member(id),
@@ -168,7 +222,11 @@ create table fev_inventory_item (
 	`name` varchar(250),
     address varchar(250),
     price varchar(50),
-    note varchar(250),                                                                                                                                                                   
+    note varchar(250),              
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -179,6 +237,10 @@ create table fev_inventory (
     holder int not null, -- The member who hold item
     `status` int not null, -- Free, borrowed
     note varchar(250),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id),
     foreign key (holder) references fev_member(id),
     foreign key (`status`) references fev_inventory_status(id),
@@ -191,24 +253,37 @@ create table fev_vote_key(
     priority int not null,
     isActive bit(1) not null,
     note varchar(250),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
 create table fev_vote(
 	id int auto_increment not null,
-    candidate int not null,
+    candidatetime int not null,
     `key` int not null,
     note varchar(250),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id),
-    foreign key (candidate) references fev_member(id),
+    foreign key (candidatetime) references fev_member(id),
     foreign key (`key`) references fev_vote_key(id)
 );
 
 create table fev_vote_term(
 	id int auto_increment not null,
+    name varchar(50),
     term varchar(50),
     `year` varchar(10),
     note varchar(250),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id)
 );
 
@@ -221,6 +296,10 @@ create table fev_vote_candidate(
     total int,
     quote varchar(5000),
     note varchar(250),
+    created datetime,
+    createdby_username varchar(50), -- user who create report
+    lastmodified datetime, 
+    lastmodifiedby_username varchar(50), 
     primary key (id),
     foreign key (member) references fev_member(id),
     foreign key (`position`) references fev_member_position(id),

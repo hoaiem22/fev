@@ -7,6 +7,8 @@ package fev.management.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,11 +20,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -37,7 +40,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
     , @NamedQuery(name = "FevVoteKey.findByKey", query = "SELECT f FROM FevVoteKey f WHERE f.key = :key")
     , @NamedQuery(name = "FevVoteKey.findByPriority", query = "SELECT f FROM FevVoteKey f WHERE f.priority = :priority")
     , @NamedQuery(name = "FevVoteKey.findByIsActive", query = "SELECT f FROM FevVoteKey f WHERE f.isActive = :isActive")
-    , @NamedQuery(name = "FevVoteKey.findByNote", query = "SELECT f FROM FevVoteKey f WHERE f.note = :note")})
+    , @NamedQuery(name = "FevVoteKey.findByNote", query = "SELECT f FROM FevVoteKey f WHERE f.note = :note")
+    , @NamedQuery(name = "FevVoteKey.findByCreatedbyUsername", query = "SELECT f FROM FevVoteKey f WHERE f.createdbyUsername = :createdbyUsername")
+    , @NamedQuery(name = "FevVoteKey.findByLastmodified", query = "SELECT f FROM FevVoteKey f WHERE f.lastmodified = :lastmodified")
+    , @NamedQuery(name = "FevVoteKey.findByLastmodifiedbyUsername", query = "SELECT f FROM FevVoteKey f WHERE f.lastmodifiedbyUsername = :lastmodifiedbyUsername")})
 public class FevVoteKey implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,7 +53,7 @@ public class FevVoteKey implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "key", nullable = false, length = 250)
+    @Column(name = "`key`", nullable = false, length = 250)
     private String key;
     @Basic(optional = false)
     @Column(name = "priority", nullable = false)
@@ -57,8 +63,15 @@ public class FevVoteKey implements Serializable {
     private boolean isActive;
     @Column(name = "note", length = 250)
     private String note;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "key")
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.DATE)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "key")
     private Collection<FevVote> fevVoteCollection;
 
     public FevVoteKey() {
@@ -113,6 +126,30 @@ public class FevVoteKey implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
+
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
+
+    public Date getLastmodified() {
+        return lastmodified;
+    }
+
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
+
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
+
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
     }
 
     @XmlTransient

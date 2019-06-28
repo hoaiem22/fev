@@ -1,0 +1,252 @@
+<!--Robust Admin - Ver: 1.0 by EmVH - Startdate: 10/06/2018 -->
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head"></head>
+<title>FPTU Event Club</title>
+</head>
+<style>
+	/* Limit cell's dimentions regardless the content  */
+	.htCore td {
+		white-space: nowrap
+	}
+</style>
+
+<body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
+ data-menu="horizontal-menu" data-col="2-columns">
+	<!-- Header -->
+	<div th:replace="fragments/header :: header">Header</div>
+	<!-- ///////////////////CONTENT///////////////////////////////////////////////-->
+	<div th:replace="management/vote_term/body :: content">Content</div>
+	<!-- ////////////////////////////////////////////////////////////////////////////-->
+	<!--Footer  -->
+	<div th:replace="fragments/footer :: footer">Footer</div>
+	<!--Script file  -->
+	<div th:replace="fragments/script :: script">Script</div>
+</body>
+<script>
+	var deletedIds = [];
+	var dataMember = [];
+	var hotMember = null;
+	$(function () {
+		var containerUnit = document.getElementById('voteTerm');
+		hotMember = new Handsontable(containerUnit, {
+			data: dataMember,
+			colHeaders: ['ID', 'Term','Year', 'Note'],
+			colWidths: [50, 300, 300, 300],
+			rowHeaders: true,
+			licenseKey: 'non-commercial-and-evaluation',
+			minSpareRows: 1,
+			stretchH: 'all',
+			minCols: 15,
+			// minRows: 10,
+			manualColumnResize: true,
+			manualRowResize: true,
+			search: {
+				callback: searchResultCounter
+			},
+			// fixedColumnsLeft: 2, //fix two column on left
+			columnSorting: true, //Allow sort by coloumn
+			// maxRows: 20,
+			exportFile: true,
+			autoWrapRow: true,
+			contextMenu: ['row_below', 'remove_row'],
+			columns: [{
+				data: 'id',
+				readOnly: true
+			}, {
+				data: 'term',
+
+			}, {
+				data: 'year',
+
+			},  {
+				data: 'note',
+
+			}],
+			beforeRemoveRow: function (index, amount) {
+				// Support to submit deleted id into server
+				var lastIndex = index + amount;
+				console.log("index + amount", index + amount)
+				var i;
+				for (i = index; i < lastIndex; i++) {
+					var deleteMember = dataMember[i];
+					var deletedId = deleteMember.id;
+					console.log("deleteMember" + deleteMember + "deleteId = "
+						+ deletedId);
+					if (deletedId) {
+						deletedIds.push(deletedId);
+					}
+				}
+				console.log("list deletedIds=" + deletedIds);
+			},
+			beforeChange: function (changes, source) {
+				// changes = [[row, prop, oldVal, newVal], ...]
+				for (var i = 0; i < changes.length; i++) {
+					//Check what and where user change value
+					var row = changes[i][0];
+					var col = hotMember.propToCol(changes[i][1]);
+					var newVal = changes[i][3];
+					console.log("row: " + row + "; col: " + col + "; newVal: "
+						+ newVal);
+					// If input is foo then remove
+					// if (changes[i][3] === 'foo') {
+					// 	changes.splice(i, 1);
+					// }
+					// capitalise first letter in column 1 and 2
+					var upperCols = ["term", "note"];
+					if (upperCols.includes(changes[i][1]) && changes[i][3].charAt(0)) {
+						changes[i][3] = changes[i][3].charAt(0).toUpperCase() + changes[i][3].slice(1);
+					}
+				}
+			},
+			afterChange: function (changes, source) {
+				if (source !== 'loadData') {
+					document.getElementById('resultChange').innerText = JSON.stringify(changes);
+				}
+			},
+		});
+		loadTerm();
+		//CSS for table not overflow
+		$('#member').css({
+			overflow: 'hidden'
+		});
+		var searchFiled = document.getElementById('searchField'); //get DOM
+		//Or var searchFiled = $('#searchField')[0];
+		resultCount = document.getElementById('resultCount');
+		Handsontable.dom.addEvent(searchFiled, 'keyup', function (event) {
+			searchResultCount = 0;
+			var search = hotMember.getPlugin('search');
+			var queryResult = search.query(this.value);
+
+			console.log(queryResult);
+			resultCount.innerText = searchResultCount.toString();
+			hotMember.render();
+		});
+		//Exort function
+		var btnExport = document.getElementById('btnExport');
+		var exportPlugin = hotMember.getPlugin('exportFile');
+		btnExport.addEventListener('click', function () {
+			exportPlugin.downloadFile('csv', {
+				bom: true, //UTF-8
+				columnDelimiter: ',',
+				columnHeaders: true, //Export Header
+				exportHiddenColumns: true,
+				exportHiddenRows: true,
+				fileExtension: 'csv',
+				filename: 'Handsontable-CSV-Term_[YYYY]-[MM]-[DD]',
+				mimeType: 'text/csv',
+				rowDelimiter: '\r\n',
+				rowHeaders: true
+			});
+		});
+	});
+	var resultCount, searchResultCount = 0;
+	//Calculator result is found
+	function searchResultCounter(instance, row, col, value, result) {
+		const DEFAULT_CALLBACK = function (instance, row, col, data, testResult) {
+			instance.getCellMeta(row, col).isSearchResult = testResult;
+		};
+		DEFAULT_CALLBACK.apply(this, arguments);
+		if (result) {
+			searchResultCount++;
+		}
+	}
+	//LOAD DATA
+	function loadTerm() {
+		deletedIds = [];
+		// load demo data.
+		$.ajax({
+			url: _ctx + 'management/vote/term/loadData',
+			type: 'GET',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function (res) {
+				console.log("res=" + res);
+				dataMember = res;
+				hotMember.loadData(dataMember);
+			},
+			error: function (e) {
+				console.log("Error: " + e);
+			}
+		});
+	}	
+	//END LOAD DATA
+	$('#frmHot').submit(function (e) {
+		e.preventDefault();
+		$('#errorHandsontable').hide();
+		$('#errorEmpty').hide();
+		// Get header name
+		var colHeaderData = hotMember.getColHeader();
+		// Get data from Handsontable
+		var tableData = hotMember.getData();
+
+		var frmData = new FormData(this);
+		var frmData = {};
+		var arr = [];
+		var len = tableData.length;
+		for (var i = 0; i < len; i++) {
+			arr.push({
+				id: tableData[i][0],
+				fullname: tableData[i][1],
+				studentID: tableData[i][2],
+				birthdate: tableData[i][3],
+				k: tableData[i][4],
+				email: tableData[i][5],
+				facebook: tableData[i][6],
+				img: tableData[i][7],
+				sex: tableData[i][8],
+				address: tableData[i][9],
+				phone: tableData[i][10],
+				position: tableData[i][11],
+				group1: tableData[i][12],
+				status: tableData[i][13],
+				point: tableData[i][14],
+				note: tableData[i][15]
+			});
+		}
+		frmData["data"] = arr;
+		frmData["deletedIds"] = deletedIds;
+		$('#errorHandsontable').hide();
+		$('#errorEmpty').hide();
+		var ok = true;
+		var checkColumns = [1, 2];
+		// check if row have data but column 'name' doesn't. 
+		if (areEmptyColumns(hotMember, checkColumns)) {
+			ok = false;
+			$('#errorEmpty').show();
+			console.log("areEmptyColumns");
+		}
+		if (!isValidTable(hotMember)) {
+			ok = false;
+			$('#errorEmpty').show();
+			console.log("isValidTable");
+		}
+		// Check if handsontable have any data.
+		if (isEmptyTable(hotMember)) {
+			$('#errorEmpty').show();
+			console.log("isEmptyTable");
+			ok = false;
+		}
+		if (ok) {
+			$.ajax({
+				url: _ctx + "management/vote/term/saveEntity",
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify(frmData),
+				dataType: 'json',
+				success: function (result) {
+					$('#result').fadeToggle('slow');
+					$('#result').fadeOut(5000);
+					// reload data
+					loadTerm();
+				},
+				error: function () {
+					console.log("Error!");
+					alert("ERROR: Can't save member !");
+				}
+			});
+		}
+	});
+</script>
+</html>

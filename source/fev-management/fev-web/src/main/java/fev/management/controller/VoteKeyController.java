@@ -27,6 +27,11 @@ public class VoteKeyController {
 	@Autowired
 	VoteKeyRepository vkRepository;
 	
+	@GetMapping("/management/vote/key")
+    public String get() {
+        return "management/vote_key";
+    }
+	
 	@PostMapping("/management/vote/key/check")
 	@ResponseBody
 	public FevVoteKey checkKey(@Valid @RequestBody String key, Errors errors) {

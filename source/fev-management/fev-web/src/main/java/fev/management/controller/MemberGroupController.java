@@ -28,4 +28,8 @@ public class MemberGroupController {
     /** For logging. */
     private final static Logger LOG = LoggerFactory.getLogger(MemberGroupController.class);
     
+    @GetMapping("/management/member/group")
+    public String get() {
+        return "management/member_group";
+    }
 }

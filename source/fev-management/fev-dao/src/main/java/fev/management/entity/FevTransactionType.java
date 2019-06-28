@@ -7,6 +7,8 @@ package fev.management.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,11 +20,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -35,7 +38,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
     @NamedQuery(name = "FevTransactionType.findAll", query = "SELECT f FROM FevTransactionType f")
     , @NamedQuery(name = "FevTransactionType.findById", query = "SELECT f FROM FevTransactionType f WHERE f.id = :id")
     , @NamedQuery(name = "FevTransactionType.findByType", query = "SELECT f FROM FevTransactionType f WHERE f.type = :type")
-    , @NamedQuery(name = "FevTransactionType.findByNote", query = "SELECT f FROM FevTransactionType f WHERE f.note = :note")})
+    , @NamedQuery(name = "FevTransactionType.findByNote", query = "SELECT f FROM FevTransactionType f WHERE f.note = :note")
+    , @NamedQuery(name = "FevTransactionType.findByCreatedbyUsername", query = "SELECT f FROM FevTransactionType f WHERE f.createdbyUsername = :createdbyUsername")
+    , @NamedQuery(name = "FevTransactionType.findByLastmodified", query = "SELECT f FROM FevTransactionType f WHERE f.lastmodified = :lastmodified")
+    , @NamedQuery(name = "FevTransactionType.findByLastmodifiedbyUsername", query = "SELECT f FROM FevTransactionType f WHERE f.lastmodifiedbyUsername = :lastmodifiedbyUsername")})
 public class FevTransactionType implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,8 +54,15 @@ public class FevTransactionType implements Serializable {
     private String type;
     @Column(name = "note", length = 50)
     private String note;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "type")
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.DATE)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "type")
     private Collection<FevTransaction> fevTransactionCollection;
 
     public FevTransactionType() {
@@ -81,6 +94,30 @@ public class FevTransactionType implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
+
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
+
+    public Date getLastmodified() {
+        return lastmodified;
+    }
+
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
+
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
+
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
     }
 
     @XmlTransient

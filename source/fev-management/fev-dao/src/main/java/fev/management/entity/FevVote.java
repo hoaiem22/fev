@@ -6,6 +6,8 @@
 package fev.management.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +19,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -32,7 +35,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @NamedQueries({
     @NamedQuery(name = "FevVote.findAll", query = "SELECT f FROM FevVote f")
     , @NamedQuery(name = "FevVote.findById", query = "SELECT f FROM FevVote f WHERE f.id = :id")
-    , @NamedQuery(name = "FevVote.findByNote", query = "SELECT f FROM FevVote f WHERE f.note = :note")})
+    , @NamedQuery(name = "FevVote.findByNote", query = "SELECT f FROM FevVote f WHERE f.note = :note")
+    , @NamedQuery(name = "FevVote.findByCreatedbyUsername", query = "SELECT f FROM FevVote f WHERE f.createdbyUsername = :createdbyUsername")
+    , @NamedQuery(name = "FevVote.findByLastmodified", query = "SELECT f FROM FevVote f WHERE f.lastmodified = :lastmodified")
+    , @NamedQuery(name = "FevVote.findByLastmodifiedbyUsername", query = "SELECT f FROM FevVote f WHERE f.lastmodifiedbyUsername = :lastmodifiedbyUsername")})
 public class FevVote implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,13 +49,19 @@ public class FevVote implements Serializable {
     private Integer id;
     @Column(name = "note", length = 250)
     private String note;
-    @JsonManagedReference
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.DATE)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
     @JoinColumn(name = "candidate", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
+    @JsonManagedReference @ManyToOne(optional = false)
     private FevMember candidate;
-    @JsonManagedReference
-    @JoinColumn(name = "key", referencedColumnName = "id", nullable = false)
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "`key`", referencedColumnName = "id", nullable = false)
+	@JsonManagedReference
+	@ManyToOne(optional = false)
     private FevVoteKey key;
 
     public FevVote() {
@@ -73,6 +85,30 @@ public class FevVote implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
+
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
+
+    public Date getLastmodified() {
+        return lastmodified;
+    }
+
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
+
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
+
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
     }
 
     public FevMember getCandidate() {

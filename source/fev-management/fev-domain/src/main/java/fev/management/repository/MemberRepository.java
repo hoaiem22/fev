@@ -30,4 +30,8 @@ public interface MemberRepository extends CrudRepository<FevMember, Integer> {
 			+ "where `group` = (SELECT id FROM fptueventclub.fev_member_group\r\n" + "where `group` = :group) \r\n"
 			+ "and `position` = (SELECT id FROM fptueventclub.fev_member_position where `position` = :position));")
 	List<FevMember> getCandidates(@Param("group") String group, @Param("position") String position);
+
+	// Find Member by id
+	@Query(nativeQuery = true, value = "select * from fev_member where id = :id")
+	FevMember findByID(@Param("id") int id);
 }

@@ -340,6 +340,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.member.group}>Member's Group</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.member.group}>Member's Group</span>
+                                        </p>
+                                        <a th:href="@{/management/member/group}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.member.group}>Member's Group</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <section id="message-options">
@@ -389,6 +411,106 @@
                                         <a th:href="@{/management/transaction/type}">
                                             <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
                                                 <span th:text=#{text.transaction.type}>Transaction Type</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="message-options">
+                <div class="row">
+                    <div class="col-12 mt-1 mb-3">
+                        <h4>
+                            <span th:text=#{text.vote}>Vote Option</span>
+                        </h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.vote}>Vote</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.vote}>Vote</span>
+                                        </p>
+                                        <a th:href="@{/management/vote}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.vote}>vote</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.vote.candidate}>Vote Candidate</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.vote.candidate}>Vote Candidate</span>
+                                        </p>
+                                        <a th:href="@{/management/vote/candidate}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.vote.candidate}>Vote Key</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.vote.key}>Vote Key</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.vote.key}>Vote Key</span>
+                                        </p>
+                                        <a th:href="@{/management/vote/key}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.vote.key}>Vote Key</span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <h5>
+                                            <span th:text=#{text.vote.term}>Vote Term</span>
+                                        </h5>
+                                        <p>
+                                            <span th:text="#{text.edit}">Edit & View </span>
+                                            <span th:text=#{text.vote.term}>Vote Term</span>
+                                        </p>
+                                        <a th:href="@{/management/vote/term}">
+                                            <button class="btn btn-lg btn-block font-medium-1 btn-outline-success mb-1 block-spinner-only">
+                                                <span th:text=#{text.vote.term}>Vote Term</span>
                                             </button>
                                         </a>
                                     </div>

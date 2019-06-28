@@ -29,8 +29,12 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body card-dashboard ">
+                                    <div class="col-8">
+                                        <input type="text" class="form-control" id="searchField" placeholder="Search...">
+                                        <small class="text-muted">Result: <i id="resultCount">0</i></small><br />
+                                        <small class="text-muted">Change[Row, coloum, from, to]: <i id="resultChange">...</i></small><br />
+                                    </div>
                                     <form id="frmHot" th:action="@{/saveAccountRole}" method="POST" enctype="multipart/form-data">
-
                                         <div class="alert alert-danger alert-dismissible" id="errorEmpty" style="display: none;">
                                             <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                             <strong>Chưa
@@ -42,16 +46,16 @@
                                         </div>
                                         <div id="member" class="hot handsontable htRowHeaders htColumnHeaders"></div>
                                         <div class="col-12">
-                                            <button class="btn btn-info" name="btnSave">
-                                                <i class="ft-save"></i>&nbsp;<span th:text="#{button.save}">Save</span>
-                                            </button>
-                                            <!--                                                 <a class="btn btn-info" th:href="@{/team/download}" target="_blank"> <i -->
-                                            <!--                                                         class="fa fa-download"></i>&nbsp;<span th:text="#{button.export}">Export</span> -->
-                                            <!--                                                 </a> -->
                                             <div id="result" class="alert alert-success mb-2 hidden-xs" role="alert"
                                                 style="display: none">
                                                 <strong th:text="#{alert.save.success}">Save OK</strong>
                                             </div>
+                                            <button class="btn btn-info" name="btnSave">
+                                                <i class="ft-save"></i>&nbsp;<span th:text="#{button.save}">Save</span>
+                                            </button>
+                                            <button class="btn btn-info" name="btnExport" id="btnExport">
+                                                <i class="ft-save"></i>&nbsp;<span th:text="#{button.export}">Export</span>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

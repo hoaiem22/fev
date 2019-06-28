@@ -83,7 +83,7 @@
 					console.log(result);
 					//Block textbox - input key
 					$("#helpInputTop").attr("disabled", "disabled");
-					//Update prioity
+					//Update priority
 					$("#txtPriority").text(result.priority);
 					//Notify sucess
 					$('#result').fadeToggle('slow');
@@ -129,7 +129,6 @@
 			error: function (xhr, status, error) {
 				console.log("Status code: " + xhr.status + " | Error: " + error
 					+ " | xhr.reponseText: " + xhr.reponseText);
-				alert("ERROR: Can't check key !");
 			}
 		});
 	}
@@ -138,9 +137,32 @@
 		//Get id candidate, key and pass to controller
 		//Notify
 		var planning = $("#selectPlanning option:selected").val();
-		var planning = $("#selectImplement option:selected").val();
-		var planning = $("#selectMedia option:selected").val();
+		var implement = $("#selectImplement option:selected").val();
+		var media = $("#selectMedia option:selected").val();
+		var candidateIDs = [];
+		candidateIDs.push(planning);
+		candidateIDs.push(implement);
+		candidateIDs.push(media);
 		var key = $("#helpInputTop").val();
-		console.log("Vote");
+		var priority = $("#txtPriority").text();
+		var frmData = new FormData();
+		frmData['key'] = key;
+		frmData['priority'] = priority;
+		frmData['candidateIDs'] = candidateIDs;
+		$.ajax({
+			url: _ctx + "management/vote/sendVote",
+			type: "POST",
+			contentType: "application/json",
+			data: JSON.stringify(frmData),
+			success: function (result) {
+				console.log("Status: " + result)
+				console.log("Vote Success");
+			},
+			error: function (xhr, status, error) {
+				console.log("Status code: " + xhr.status + " | Error: " + error
+					+ " | xhr.reponseText: " + xhr.reponseText);
+			}
+		});
+		console.log("End Vote");
 	});
 </script>

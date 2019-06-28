@@ -5,6 +5,12 @@
 <head th:replace="fragments/head :: head"></head>
 <title>FPTU Event Club</title>
 </head>
+<style>
+	/* Limit cell's dimentions regardless the content  */
+	.htCore td {
+		white-space: nowrap
+	}
+</style>
 
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
  data-menu="horizontal-menu" data-col="2-columns">
@@ -17,34 +23,53 @@
 	<div th:replace="fragments/footer :: footer">Footer</div>
 	<!--Script file  -->
 	<div th:replace="fragments/script :: script">Script</div>
+	<!-- Validate handontable -->
+	<script th:src="@{#{theme.root} + 'heli/js/handsontable-validate.js'}"></script>
 </body>
 <script>
 	var deletedIds = [];
 	var dataMember = [];
 	var hotMember = null;
+	var dropdowns = [];
 	$(function () {
+		loadDropdowns();
 		var containerUnit = document.getElementById('member');
+		//Validate email
+		var emailValidator = function (value, callback) {
+			setTimeout(function () {
+				if (/.+@.+/.test(value)) {
+					callback(true);
+				}
+				else {
+					callback(false);
+				}
+			}, 1000);
+		};
 		hotMember = new Handsontable(containerUnit, {
 			data: dataMember,
-			colHeaders: ['ID', 'Fullname', 'StudentID', 'BirthDate', 'Sex', 'Address',
-				'Phone', 'Position', 'Status', 'Point', 'Note'],
-			colWidths: [100, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+			colHeaders: ['ID', 'Fullname', 'StudentID', 'BirthDate', 'K', 'Email','Facebook', 'Image', 'Sex', 'Address',
+				'Phone', 'Position', 'Group', 'Status', 'Point', 'Note'],
+			colWidths: [50, 200, 100, 150, 50, 300, 300, 300, 100, 100, 200, 200, 200, 200, 100, 300],
 			rowHeaders: true,
+			licenseKey: 'non-commercial-and-evaluation',
 			minSpareRows: 1,
 			stretchH: 'all',
-			//                             minRows : 100,
-			minCols: 10,
+			minCols: 15,
 			minRows: 10,
-			//                 minCols: 5,
-			//                 currentRowClassName: 'currentRow',
-			//                 currentColClassName: 'currentCol',
 			manualColumnResize: true,
 			manualRowResize: true,
+			search: {
+				callback: searchResultCounter
+			},
+			fixedColumnsLeft: 2, //fix two column on left
+			columnSorting: true, //Allow sort by coloumn
+			// maxRows: 20,
+			exportFile: true,
+			autoWrapRow: true,
 			contextMenu: ['row_below', 'remove_row'],
 			columns: [{
 				data: 'id',
-				readOnly: true,
-
+				readOnly: true
 			}, {
 				data: 'fullname',
 
@@ -53,6 +78,32 @@
 
 			}, {
 				data: 'birthdate',
+				type: 'date',
+				dateFormat: 'YYYY-MM-DD',
+				correctFormat: true,
+				// datePicker additional options (see https://github.com/dbushell/Pikaday#configuration)
+				datePickerConfig: {
+					// First day of the week (0: Sunday, 1: Monday, etc)
+					firstDay: 0,
+					showWeekNumber: true,
+					numberOfMonths: 1,
+					//minDate: getMinDateOver()
+					//Get yesterday or: new Date(); if get today
+				}
+
+			}, {
+				data: 'k',
+
+			}, {
+				data: 'email',
+				validator: emailValidator,
+				allowInvalid: false
+
+			}, {
+				data: 'facebook',
+
+			}, {
+				data: 'img',
 
 			}, {
 				data: 'sex',
@@ -64,11 +115,20 @@
 				data: 'phone',
 
 			}, {
-				data: 'position',
-
+				data: 'position.position',
+				type: 'dropdown',
+				source: dropdowns.position,
+				allowInvalid: true
 			}, {
-				data: 'status',
-
+				data: 'group1.group',
+				type: 'dropdown',
+				source: dropdowns.group,
+				allowInvalid: true
+			}, {
+				data: 'status.status',
+				type: 'dropdown',
+				source: dropdowns.status,
+				allowInvalid: true
 			}, {
 				data: 'point',
 
@@ -93,26 +153,83 @@
 				console.log("list deletedIds=" + deletedIds);
 			},
 			beforeChange: function (changes, source) {
-
 				// changes = [[row, prop, oldVal, newVal], ...]
 				for (var i = 0; i < changes.length; i++) {
+					//Check what and where user change value
 					var row = changes[i][0];
 					var col = hotMember.propToCol(changes[i][1]);
 					var newVal = changes[i][3];
 					console.log("row: " + row + "; col: " + col + "; newVal: "
 						+ newVal);
+					// If input is foo then remove
+					// if (changes[i][3] === 'foo') {
+					// 	changes.splice(i, 1);
+					// }
+					// capitalise first letter in column 1 and 2
+					var upperCols = ["fullname", "studentID", "k", "sex", "address", "note"];
+					if (upperCols.includes(changes[i][1]) && changes[i][3].charAt(0)) {
+						changes[i][3] = changes[i][3].charAt(0).toUpperCase() + changes[i][3].slice(1);
+					}
 				}
 			},
-
+			afterChange: function (changes, source) {
+				if (source !== 'loadData') {
+					document.getElementById('resultChange').innerText = JSON.stringify(changes);
+				}
+			},
 		});
 		loadMember();
-	});
+		//CSS for table not overflow
+		$('#member').css({
+			overflow: 'hidden'
+		});
+		var searchFiled = document.getElementById('searchField'); //get DOM
+		//Or var searchFiled = $('#searchField')[0];
+		resultCount = document.getElementById('resultCount');
+		Handsontable.dom.addEvent(searchFiled, 'keyup', function (event) {
+			searchResultCount = 0;
+			var search = hotMember.getPlugin('search');
+			var queryResult = search.query(this.value);
 
+			console.log(queryResult);
+			resultCount.innerText = searchResultCount.toString();
+			hotMember.render();
+		});
+		//Exort function
+		var btnExport = document.getElementById('btnExport');
+		var exportPlugin = hotMember.getPlugin('exportFile');
+		btnExport.addEventListener('click', function () {
+			exportPlugin.downloadFile('csv', {
+				bom: true, //UTF-8
+				columnDelimiter: ',',
+				columnHeaders: true, //Export Header
+				exportHiddenColumns: true,
+				exportHiddenRows: true,
+				fileExtension: 'csv',
+				filename: 'Handsontable-CSV-file_[YYYY]-[MM]-[DD]',
+				mimeType: 'text/csv',
+				rowDelimiter: '\r\n',
+				rowHeaders: true
+			});
+		});
+	});
+	var resultCount, searchResultCount = 0;
+	//Calculator result is found
+	function searchResultCounter(instance, row, col, value, result) {
+		const DEFAULT_CALLBACK = function (instance, row, col, data, testResult) {
+			instance.getCellMeta(row, col).isSearchResult = testResult;
+		};
+		DEFAULT_CALLBACK.apply(this, arguments);
+		if (result) {
+			searchResultCount++;
+		}
+	}
+	//LOAD DATA
 	function loadMember() {
 		deletedIds = [];
 		// load demo data.
 		$.ajax({
-			url: _ctx + 'management/member/loadHand',
+			url: _ctx + 'management/member/loadData',
 			type: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -126,6 +243,60 @@
 			}
 		});
 	}
+	function loadDropdowns() {
+		$.ajax({
+			url: _ctx + 'management/member/dropdown',
+			type: 'GET',
+			dataType: 'json',
+			async: false,
+			contentType: 'application/json',
+			success: function (res) {
+				console.log("Dropdown: " + res);
+				dropdowns = res;
+			},
+			error: function (e) {
+				console.log("Error: " + e);
+			}
+		});
+	}
+	//END LOAD DATA
+</script>
+<script>
+	// $('#frmHot').submit(function (e) {
+	// 	e.preventDefault();
+	// 	$('#errorHandsontable').hide();
+	// 	$('#errorEmpty').hide();
+	// 	// Get header name
+	// 	var colHeaderData = hotMember.getColHeader();
+	// 	// Get data from Handsontable
+	// 	var tableData = hotMember.getData();
+
+	// 	var frmData = new FormData(this);
+	// 	var frmData = {};
+
+	// 	frmData["header"] = colHeaderData;
+	// 	frmData["data"] = tableData;
+	// 	frmData["deletedIds"] = deletedIds;
+	// 	$('#errorHandsontable').hide();
+	// 	$('#errorEmpty').hide();
+	// 	$.ajax({
+	// 		url: _ctx + "management/member/saveMember",
+	// 		type: "POST",
+	// 		contentType: "application/json",
+	// 		data: JSON.stringify(frmData),
+	// 		dataType: 'json',
+	// 		success: function (result) {
+	// 			$('#result').fadeToggle('slow');
+	// 			$('#result').fadeOut(5000);
+	// 			// reload data
+	// 			loadMember();
+	// 		},
+	// 		error: function () {
+	// 			console.log("Error!");
+	// 			alert("ERROR: Can't save member !");
+	// 		}
+	// 	});
+	// });
 </script>
 <script>
 	$('#frmHot').submit(function (e) {
@@ -139,29 +310,70 @@
 
 		var frmData = new FormData(this);
 		var frmData = {};
-
-		frmData["header"] = colHeaderData;
-		frmData["data"] = tableData;
+		var arr = [];
+		var len = tableData.length;
+		for (var i = 0; i < len; i++) {
+			arr.push({
+				id: tableData[i][0],
+				fullname: tableData[i][1],
+				studentID: tableData[i][2],
+				birthdate: tableData[i][3],
+				k: tableData[i][4],
+				email: tableData[i][5],
+				facebook: tableData[i][6],
+				img: tableData[i][7],
+				sex: tableData[i][8],
+				address: tableData[i][9],
+				phone: tableData[i][10],
+				position: tableData[i][11],
+				group1: tableData[i][12],
+				status: tableData[i][13],
+				point: tableData[i][14],
+				note: tableData[i][15]
+			});
+		}
+		frmData["data"] = arr;
 		frmData["deletedIds"] = deletedIds;
 		$('#errorHandsontable').hide();
 		$('#errorEmpty').hide();
-		$.ajax({
-			url: _ctx + "management/member/saveMember",
-			type: "POST",
-			contentType: "application/json",
-			data: JSON.stringify(frmData),
-			dataType: 'json',
-			success: function (result) {
-				$('#result').fadeToggle('slow');
-				$('#result').fadeOut(5000);
-				// reload data
-				loadMember();
-			},
-			error: function () {
-				console.log("Error!");
-				alert("ERROR: Can't save member !");
-			}
-		});
+		var ok = true;
+		var checkColumns = [2, 11, 12, 13];
+		// check if row have data but column 'name' doesn't. 
+		if (areEmptyColumns(hotMember, checkColumns)) {
+			ok = false;
+			$('#errorEmpty').show();
+			console.log("areEmptyColumns");
+		}
+		if (!isValidTable(hotMember)) {
+			ok = false;
+			$('#errorEmpty').show();
+			console.log("isValidTable");
+		}
+		// Check if handsontable have any data.
+		if (isEmptyTable(hotMember)) {
+			$('#errorEmpty').show();
+			console.log("isEmptyTable");
+			ok = false;
+		}
+		if (ok) {
+			$.ajax({
+				url: _ctx + "management/member/saveEntity",
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify(frmData),
+				dataType: 'json',
+				success: function (result) {
+					$('#result').fadeToggle('slow');
+					$('#result').fadeOut(5000);
+					// reload data
+					loadMember();
+				},
+				error: function () {
+					console.log("Error!");
+					alert("ERROR: Can't save member !");
+				}
+			});
+		}
 	});
 </script>
 

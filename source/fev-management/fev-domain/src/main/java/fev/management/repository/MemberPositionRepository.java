@@ -1,5 +1,7 @@
 package fev.management.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,4 +15,7 @@ public interface MemberPositionRepository extends CrudRepository<FevMemberPositi
     
     @Query(nativeQuery =true, value = "select * from fptueventclub.fev_member_position where position = :position")
     FevMemberPosition findByPosition(@Param("position") String position);
+    
+    @Query(nativeQuery = true, value = "SELECT `position` FROM fptueventclub.fev_member_position;")
+    List<String> getAllName();
 }

@@ -2,24 +2,22 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
+
 <body>
-	<div th:fragment="content"
-		class="app-content container center-layout mt-2">
+	<div th:fragment="content" class="app-content container center-layout mt-2">
 		<div class="content-wrapper">
 			<div class="content-body">
 				<div class="row">
 					<div class="col-12">
 						<div class="card" id="card_key">
 							<div class="card-header">
-								<h4 class="card-title"
-									style="font-size: 30px; text-align: center;">
+								<h4 class="card-title" style="font-size: 30px; text-align: center;">
 									<span th:text="#{text.check.key}">Check Key</span>
 								</h4>
-								<a class="heading-elements-toggle"><i
-									class="ft-ellipsis-h font-medium-3"></i></a>
+								<a class="heading-elements-toggle"><i class="ft-ellipsis-h font-medium-3"></i></a>
 								<div class="heading-elements">
 									<ul class="list-inline mb-0">
 										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
@@ -32,8 +30,7 @@
 							<div class="card-content collapse show">
 								<div class="card-header">
 									<h4 class="card-title">Input your key:</h4>
-									<small class="text-muted">Your priority: <i
-										id="txtPriority">0</i></small>
+									<small class="text-muted">Your priority: <i id="txtPriority">0</i></small>
 								</div>
 								<div class="card-body card-dashboard ">
 									<form id="formKey" method="POST" enctype="multipart/form-data">
@@ -46,23 +43,19 @@
 											</div>
 											<div class="col-2">
 												<button class="btn btn-info" name="btnCheck">
-													<i class="ft-save"></i>&nbsp;<span
-														th:text="#{button.check}">Check</span>
+													<i class="ft-save"></i>&nbsp;<span th:text="#{button.check}">Check</span>
 												</button>
 											</div>
 										</div>
-										<div id="result" class="alert alert-success mb-2 hidden-xs"
-											role="alert" style="display: none">
+										<div id="result" class="alert alert-success mb-2 hidden-xs" role="alert" style="display: none">
 											<strong th:text="#{alert.check.success}">Save OK</strong>
 										</div>
-										<div class="alert alert-danger alert-dismissible"
-											id="errorEmpty" style="display: none;">
+										<div class="alert alert-danger alert-dismissible" id="errorEmpty" style="display: none;">
 											<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
 											<strong th:text="#{alert.check.empty}">Chưa có dữ
 												liệu</strong>
 										</div>
-										<div class="alert alert-danger alert-dismissible"
-											id="errorKey" style="display: none;">
+										<div class="alert alert-danger alert-dismissible" id="errorKey" style="display: none;">
 											<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
 											<strong th:text="#{alert.check.fail}">Dữ liệu bạn
 												nhập không đúng.</strong>
@@ -73,12 +66,10 @@
 						</div>
 						<div class="card" id="card-vote">
 							<div class="card-header">
-								<h4 class="card-title"
-									style="font-size: 30px; text-align: center;">
+								<h4 class="card-title" style="font-size: 30px; text-align: center;">
 									<span th:text="#{text.vote}">Vote</span>
 								</h4>
-								<a class="heading-elements-toggle"><i
-									class="ft-ellipsis-h font-medium-3"></i></a>
+								<a class="heading-elements-toggle"><i class="ft-ellipsis-h font-medium-3"></i></a>
 								<div class="heading-elements">
 									<ul class="list-inline mb-0">
 										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
@@ -92,16 +83,17 @@
 								<form id="formVote" method="POST" enctype="multipart/form-data">
 									<small class="text-muted">eg.<i>ABCD-EFGH-IJKA</i></small><br />
 									<div class="row">
-										<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="col-xl-4 col-md-6 col-sm-12" style="">
 											<div class="card" style="">
 												<div class="card-content">
-													<img class="card-img-top img-fluid"
-														th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
-														alt="Card image cap" id="imgPlanning">
+													<div style="height: 50%">
+														<img class="card-img-top img-fluid" th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+														 alt="Card image cap" id="imgPlanning">
+													</div>
 													<div class="card-body">
-														<h4 class="card-title">Vice Planning</h4>
-														<p class="card-text">You don't learn to walk by
-															following rules. You learn by doing, and by falling over.</p>
+														<h4 class="card-title">Chieft Planning</h4>
+														<p class="card-text">Quote: <i id="quotePlanning">You don't learn to walk by
+																following rules. You learn by doing, and by falling over.</i></p>
 														<fieldset class="form-group">
 															<select class="form-control" id="selectPlanning">
 																<option value="-1">Select Option</option>
@@ -111,16 +103,17 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="col-xl-4 col-md-6 col-sm-12" style="overflow: hidden">
 											<div class="card" style="">
 												<div class="card-content">
-													<img class="card-img-top img-fluid"
-														th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
-														alt="Card image cap" id="imgImplement">
+													<div style="height: 50%">
+														<img class="card-img-top img-fluid" th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+														 alt="Card image cap" id="imgImplement">
+													</div>
 													<div class="card-body">
-														<h4 class="card-title">Vice Implement</h4>
-														<p class="card-text">Never forget what make me the
-															person I am today.</p>
+														<h4 class="card-title">Chieft Implement</h4>
+														<p class="card-text">Quote: <i id="quoteImplement">Never forget what make me the
+																person I am today.</i></p>
 														<fieldset class="form-group">
 															<select class="form-control" id="selectImplement">
 																<option value="-1">Select Option</option>
@@ -130,16 +123,17 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-xl-4 col-md-6 col-sm-12">
+										<div class="col-xl-4 col-md-6 col-sm-12" style="overflow: hidden">
 											<div class="card" style="">
 												<div class="card-content">
-													<img class="card-img-top img-fluid"
-														th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
-														alt="Card image cap" id="imgMedia">
+													<div style="height: 50%">
+														<img class="card-img-top img-fluid" th:src="@{#{theme.root} + 'robust-admin/app-assets/images/carousel/05.jpg'}"
+														 alt="Card image cap" id="imgMedia">
+													</div>
 													<div class="card-body">
-														<h4 class="card-title">Vice Media</h4>
-														<p class="card-text">The sun will shine on us again
-															and The fire always in my heart.</p>
+														<h4 class="card-title">Chieft Media</h4>
+														<p class="card-text">Quote: <i id="quoteMedia">The sun will shine on us again
+																and The fire always in my heart.</i></p>
 														<fieldset class="form-group">
 															<select class="form-control" id="selectMedia">
 																<option value="-1">Select Option</option>

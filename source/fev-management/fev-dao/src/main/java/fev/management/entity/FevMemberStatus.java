@@ -7,6 +7,8 @@ package fev.management.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,11 +20,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  *
@@ -35,7 +38,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
     @NamedQuery(name = "FevMemberStatus.findAll", query = "SELECT f FROM FevMemberStatus f")
     , @NamedQuery(name = "FevMemberStatus.findById", query = "SELECT f FROM FevMemberStatus f WHERE f.id = :id")
     , @NamedQuery(name = "FevMemberStatus.findByStatus", query = "SELECT f FROM FevMemberStatus f WHERE f.status = :status")
-    , @NamedQuery(name = "FevMemberStatus.findByNote", query = "SELECT f FROM FevMemberStatus f WHERE f.note = :note")})
+    , @NamedQuery(name = "FevMemberStatus.findByNote", query = "SELECT f FROM FevMemberStatus f WHERE f.note = :note")
+    , @NamedQuery(name = "FevMemberStatus.findByCreatedbyUsername", query = "SELECT f FROM FevMemberStatus f WHERE f.createdbyUsername = :createdbyUsername")
+    , @NamedQuery(name = "FevMemberStatus.findByLastmodified", query = "SELECT f FROM FevMemberStatus f WHERE f.lastmodified = :lastmodified")
+    , @NamedQuery(name = "FevMemberStatus.findByLastmodifiedbyUsername", query = "SELECT f FROM FevMemberStatus f WHERE f.lastmodifiedbyUsername = :lastmodifiedbyUsername")})
 public class FevMemberStatus implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +55,15 @@ public class FevMemberStatus implements Serializable {
     private String status;
     @Column(name = "note", length = 255)
     private String note;
-    @JsonBackReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.DATE)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "status")
     private Collection<FevMember> fevMemberCollection;
 
     public FevMemberStatus() {
@@ -87,6 +100,30 @@ public class FevMemberStatus implements Serializable {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
+
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
+
+    public Date getLastmodified() {
+        return lastmodified;
+    }
+
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
+
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
+
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
     }
 
     @XmlTransient
