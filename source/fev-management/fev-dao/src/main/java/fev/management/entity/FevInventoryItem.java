@@ -58,120 +58,131 @@ public class FevInventoryItem implements Serializable {
 	private String price;
 	@Column(name = "note", length = 250)
 	private String note;
-	@Column(name = "createdby_username", length = 50)
-	private String createdbyUsername;
-	@Column(name = "lastmodified")
-	@Temporal(TemporalType.DATE)
-	private Date lastmodified;
-	@Column(name = "lastmodifiedby_username", length = 50)
-	private String lastmodifiedbyUsername;
+	@Column(name = "created")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
 	@JsonBackReference
 	@OneToMany(mappedBy = "item")
 	private Collection<FevInventory> fevInventoryCollection;
 
 	public FevInventoryItem() {
-	}
+    }
 
-	public FevInventoryItem(Integer id) {
-		this.id = id;
-	}
+    public FevInventoryItem(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public String getPrice() {
-		return price;
-	}
+    public String getPrice() {
+        return price;
+    }
 
-	public void setPrice(String price) {
-		this.price = price;
-	}
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getCreatedbyUsername() {
-		return createdbyUsername;
-	}
+    public Date getCreated() {
+        return created;
+    }
 
-	public void setCreatedbyUsername(String createdbyUsername) {
-		this.createdbyUsername = createdbyUsername;
-	}
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
-	public Date getLastmodified() {
-		return lastmodified;
-	}
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
 
-	public void setLastmodified(Date lastmodified) {
-		this.lastmodified = lastmodified;
-	}
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
 
-	public String getLastmodifiedbyUsername() {
-		return lastmodifiedbyUsername;
-	}
+    public Date getLastmodified() {
+        return lastmodified;
+    }
 
-	public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
-		this.lastmodifiedbyUsername = lastmodifiedbyUsername;
-	}
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
 
-	@XmlTransient
-	public Collection<FevInventory> getFevInventoryCollection() {
-		return fevInventoryCollection;
-	}
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
 
-	public void setFevInventoryCollection(Collection<FevInventory> fevInventoryCollection) {
-		this.fevInventoryCollection = fevInventoryCollection;
-	}
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    @XmlTransient
+    public Collection<FevInventory> getFevInventoryCollection() {
+        return fevInventoryCollection;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof FevInventoryItem)) {
-			return false;
-		}
-		FevInventoryItem other = (FevInventoryItem) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setFevInventoryCollection(Collection<FevInventory> fevInventoryCollection) {
+        this.fevInventoryCollection = fevInventoryCollection;
+    }
 
-	@Override
-	public String toString() {
-		return "fev.management.entity.FevInventoryItem[ id=" + id + " ]";
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof FevInventoryItem)) {
+            return false;
+        }
+        FevInventoryItem other = (FevInventoryItem) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "fev.management.entity.FevInventoryItem[ id=" + id + " ]";
+    }
+    
 }

@@ -54,112 +54,123 @@ public class FevFeedback implements Serializable {
 	private String content;
 	@Column(name = "note", length = 250)
 	private String note;
-	@Column(name = "createdby_username", length = 50)
-	private String createdbyUsername;
-	@Column(name = "lastmodified")
-	@Temporal(TemporalType.DATE)
-	private Date lastmodified;
-	@Column(name = "lastmodifiedby_username", length = 50)
-	private String lastmodifiedbyUsername;
+	@Column(name = "created")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
 	@JoinColumn(name = "status", referencedColumnName = "id", nullable = false)
 	@JsonManagedReference
 	@ManyToOne(optional = false)
 	private FevFeedbackStatus status;
 
 	public FevFeedback() {
-	}
+    }
 
-	public FevFeedback(Integer id) {
-		this.id = id;
-	}
+    public FevFeedback(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getSender() {
-		return sender;
-	}
+    public String getSender() {
+        return sender;
+    }
 
-	public void setSender(String sender) {
-		this.sender = sender;
-	}
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getCreatedbyUsername() {
-		return createdbyUsername;
-	}
+    public Date getCreated() {
+        return created;
+    }
 
-	public void setCreatedbyUsername(String createdbyUsername) {
-		this.createdbyUsername = createdbyUsername;
-	}
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
-	public Date getLastmodified() {
-		return lastmodified;
-	}
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
 
-	public void setLastmodified(Date lastmodified) {
-		this.lastmodified = lastmodified;
-	}
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
 
-	public String getLastmodifiedbyUsername() {
-		return lastmodifiedbyUsername;
-	}
+    public Date getLastmodified() {
+        return lastmodified;
+    }
 
-	public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
-		this.lastmodifiedbyUsername = lastmodifiedbyUsername;
-	}
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
 
-	public FevFeedbackStatus getStatus() {
-		return status;
-	}
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
 
-	public void setStatus(FevFeedbackStatus status) {
-		this.status = status;
-	}
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public FevFeedbackStatus getStatus() {
+        return status;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof FevFeedback)) {
-			return false;
-		}
-		FevFeedback other = (FevFeedback) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setStatus(FevFeedbackStatus status) {
+        this.status = status;
+    }
 
-	@Override
-	public String toString() {
-		return "fev.management.entity.FevFeedback[ id=" + id + " ]";
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof FevFeedback)) {
+            return false;
+        }
+        FevFeedback other = (FevFeedback) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "fev.management.entity.FevFeedback[ id=" + id + " ]";
+    }
+    
 }

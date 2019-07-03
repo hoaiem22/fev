@@ -56,17 +56,20 @@ public class FevAccount implements Serializable {
 	private String password;
 	@Column(name = "note", length = 255)
 	private String note;
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 	@Column(name = "createdby_username", length = 50)
 	private String createdbyUsername;
 	@Column(name = "lastmodified")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastmodified;
 	@Column(name = "lastmodifiedby_username", length = 50)
 	private String lastmodifiedbyUsername;
 	@JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
-    @JsonManagedReference
-    @ManyToOne(optional = false)
-    private FevAccountRole role;
+	@JsonManagedReference
+	@ManyToOne(optional = false)
+	private FevAccountRole role;
 
 	public FevAccount() {
 	}
@@ -111,6 +114,14 @@ public class FevAccount implements Serializable {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public String getCreatedbyUsername() {
@@ -169,5 +180,4 @@ public class FevAccount implements Serializable {
 	public String toString() {
 		return "fev.management.entity.FevAccount[ id=" + id + " ]";
 	}
-
 }

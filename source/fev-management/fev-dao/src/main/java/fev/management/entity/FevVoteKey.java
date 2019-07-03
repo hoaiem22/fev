@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,7 +33,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  * @author EmVH <hoaiem.heli22@gmail.com>
  */
 @Entity
-@Table(name = "fev_vote_key", catalog = "fptueventclub", schema = "")
+@Table(name = "fev_vote_key", catalog = "fptueventclub", schema = "", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "`key`" }) })
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "FevVoteKey.findAll", query = "SELECT f FROM FevVoteKey f"),
 		@NamedQuery(name = "FevVoteKey.findById", query = "SELECT f FROM FevVoteKey f WHERE f.id = :id"),
@@ -59,10 +61,13 @@ public class FevVoteKey implements Serializable {
 	private int priority;
 	@Column(name = "note", length = 250)
 	private String note;
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 	@Column(name = "createdby_username", length = 50)
 	private String createdbyUsername;
 	@Column(name = "lastmodified")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastmodified;
 	@Column(name = "lastmodifiedby_username", length = 50)
 	private String lastmodifiedbyUsername;
@@ -93,6 +98,18 @@ public class FevVoteKey implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	public String getKey() {

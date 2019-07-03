@@ -54,6 +54,9 @@ public class FevTransaction implements Serializable {
 	private Integer money;
 	@Column(name = "note", length = 50)
 	private String note;
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 	@Column(name = "createdby_username", length = 50)
 	private String createdbyUsername;
 	@Column(name = "lastmodified")
@@ -87,6 +90,14 @@ public class FevTransaction implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public String getContent() {

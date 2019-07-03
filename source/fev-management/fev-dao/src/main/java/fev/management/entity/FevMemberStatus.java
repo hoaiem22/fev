@@ -54,6 +54,9 @@ public class FevMemberStatus implements Serializable {
 	private String status;
 	@Column(name = "note", length = 255)
 	private String note;
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 	@Column(name = "createdby_username", length = 50)
 	private String createdbyUsername;
 	@Column(name = "lastmodified")
@@ -75,6 +78,14 @@ public class FevMemberStatus implements Serializable {
 	public FevMemberStatus(Integer id, String status) {
 		this.id = id;
 		this.status = status;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public Integer getId() {

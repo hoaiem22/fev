@@ -5,147 +5,320 @@
 <head th:replace="fragments/head :: head"></head>
 <title>FPTU Event Club</title>
 </head>
+<style>
+	/* Limit cell's dimentions regardless the content  */
+	.htCore td {
+		white-space: nowrap
+	}
+</style>
 
 <body class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns  menu-expanded" data-open="hover"
-    data-menu="horizontal-menu" data-col="2-columns">
-    <!-- Header -->
-    <div th:replace="fragments/header :: header">Header</div>
-    <!-- ///////////////////CONTENT///////////////////////////////////////////////-->
-    <div th:replace="management/transaction/body :: content">Header</div>
-    <!-- ////////////////////////////////////////////////////////////////////////////-->
-    <!--Footer  -->
-    <div th:replace="fragments/footer :: footer">Footer</div>
-    <!--Script file  -->
-    <div th:replace="fragments/script :: script">Script</div>
+ data-menu="horizontal-menu" data-col="2-columns">
+	<!-- Header -->
+	<div th:replace="fragments/header :: header">Header</div>
+	<!-- ///////////////////CONTENT///////////////////////////////////////////////-->
+	<div th:replace="management/vote_key/body :: content">Content</div>
+	<!-- ////////////////////////////////////////////////////////////////////////////-->
+	<!--Footer  -->
+	<div th:replace="fragments/footer :: footer">Footer</div>
+	<!--Script file  -->
+	<div th:replace="fragments/script :: script">Script</div>
+	<!-- Validate handontable -->
+	<script th:src="@{#{theme.root} + 'heli/js/handsontable-validate.js'}"></script>
 </body>
 <script>
-    var deletedIds = [];
-    var dataTransaction = [];
-    var hotTransaction = null;
-    $(function () {
-        var containerUnit = document.getElementById('transaction');
-        hotTransaction = new Handsontable(containerUnit, {
-            data: dataTransaction,
-            colHeaders: ['ID', 'Type', 'Content', 'Money', 'Event', 'Burden', 'Note'],
-            colWidths: [100, 300, 300, 300, 300, 300, 300],
-            rowHeaders: true,
-            minSpareRows: 1,
-            stretchH: 'all',
-            minCols: 7,
-            minRows: 10,
-            manualColumnResize: true,
-            manualRowResize: true,
-            contextMenu: ['row_below', 'remove_row'],
-            columns: [{
-                data: 'id',
-                readOnly: true,
+	var deletedIds = [];
+	var dataKey = [];
+	var hotKey = null;
+	$(function () {
+		var containerUnit = document.getElementById('voteKey');
+		hotKey = new Handsontable(containerUnit, {
+			data: dataKey,
+			colHeaders: ['ID', 'Key', 'Priority', 'isActive', 'Note',
+				'Created', 'CreatedByUsername'],
+			colWidths: [50, 300, 50, 50, 50, 50, 50],
+			rowHeaders: true,
+			licenseKey: 'non-commercial-and-evaluation',
+			minSpareRows: 1,
+			stretchH: 'all',
+			minCols: 4,
+			// minRows: 10,
+			// 			manualColumnResize : true,
+			// 			manualRowResize : true,
+			search: {
+				callback: searchResultCounter
+			},
+			// fixedColumnsLeft: 2, //fix two column on left
+			columnSorting: true, //Allow sort by coloumn
+			// 			maxRows : 20,
+			exportFile: true,
+			autoWrapRow: true,
+			contextMenu: ['row_below', 'remove_row'],
+			// 			contextMenu: true,
 
-            }, {
-                data: 'type',
+			columns: [{
+				data: 'id',
+				readOnly: true
+			}, {
+				data: 'key',
+				allowInvalid: true
+			}, {
+				data: 'priority',
+				type: 'dropdown',
+				source: [1, 2, 3, 4, 5],
+				allowInvalid: true
+			}, {
+				data: 'isActive',
+				type: 'checkbox',
+				checkedTemplate: 'true',
+				uncheckedTemplate: 'false'
+			}, {
+				data: 'note',
+				allowInvalid: true
+			}, {
+				data: 'created'
+			}, {
+				data: 'createdbyUsername'
+			}],
+			beforeRemoveRow: function (index, amount) {
+				// Support to submit deleted id into server
+				var lastIndex = index + amount;
+				console.log("index + amount", index + amount)
+				var i;
+				for (i = index; i < lastIndex; i++) {
+					var deleteKey = dataKey[i];
+					var deletedId = deleteKey.id;
+					console.log("deleteKey" + deleteKey + "deleteId = "
+						+ deletedId);
+					if (deletedId) {
+						deletedIds.push(deletedId);
+					}
+				}
+				console.log("list deletedIds=" + deletedIds);
+			},
+			beforeChange: function (changes, source) {
+				// changes = [[row, prop, oldVal, newVal], ...] 
+				for (var i = 0; i < changes.length; i++) {
+					//Check what and where user change value
+					var row = changes[i][0];
+					var col = hotKey.propToCol(changes[i][1]);
+					var newVal = changes[i][3];
+					console.log("row: " + row + "; col: " + col + "; newVal: "
+						+ newVal);
+					// If input is foo then remove
+					// if (changes[i][3] === 'foo') {
+					// 	changes.splice(i, 1);
+					// }
+					// capitalise first letter in column 1 and 2
+					if (col == 1) {
+						textValidator(hotKey, row, col, newVal, 50);
+					}
+					var upperCols = ["note"];
+					if (upperCols.includes(changes[i][1])
+						&& changes[i][3].charAt(0)) {
+						changes[i][3] = changes[i][3].charAt(0).toUpperCase()
+							+ changes[i][3].slice(1);
+					}
+					//Uppercase KEY
+					var upperKeyCols = ["key"];
+					if (upperKeyCols.includes(changes[i][1])
+						&& changes[i][3].charAt(0)) {
+						changes[i][3] = changes[i][3].toUpperCase();
+					}
+				}
+			},
+			afterChange: function (changes, source) {
+				if (source !== 'loadData') {
+					document.getElementById('resultChange').innerText = JSON
+						.stringify(changes);
+				}
+			},
+			hiddenColumns: {
+				columns: [5, 6],
+				indicators: true
+			}
+		});
+		loadKey();
+		//CSS for table not overflow
+		$('#voteKey').css({
+			overflow: 'hidden'
+		});
+		var searchFiled = document.getElementById('searchField'); //get DOM
+		//Or var searchFiled = $('#searchField')[0];
+		resultCount = document.getElementById('resultCount');
+		Handsontable.dom.addEvent(searchFiled, 'keyup', function (event) {
+			searchResultCount = 0;
+			var search = hotKey.getPlugin('search');
+			var queryResult = search.query(this.value);
 
-            }, {
-                data: 'content',
+			console.log(queryResult);
+			resultCount.innerText = searchResultCount.toString();
+			hotKey.render();
+		});
+		//Exort function
+		var btnExport = document.getElementById('btnExport');
+		var exportPlugin = hotKey.getPlugin('exportFile');
+		btnExport.addEventListener('click', function () {
+			exportPlugin.downloadFile('csv', {
+				bom: true, //UTF-8
+				columnDelimiter: ',',
+				columnHeaders: true, //Export Header
+				exportHiddenColumns: true,
+				exportHiddenRows: true,
+				fileExtension: 'csv',
+				filename: 'Handsontable-CSV-Key[YYYY]-[MM]-[DD]',
+				mimeType: 'text/csv',
+				rowDelimiter: '\r\n',
+				rowHeaders: true
+			});
+		});
+	});
+	var resultCount, searchResultCount = 0;
+	//Calculator result is found
+	function searchResultCounter(instance, row, col, value, result) {
+		const DEFAULT_CALLBACK = function (instance, row, col, data, testResult) {
+			instance.getCellMeta(row, col).isSearchResult = testResult;
+		};
+		DEFAULT_CALLBACK.apply(this, arguments);
+		if (result) {
+			searchResultCount++;
+		}
+	}
+	//LOAD DATA
+	function loadKey() {
+		deletedIds = [];
+		// load demo data.
+		$.ajax({
+			url: _ctx + 'management/vote/key/loadData',
+			type: 'GET',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: function (res) {
+				console.log("res=" + res);
+				dataKey = res;
+				hotKey.loadData(dataKey);
+			},
+			error: function (e) {
+				console.log("Error: " + e);
+			}
+		});
+	}
+	//END LOAD DATA
+	//Generate onclick button
+	$("#btnGenerate").click(function () {
+		//Add data to list
+		dataKey = addRows(dataKey, 5);
+		//Reload table
+		hotKey.loadData(dataKey);
+	});
+	$('#frmHot').submit(function (e) {
+		e.preventDefault();
+		$('#errorHandsontable').hide();
+		$('#errorEmpty').hide();
+		console.log("Sumit");
+		// Get header name
+		var colHeaderData = hotKey.getColHeader();
+		// Get data from Handsontable
+		var tableData = hotKey.getData();
 
-            }, {
-                data: 'money',
+		var frmData = new FormData(this);
+		var frmData = {};
+		var arr = [];	
+		var len = tableData.length;
+		for (var i = 0; i < len; i++) {
+			arr.push({
+				id: tableData[i][0],
+				key: tableData[i][1],
+				priority: tableData[i][2] > 0 ? tableData[i][2] : 1,
+				isActive: tableData[i][3],
+				note: tableData[i][4],
+				created: tableData[i][5],
+				createdbyUsername: tableData[i][6]
+			});
+		}
+		frmData["data"] = arr;
+		frmData["deletedIds"] = deletedIds;
+		$('#errorHandsontable').hide();
+		$('#errorEmpty').hide();
+		var ok = true;
+		var checkColumns = [1, 2];
+		// check if row have data but column '1', '2' doesn't have. 
+		if (areEmptyColumns(hotKey, checkColumns)) {
+			ok = false;
+			$('#errorEmpty').show();
+			console.log("areEmptyColumns");
+		}
+		if (!isValidTable(hotKey)) {
+			ok = false;
+			$('#errorEmpty').show();
+			console.log("isValidTable");
+		}
+		// Check if handsontable have any data.
+		if (isEmptyTable(hotKey)) {
+			$('#errorEmpty').show();
+			console.log("isEmptyTable");
+			ok = false;
+		}
+		if (ok) {
+			$.ajax({
+				url: _ctx + "management/vote/key/saveEntity",
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify(frmData),
+				dataType: 'json',
+				success: function (result) {
+					$('#result').fadeToggle('slow');
+					$('#result').fadeOut(5000);
+					// reload data
+					// 					loadKey();
+					dataKey = result;
+					hotKey.loadData(dataKey);
 
-            }, {
-                data: 'event',
-
-            }, {
-                data: 'burden',
-
-            }, {
-                data: 'note',
-
-            }],
-            beforeRemoveRow: function (index, amount) {
-                // Support to submit deleted id into server
-                var lastIndex = index + amount;
-                console.log("index + amount", index + amount)
-                var i;
-                for (i = index; i < lastIndex; i++) {
-                    var deleteTransaction = dataTransaction[i];
-                    var deletedId = deleteTransaction.id;
-                    console.log("deleteTransaction" + deleteTransaction + "deleteId = "
-                        + deletedId);
-                    if (deletedId) {
-                        deletedIds.push(deletedId);
-                    }
-                }
-                console.log("list deletedIds=" + deletedIds);
-            },
-            beforeChange: function (changes, source) {
-
-                // changes = [[row, prop, oldVal, newVal], ...]
-                for (var i = 0; i < changes.length; i++) {
-                    var row = changes[i][0];
-                    var col = hotTransaction.propToCol(changes[i][1]);
-                    var newVal = changes[i][3];
-                    console.log("row: " + row + "; col: " + col + "; newVal: "
-                        + newVal);
-                }
-            },
-
-        });
-        loadMemberPosition();
-    });
-
-    function loadMemberPosition() {
-        deletedIds = [];
-        // load demo data.
-        $.ajax({
-            url: _ctx + 'management/transaction/loadHand',
-            type: 'GET',
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (res) {
-                console.log("res=" + res);
-                dataTransaction = res;
-                hotTransaction.loadData(dataTransaction);
-            },
-            error: function (e) {
-                console.log("Error: " + e);
-            }
-        });
-    }
+				},
+				error: function () {
+					console.log("Error!");
+					alert("ERROR: Can't save key !");
+				}
+			});
+		}
+	});
 </script>
 <script>
-    $('#frmHot').submit(function (e) {
-        e.preventDefault();
-        $('#errorHandsontable').hide();
-        $('#errorEmpty').hide();
-        // Get header name
-        var colHeaderData = hotTransaction.getColHeader();
-        // Get data from Handsontable
-        var tableData = hotTransaction.getData();
+	//custom function
+	//Check if all of object's attribute is null then return this object is null
+	function checkProperties(obj) {
+		for (var key in obj) {
+			if (obj[key] !== null && obj[key] != "")
+				return false;
+		}
+		return true;
+	}
+	//Random generate GUID
+	//803F1A51-E87D-46D9-AE35-0D764A3363C5
+	function uuidv4() {
+		let bytes = window.crypto.getRandomValues(new Uint8Array(32));
+		const randomBytes = () => (bytes = bytes.slice(1)) && bytes[0];
 
-        var frmData = new FormData(this);
-        var frmData = {};
-
-        frmData["header"] = colHeaderData;
-        frmData["data"] = tableData;
-        frmData["deletedIds"] = deletedIds;
-        $('#errorHandsontable').hide();
-        $('#errorEmpty').hide();
-        $.ajax({
-            url: _ctx + "management/transaction/save",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(frmData),
-            dataType: 'json',
-            success: function (result) {
-                $('#result').fadeToggle('slow');
-                $('#result').fadeOut(5000);
-                // reload data
-                loadMemberPosition();
-            },
-            error: function () {
-                console.log("Error!");
-                alert("ERROR: Can't save transaction !");
-            }
-        });
-    });
+		return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+			(c ^ randomBytes() & 15 >> c / 4).toString(16)
+		);
+	}
+	function addRows(data, n) {
+		for (var i = 0; i < dataKey.length; i++) {
+			//check if null or empty row then remove
+			if (data[i] == null || checkProperties(data[i])) {
+				//Remove
+				data.splice(i, 1); //Removing 1 element from index i
+			}
+		}
+		for (var i = 0; i < n; i++) {
+			data.push({
+				id: null, key: uuidv4(), priority: 1, isActive: false, note: null,
+				created: null, createdbyUsername: null, lastmodified: null, lastmodifiedbyUsername: null
+			})
+		}
+		return data;
+	}
 </script>
 
 </html>

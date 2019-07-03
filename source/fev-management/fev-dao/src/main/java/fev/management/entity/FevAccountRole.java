@@ -54,109 +54,120 @@ public class FevAccountRole implements Serializable {
 	private String role;
 	@Column(name = "note", length = 255)
 	private String note;
-	@Column(name = "createdby_username", length = 50)
-	private String createdbyUsername;
-	@Column(name = "lastmodified")
-	@Temporal(TemporalType.DATE)
-	private Date lastmodified;
-	@Column(name = "lastmodifiedby_username", length = 50)
-	private String lastmodifiedbyUsername;
+	@Column(name = "created")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
 	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
 	private Collection<FevAccount> fevAccountCollection;
 
 	public FevAccountRole() {
-	}
+    }
 
-	public FevAccountRole(Integer id) {
-		this.id = id;
-	}
+    public FevAccountRole(Integer id) {
+        this.id = id;
+    }
 
-	public FevAccountRole(Integer id, String role) {
-		this.id = id;
-		this.role = role;
-	}
+    public FevAccountRole(Integer id, String role) {
+        this.id = id;
+        this.role = role;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getCreatedbyUsername() {
-		return createdbyUsername;
-	}
+    public Date getCreated() {
+        return created;
+    }
 
-	public void setCreatedbyUsername(String createdbyUsername) {
-		this.createdbyUsername = createdbyUsername;
-	}
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
-	public Date getLastmodified() {
-		return lastmodified;
-	}
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
 
-	public void setLastmodified(Date lastmodified) {
-		this.lastmodified = lastmodified;
-	}
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
 
-	public String getLastmodifiedbyUsername() {
-		return lastmodifiedbyUsername;
-	}
+    public Date getLastmodified() {
+        return lastmodified;
+    }
 
-	public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
-		this.lastmodifiedbyUsername = lastmodifiedbyUsername;
-	}
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
 
-	@XmlTransient
-	public Collection<FevAccount> getFevAccountCollection() {
-		return fevAccountCollection;
-	}
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
 
-	public void setFevAccountCollection(Collection<FevAccount> fevAccountCollection) {
-		this.fevAccountCollection = fevAccountCollection;
-	}
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    @XmlTransient
+    public Collection<FevAccount> getFevAccountCollection() {
+        return fevAccountCollection;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof FevAccountRole)) {
-			return false;
-		}
-		FevAccountRole other = (FevAccountRole) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setFevAccountCollection(Collection<FevAccount> fevAccountCollection) {
+        this.fevAccountCollection = fevAccountCollection;
+    }
 
-	@Override
-	public String toString() {
-		return "fev.management.entity.FevAccountRole[ id=" + id + " ]";
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof FevAccountRole)) {
+            return false;
+        }
+        FevAccountRole other = (FevAccountRole) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "fev.management.entity.FevAccountRole[ id=" + id + " ]";
+    }
 
 }

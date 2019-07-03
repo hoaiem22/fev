@@ -25,8 +25,15 @@ public class VoteTermBizImpl implements VoteTermBiz {
 		String username = auth.getName(); // get logged in username
 		for (FevVoteTerm term : list) {
 			term.setName(term.getTerm() + " " + term.getYear());
+			//Update Create, CreateByUsername, LastModified and LastModifiedByUsername
+			if(term.getCreatedbyUsername() == null || term.getCreatedbyUsername().equals(""))
+				term.setCreatedbyUsername(username);
 			term.setLastmodifiedbyUsername(username);
-			term.setLastmodified(new Date());
+			Date date = new Date();
+			java.sql.Timestamp sqlTime = new java.sql.Timestamp(date.getTime());
+			term.setLastmodified(sqlTime);
+			if(term.getCreated() == null || term.getCreated().equals(""))
+				term.setCreated(sqlTime);
 		}
 		if (tobeDeletedIds != null) {
 			tobeDeletedIds.forEach(deleteId -> {

@@ -1,5 +1,6 @@
 package fev.management.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -127,7 +128,7 @@ public class MemberController {
     @PostMapping("/management/member/saveEntity")
     @ResponseBody
     public List<FevMember> saveEntity(@Valid @RequestBody BaseModelSave<FevMemberSave> data, Errors errors,
-            HttpServletRequest request) {
+            HttpServletRequest request) throws ParseException {
         LOG.info("save account role....");
 
         // If error, just return a 400 bad request, along with the error message
@@ -154,7 +155,7 @@ public class MemberController {
         		}
 				members.add(mapper.map(member, FevMember.class));
 			}
-            memberBizImpl.updateData(members, data.getDeletedIds());
+            memberBizImpl.updateMember(members, data.getDeletedIds());
         }
 
         // Reload data from db

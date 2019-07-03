@@ -357,6 +357,7 @@ function isValidTable (handsontable) {
 	var valid = true;
 	
 	for (var row = 0; row < handsontable.countRows(); row++){
+		//Not empty row
 		if (!handsontable.isEmptyRow(row)) {
 			for (var col = 0; col < handsontable.countCols(); col++){
 				if (handsontable.getCellMeta(row, col).valid == false) {

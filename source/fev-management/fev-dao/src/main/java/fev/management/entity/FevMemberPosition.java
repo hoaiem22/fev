@@ -54,6 +54,9 @@ public class FevMemberPosition implements Serializable {
 	private String position;
 	@Column(name = "note", length = 255)
 	private String note;
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 	@Column(name = "createdby_username", length = 50)
 	private String createdbyUsername;
 	@Column(name = "lastmodified")
@@ -69,6 +72,14 @@ public class FevMemberPosition implements Serializable {
 	private Collection<FevVoteCandidate> fevVoteCandidateCollection;
 
 	public FevMemberPosition() {
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public FevMemberPosition(Integer id) {

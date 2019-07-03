@@ -49,6 +49,9 @@ public class FevVote implements Serializable {
     private Integer id;
     @Column(name = "note", length = 250)
     private String note;
+    @Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
     @Column(name = "createdby_username", length = 50)
     private String createdbyUsername;
     @Column(name = "lastmodified")
@@ -57,7 +60,8 @@ public class FevVote implements Serializable {
     @Column(name = "lastmodifiedby_username", length = 50)
     private String lastmodifiedbyUsername;
     @JoinColumn(name = "candidate", referencedColumnName = "id", nullable = false)
-    @JsonManagedReference @ManyToOne(optional = false)
+    @JsonManagedReference 
+    @ManyToOne(optional = false)
     private FevMember candidate;
     @JoinColumn(name = "`key`", referencedColumnName = "id", nullable = false)
 	@JsonManagedReference
@@ -79,7 +83,15 @@ public class FevVote implements Serializable {
         this.id = id;
     }
 
-    public String getNote() {
+    public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public String getNote() {
         return note;
     }
 

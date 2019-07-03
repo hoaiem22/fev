@@ -57,10 +57,13 @@ public class FevVoteTerm implements Serializable {
 	private String term;
 	@Column(name = "year", length = 10)
 	private String year;
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 	@Column(name = "createdby_username", length = 50)
 	private String createdbyUsername;
 	@Column(name = "lastmodified")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastmodified;
 	@Column(name = "lastmodifiedby_username", length = 50)
 	private String lastmodifiedbyUsername;
@@ -83,6 +86,14 @@ public class FevVoteTerm implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public String getName() {

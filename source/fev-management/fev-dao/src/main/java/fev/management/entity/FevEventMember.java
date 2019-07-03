@@ -50,13 +50,16 @@ public class FevEventMember implements Serializable {
 	private Integer id;
 	@Column(name = "note", length = 255)
 	private String note;
-	@Column(name = "createdby_username", length = 50)
-	private String createdbyUsername;
-	@Column(name = "lastmodified")
-	@Temporal(TemporalType.DATE)
-	private Date lastmodified;
-	@Column(name = "lastmodifiedby_username", length = 50)
-	private String lastmodifiedbyUsername;
+    @Column(name = "created")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+    @Column(name = "createdby_username", length = 50)
+    private String createdbyUsername;
+    @Column(name = "lastmodified")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastmodified;
+    @Column(name = "lastmodifiedby_username", length = 50)
+    private String lastmodifiedbyUsername;
 	@JoinColumn(name = "member", referencedColumnName = "id")
 	@JsonManagedReference
 	@ManyToOne
@@ -67,91 +70,99 @@ public class FevEventMember implements Serializable {
 	private FevEvent event;
 
 	public FevEventMember() {
-	}
+    }
 
-	public FevEventMember(Integer id) {
-		this.id = id;
-	}
+    public FevEventMember(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getNote() {
-		return note;
-	}
+    public String getNote() {
+        return note;
+    }
 
-	public void setNote(String note) {
-		this.note = note;
-	}
+    public void setNote(String note) {
+        this.note = note;
+    }
 
-	public String getCreatedbyUsername() {
-		return createdbyUsername;
-	}
+    public Date getCreated() {
+        return created;
+    }
 
-	public void setCreatedbyUsername(String createdbyUsername) {
-		this.createdbyUsername = createdbyUsername;
-	}
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
-	public Date getLastmodified() {
-		return lastmodified;
-	}
+    public String getCreatedbyUsername() {
+        return createdbyUsername;
+    }
 
-	public void setLastmodified(Date lastmodified) {
-		this.lastmodified = lastmodified;
-	}
+    public void setCreatedbyUsername(String createdbyUsername) {
+        this.createdbyUsername = createdbyUsername;
+    }
 
-	public String getLastmodifiedbyUsername() {
-		return lastmodifiedbyUsername;
-	}
+    public Date getLastmodified() {
+        return lastmodified;
+    }
 
-	public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
-		this.lastmodifiedbyUsername = lastmodifiedbyUsername;
-	}
+    public void setLastmodified(Date lastmodified) {
+        this.lastmodified = lastmodified;
+    }
 
-	public FevMember getMember1() {
-		return member1;
-	}
+    public String getLastmodifiedbyUsername() {
+        return lastmodifiedbyUsername;
+    }
 
-	public void setMember1(FevMember member1) {
-		this.member1 = member1;
-	}
+    public void setLastmodifiedbyUsername(String lastmodifiedbyUsername) {
+        this.lastmodifiedbyUsername = lastmodifiedbyUsername;
+    }
 
-	public FevEvent getEvent() {
-		return event;
-	}
+    public FevMember getMember1() {
+        return member1;
+    }
 
-	public void setEvent(FevEvent event) {
-		this.event = event;
-	}
+    public void setMember1(FevMember member1) {
+        this.member1 = member1;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public FevEvent getEvent() {
+        return event;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof FevEventMember)) {
-			return false;
-		}
-		FevEventMember other = (FevEventMember) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    public void setEvent(FevEvent event) {
+        this.event = event;
+    }
 
-	@Override
-	public String toString() {
-		return "fev.management.entity.FevEventMember[ id=" + id + " ]";
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof FevEventMember)) {
+            return false;
+        }
+        FevEventMember other = (FevEventMember) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "fev.management.entity.FevEventMember[ id=" + id + " ]";
+    }
+    
 }

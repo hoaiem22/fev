@@ -95,6 +95,9 @@
 					// if (changes[i][3] === 'foo') {
 					// 	changes.splice(i, 1);
 					// }
+					if (col == 2 || col == 1) {
+						textValidator(hotKey, row, col, newVal, 50);
+					}
 					// capitalise first letter in column 1 and 2
 					var upperCols = ["term", "note"];
 					if (upperCols.includes(changes[i][1]) && changes[i][3].charAt(0)) {

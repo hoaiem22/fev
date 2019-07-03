@@ -54,6 +54,9 @@ public class FevMemberGroup implements Serializable {
 	private String group;
 	@Column(name = "note", length = 255)
 	private String note;
+	@Column(name = "created")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
 	@Column(name = "createdby_username", length = 50)
 	private String createdbyUsername;
 	@Column(name = "lastmodified")
@@ -82,6 +85,14 @@ public class FevMemberGroup implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	public void setId(Integer id) {
